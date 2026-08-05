@@ -7,8 +7,14 @@ import CyberCheckbox from './CyberCheckbox';
 import CyberAlert from './CyberAlert';
 import CyberProgress from './CyberProgress';
 
+interface SignupSuccessData {
+  username: string;
+  email: string;
+  pgpKey: string;
+}
+
 interface CyberSignupFormProps {
-  onSuccess?: (data: any) => void;
+  onSuccess?: (data: SignupSuccessData) => void;
   className?: string;
 }
 

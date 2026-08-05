@@ -64,35 +64,38 @@ export default function CyberActionCard({
 }: CyberActionCardProps) {
   const colors = COLOR_MAP[variant];
 
-  const CardWrapper = ({ children }: { children: React.ReactNode }) => {
-    if (href) {
-      return (
-        <a
-          href={href}
-          target={target || (href.startsWith('http') ? '_blank' : undefined)}
-          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className={`
-            flex items-start gap-4 p-4 border rounded transition-all duration-300 group/link cursor-pointer
-            ${colors.border} ${className}
-          `}
-        >
-          {children}
-        </a>
-      );
-    }
+  const cardClass = `flex items-start gap-4 p-4 border rounded transition-all duration-300 group/link cursor-pointer ${colors.border} ${className}`;
 
-    return (
-      <div
-        onClick={onClick}
-        className={`
-          flex items-start gap-4 p-4 border rounded transition-all duration-300 group/link cursor-pointer
-          ${colors.border} ${className}
-        `}
-      >
-        {children}
+  const renderContent = () => (
+    <>
+      {/* Left Side: Icon */}
+      <span className={`font-mono text-sm shrink-0 transition-colors ${colors.accentText}`}>
+        {icon}
+      </span>
+
+      {/* Center: Details */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-2 mb-0.5">
+          <span className={`text-sm font-bold font-mono group-hover/link:text-shadow-glow transition-all ${colors.text}`}>
+            {label}
+          </span>
+          {description && (
+            <span className={`text-xs font-mono ${colors.dimText}`}>
+              {description}
+            </span>
+          )}
+        </div>
+        <span className={`text-xs font-mono truncate block transition-colors ${colors.subText}`}>
+          {value}
+        </span>
       </div>
-    );
-  };
+
+      {/* Right Side: Arrow Indicator */}
+      <span className={`text-sm transition-colors shrink-0 ${colors.dimText} group-hover/link:${colors.text}`}>
+        →
+      </span>
+    </>
+  );
 
   return (
     <div className="w-full">
@@ -104,34 +107,20 @@ export default function CyberActionCard({
       )}
 
       {/* Interactive Link Card */}
-      <CardWrapper>
-        {/* Left Side: Icon */}
-        <span className={`font-mono text-sm shrink-0 transition-colors ${colors.accentText}`}>
-          {icon}
-        </span>
-
-        {/* Center: Details */}
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between gap-2 mb-0.5">
-            <span className={`text-sm font-bold font-mono group-hover/link:text-shadow-glow transition-all ${colors.text}`}>
-              {label}
-            </span>
-            {description && (
-              <span className={`text-xs font-mono ${colors.dimText}`}>
-                {description}
-              </span>
-            )}
-          </div>
-          <span className={`text-xs font-mono truncate block transition-colors ${colors.subText}`}>
-            {value}
-          </span>
+      {href ? (
+        <a
+          href={href}
+          target={target || (href.startsWith('http') ? '_blank' : undefined)}
+          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className={cardClass}
+        >
+          {renderContent()}
+        </a>
+      ) : (
+        <div onClick={onClick} className={cardClass}>
+          {renderContent()}
         </div>
-
-        {/* Right Side: Arrow Indicator */}
-        <span className={`text-sm transition-colors shrink-0 ${colors.dimText} group-hover/link:${colors.text}`}>
-          →
-        </span>
-      </CardWrapper>
+      )}
     </div>
   );
 }

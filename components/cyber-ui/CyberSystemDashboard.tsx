@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import CyberPanel from './CyberPanel';
-import CyberBadge from './CyberBadge';
 import CyberProgress from './CyberProgress';
 import CyberStatusLine from './CyberStatusLine';
 import CyberAlert from './CyberAlert';

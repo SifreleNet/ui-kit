@@ -6,7 +6,7 @@ import Link from 'next/link';
 // Import components
 import MatrixRain from '@/components/MatrixRain';
 import TerminalHero from '@/components/TerminalHero';
-import HackerDashboard, { NetworkScanPanel, LiveLogPanel, BruteForcePanel, HexDumpPanel } from '@/components/HackerDashboard';
+import HackerDashboard from '@/components/HackerDashboard';
 import ProjectCard from '@/components/ProjectCard';
 import SkillsSection from '@/components/SkillsSection';
 import CyberButton from '@/components/cyber-ui/CyberButton';

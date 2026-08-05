@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 interface GlitchTextProps extends React.HTMLAttributes<HTMLSpanElement> {
   text: string;
@@ -8,6 +8,8 @@ interface GlitchTextProps extends React.HTMLAttributes<HTMLSpanElement> {
   intervalSpeed?: number;
   glow?: boolean;
 }
+
+const scrambleChars = '01#$&%XØZ?';
 
 export default function GlitchText({
   text,
@@ -20,9 +22,8 @@ export default function GlitchText({
   const [displayText, setDisplayText] = useState(text);
   const [isGlitching, setIsGlitching] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const scrambleChars = '01#$&%XØZ?';
 
-  const scramble = () => {
+  const scramble = useCallback(() => {
     if (isGlitching) return;
     setIsGlitching(true);
     let iterations = 0;
@@ -47,7 +48,7 @@ export default function GlitchText({
         setIsGlitching(false);
       }
     }, 40);
-  };
+  }, [isGlitching, text]);
 
   useEffect(() => {
     setDisplayText(text);
@@ -65,7 +66,7 @@ export default function GlitchText({
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
-  }, [text, trigger, intervalSpeed]);
+  }, [trigger, intervalSpeed, scramble]);
 
   const handleMouseEnter = () => {
     if (trigger === 'hover') {

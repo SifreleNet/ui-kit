@@ -17,7 +17,7 @@ interface ColorScheme {
   border: string;
   text: string;
   bg: string;
-  badge: string;
+  badge: 'green' | 'cyan' | 'red' | 'amber';
   flash?: string;
 }
 
@@ -76,7 +76,7 @@ export default function CyberAlert({
         <div className="flex flex-col gap-2">
           {/* Status Alert Badge + Title */}
           <div className="flex items-center gap-2">
-            <CyberBadge variant={colors.badge as any} brackets={true}>
+            <CyberBadge variant={colors.badge} brackets={true}>
               {variant === 'red' ? 'CRIT' : variant === 'amber' ? 'WARN' : 'INFO'}
             </CyberBadge>
             <span className={`text-xs font-bold uppercase tracking-wider ${colors.text}`}>
