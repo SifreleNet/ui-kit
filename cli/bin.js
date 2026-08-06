@@ -227,9 +227,9 @@ const installComponents = async (targets, token) => {
   const items = Array.isArray(targets) ? targets : [targets];
   const resolved = resolveAllComponents(items);
   console.log(pc.yellow(`\n⬡ Installing ${resolved.length} component(s) (including internal dependencies)...`));
-
   for (const comp of resolved) {
     await downloadAndSave(comp, token);
+  }
 };
 
 const downloadAndSave = async (comp, token) => {
