@@ -11,38 +11,38 @@ const CONFIG_FILE_NAME = '.sifrelenetrc';
 // Available components registry
 const COMPONENTS = [
   // Primitives
-  { name: 'CyberButton', path: 'components/cyber-ui/CyberButton.tsx', deps: ['framer-motion'] },
-  { name: 'CyberInput', path: 'components/cyber-ui/CyberInput.tsx', deps: [] },
-  { name: 'CyberPanel', path: 'components/cyber-ui/CyberPanel.tsx', deps: [] },
-  { name: 'CyberBadge', path: 'components/cyber-ui/CyberBadge.tsx', deps: [] },
-  { name: 'GlitchText', path: 'components/cyber-ui/GlitchText.tsx', deps: [] },
-  { name: 'CyberStatusLine', path: 'components/cyber-ui/CyberStatusLine.tsx', deps: ['lucide-react'] },
-  { name: 'CyberActionCard', path: 'components/cyber-ui/CyberActionCard.tsx', deps: ['framer-motion'] },
-  { name: 'CyberConsoleBox', path: 'components/cyber-ui/CyberConsoleBox.tsx', deps: [] },
-  { name: 'CyberTabs', path: 'components/cyber-ui/CyberTabs.tsx', deps: [] },
-  { name: 'CyberSwitch', path: 'components/cyber-ui/CyberSwitch.tsx', deps: [] },
-  { name: 'CyberCheckbox', path: 'components/cyber-ui/CyberCheckbox.tsx', deps: [] },
-  { name: 'CyberDialog', path: 'components/cyber-ui/CyberDialog.tsx', deps: ['framer-motion', 'lucide-react'] },
-  { name: 'CyberProgress', path: 'components/cyber-ui/CyberProgress.tsx', deps: [] },
-  { name: 'CyberAlert', path: 'components/cyber-ui/CyberAlert.tsx', deps: ['lucide-react'] },
+  { name: 'CyberButton', path: 'components/cyber-ui/CyberButton.tsx', deps: ['framer-motion'], internalDeps: [] },
+  { name: 'CyberInput', path: 'components/cyber-ui/CyberInput.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberPanel', path: 'components/cyber-ui/CyberPanel.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberBadge', path: 'components/cyber-ui/CyberBadge.tsx', deps: [], internalDeps: [] },
+  { name: 'GlitchText', path: 'components/cyber-ui/GlitchText.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberStatusLine', path: 'components/cyber-ui/CyberStatusLine.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'CyberActionCard', path: 'components/cyber-ui/CyberActionCard.tsx', deps: ['framer-motion'], internalDeps: [] },
+  { name: 'CyberConsoleBox', path: 'components/cyber-ui/CyberConsoleBox.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberTabs', path: 'components/cyber-ui/CyberTabs.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberSwitch', path: 'components/cyber-ui/CyberSwitch.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberCheckbox', path: 'components/cyber-ui/CyberCheckbox.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberDialog', path: 'components/cyber-ui/CyberDialog.tsx', deps: ['framer-motion', 'lucide-react'], internalDeps: ['CyberButton'] },
+  { name: 'CyberProgress', path: 'components/cyber-ui/CyberProgress.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberAlert', path: 'components/cyber-ui/CyberAlert.tsx', deps: ['lucide-react'], internalDeps: ['CyberBadge', 'CyberButton'] },
   
   // Animations
-  { name: 'MatrixRain', path: 'components/MatrixRain.tsx', deps: [] },
-  { name: 'CyberPulseRadar', path: 'components/cyber-ui/CyberPulseRadar.tsx', deps: [] },
-  { name: 'TextDecryptor', path: 'components/cyber-ui/TextDecryptor.tsx', deps: [] },
-  { name: 'HologramContainer', path: 'components/cyber-ui/HologramContainer.tsx', deps: [] },
+  { name: 'MatrixRain', path: 'components/MatrixRain.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberPulseRadar', path: 'components/cyber-ui/CyberPulseRadar.tsx', deps: [], internalDeps: [] },
+  { name: 'TextDecryptor', path: 'components/cyber-ui/TextDecryptor.tsx', deps: [], internalDeps: [] },
+  { name: 'HologramContainer', path: 'components/cyber-ui/HologramContainer.tsx', deps: [], internalDeps: [] },
   
   // Templates
-  { name: 'CyberLoginForm', path: 'components/cyber-ui/CyberLoginForm.tsx', deps: ['framer-motion', 'lucide-react'] },
-  { name: 'CyberSignupForm', path: 'components/cyber-ui/CyberSignupForm.tsx', deps: ['framer-motion', 'lucide-react'] },
-  { name: 'CyberSystemDashboard', path: 'components/cyber-ui/CyberSystemDashboard.tsx', deps: ['lucide-react'] },
-  { name: 'CyberDataForm', path: 'components/cyber-ui/CyberDataForm.tsx', deps: ['lucide-react'] },
-  { name: 'InteractiveConsole', path: 'components/cyber-ui/InteractiveConsole.tsx', deps: ['lucide-react'] },
-  { name: 'TargetNetworkMap', path: 'components/cyber-ui/TargetNetworkMap.tsx', deps: ['lucide-react'] },
-  { name: 'TerminalHero', path: 'components/TerminalHero.tsx', deps: ['framer-motion'] },
-  { name: 'HackerDashboard', path: 'components/HackerDashboard.tsx', deps: ['lucide-react'] },
-  { name: 'ProjectCard', path: 'components/ProjectCard.tsx', deps: ['lucide-react'] },
-  { name: 'SkillsSection', path: 'components/SkillsSection.tsx', deps: ['lucide-react'] },
+  { name: 'CyberLoginForm', path: 'components/cyber-ui/CyberLoginForm.tsx', deps: ['framer-motion', 'lucide-react'], internalDeps: ['CyberButton', 'CyberInput', 'CyberAlert', 'CyberProgress'] },
+  { name: 'CyberSignupForm', path: 'components/cyber-ui/CyberSignupForm.tsx', deps: ['framer-motion', 'lucide-react'], internalDeps: ['CyberButton', 'CyberInput', 'CyberCheckbox', 'CyberAlert', 'CyberProgress'] },
+  { name: 'CyberSystemDashboard', path: 'components/cyber-ui/CyberSystemDashboard.tsx', deps: ['lucide-react'], internalDeps: ['CyberPanel', 'CyberProgress', 'CyberStatusLine', 'CyberAlert'] },
+  { name: 'CyberDataForm', path: 'components/cyber-ui/CyberDataForm.tsx', deps: ['lucide-react'], internalDeps: ['CyberPanel', 'CyberInput', 'CyberSwitch', 'CyberCheckbox', 'CyberTabs', 'CyberButton'] },
+  { name: 'InteractiveConsole', path: 'components/cyber-ui/InteractiveConsole.tsx', deps: ['lucide-react'], internalDeps: ['CyberInput'] },
+  { name: 'TargetNetworkMap', path: 'components/cyber-ui/TargetNetworkMap.tsx', deps: ['lucide-react'], internalDeps: ['CyberBadge', 'CyberPanel'] },
+  { name: 'TerminalHero', path: 'components/TerminalHero.tsx', deps: ['framer-motion'], internalDeps: ['HackerDashboard'] },
+  { name: 'HackerDashboard', path: 'components/HackerDashboard.tsx', deps: ['lucide-react'], internalDeps: ['MatrixRain', 'TerminalHero', 'ProjectCard', 'SkillsSection'] },
+  { name: 'ProjectCard', path: 'components/ProjectCard.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'SkillsSection', path: 'components/SkillsSection.tsx', deps: ['lucide-react'], internalDeps: [] },
 ];
 
 const getStoredToken = () => {
@@ -190,6 +190,30 @@ const main = async () => {
   }
 };
 
+const resolveAllComponents = (names) => {
+  const toInstall = new Set();
+  
+  const resolve = (name) => {
+    const comp = COMPONENTS.find((c) => c.name.toLowerCase() === name.toLowerCase());
+    if (!comp) return;
+    
+    if (!toInstall.has(comp)) {
+      toInstall.add(comp);
+      if (comp.internalDeps) {
+        for (const dep of comp.internalDeps) {
+          resolve(dep);
+        }
+      }
+    }
+  };
+  
+  for (const name of names) {
+    resolve(name);
+  }
+  
+  return Array.from(toInstall);
+};
+
 const installComponents = async (targets, token) => {
   if (targets === 'all') {
     console.log(pc.yellow(`\n⬡ Installing all 28 components...`));
@@ -201,17 +225,11 @@ const installComponents = async (targets, token) => {
   }
 
   const items = Array.isArray(targets) ? targets : [targets];
-  console.log(pc.yellow(`\n⬡ Installing ${items.length} component(s)...`));
+  const resolved = resolveAllComponents(items);
+  console.log(pc.yellow(`\n⬡ Installing ${resolved.length} component(s) (including internal dependencies)...`));
 
-  for (const name of items) {
-    const comp = COMPONENTS.find((c) => c.name.toLowerCase() === name.toLowerCase());
-    if (!comp) {
-      console.log(pc.red(`\n✖ Unknown component: "${name}".`));
-      console.log(`Available components:\n${COMPONENTS.map((c) => c.name).join(', ')}`);
-      continue;
-    }
+  for (const comp of resolved) {
     await downloadAndSave(comp, token);
-  }
 };
 
 const downloadAndSave = async (comp, token) => {
