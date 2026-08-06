@@ -4564,4 +4564,645 @@ export default function HologramContainer({
   );
 }
 `,
+  CyberTable: `'use client';
+
+import React from 'react';
+
+interface Column {
+  key: string;
+  header: string;
+  className?: string;
+  render?: (value: any, row: any) => React.ReactNode;
+}
+
+interface CyberTableProps {
+  columns: Column[];
+  data: any[];
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  title?: string;
+  subtitle?: string;
+  loading?: boolean;
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    text: 'text-neon-green',
+    border: 'border-neon-green/20',
+    borderHeader: 'border-neon-green/40',
+    bgHeader: 'bg-neon-green/5',
+    rowHover: 'hover:bg-neon-green/5',
+    glow: 'shadow-[0_0_15px_rgba(0,255,159,0.05)]',
+  },
+  cyan: {
+    text: 'text-cyan-400',
+    border: 'border-cyan-500/20',
+    borderHeader: 'border-cyan-500/40',
+    bgHeader: 'bg-cyan-500/5',
+    rowHover: 'hover:bg-cyan-500/5',
+    glow: 'shadow-[0_0_15px_rgba(34,211,238,0.05)]',
+  },
+  red: {
+    text: 'text-rose-500',
+    border: 'border-rose-500/20',
+    borderHeader: 'border-rose-500/40',
+    bgHeader: 'bg-rose-500/5',
+    rowHover: 'hover:bg-rose-500/5',
+    glow: 'shadow-[0_0_15px_rgba(244,63,94,0.05)]',
+  },
+  amber: {
+    text: 'text-amber-500',
+    border: 'border-amber-500/20',
+    borderHeader: 'border-amber-500/40',
+    bgHeader: 'bg-amber-500/5',
+    rowHover: 'hover:bg-amber-500/5',
+    glow: 'shadow-[0_0_15px_rgba(245,158,11,0.05)]',
+  },
+};
+
+export default function CyberTable({
+  columns,
+  data,
+  variant = 'green',
+  title,
+  subtitle,
+  loading = false,
+  className = '',
+}: CyberTableProps) {
+  const styles = VARIANTS[variant];
+
+  return (
+    <div className={\`w-full border border-neutral-900 bg-black/40 backdrop-blur-sm rounded overflow-hidden flex flex-col font-mono text-xs \${styles.glow} \${className}\`}>
+      {/* Table Header Bar */}
+      {(title || subtitle) && (
+        <div className="px-4 py-3 border-b border-neutral-950 bg-black/80 flex flex-col sm:flex-row justify-between sm:items-center gap-1">
+          <div>
+            {title && (
+              <h4 className="text-white font-bold tracking-widest uppercase flex items-center gap-2">
+                <span className={styles.text}>⬢</span> {title}
+              </h4>
+            )}
+            {subtitle && <p className="text-[10px] text-white/40 uppercase tracking-wider">{subtitle}</p>}
+          </div>
+          <div className="flex items-center gap-1.5 text-[9px] text-white/30 uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
+            <span>Telemetry Feed</span>
+          </div>
+        </div>
+      )}
+
+      {/* Grid Wrapper */}
+      <div className="w-full overflow-x-auto relative scrollbar-thin">
+        {/* CRT Scanline Sweep */}
+        <div className="absolute inset-0 pointer-events-none z-10 scanline-sweep opacity-[0.03]" />
+
+        <table className="w-full border-collapse text-left min-w-[500px]">
+          <thead>
+            <tr className={\`border-b \${styles.borderHeader} \${styles.bgHeader}\`}>
+              {columns.map((col) => (
+                <th
+                  key={col.key}
+                  className={\`px-4 py-3 font-bold uppercase tracking-wider \${styles.text} \${col.className || ''}\`}
+                >
+                  {col.header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-neutral-950">
+            {loading ? (
+              <tr>
+                <td colSpan={columns.length} className="px-4 py-8 text-center text-white/40">
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="animate-spin">⬡</span> LOADING TELEMETRY DATA...
+                  </div>
+                </td>
+              </tr>
+            ) : data.length === 0 ? (
+              <tr>
+                <td colSpan={columns.length} className="px-4 py-8 text-center text-white/30 uppercase">
+                  [ No telemetry logs registered ]
+                </td>
+              </tr>
+            ) : (
+              data.map((row, rowIndex) => (
+                <tr
+                  key={row.id || rowIndex}
+                  className={\`transition-colors duration-150 \${styles.rowHover} group\`}
+                >
+                  {columns.map((col) => (
+                    <td
+                      key={col.key}
+                      className={\`px-4 py-3 text-white/70 group-hover:text-white transition-colors border-b \${styles.border} \${col.className || ''}\`}
+                    >
+                      {col.render ? col.render(row[col.key], row) : String(row[col.key] ?? '')}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+`,
+  CyberTooltip: `'use client';
+
+import React, { useState } from 'react';
+
+interface CyberTooltipProps {
+  content: React.ReactNode;
+  children: React.ReactElement;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  delay?: number;
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    border: 'border-neon-green/30 bg-[#0a0a0a]/95 text-neon-green',
+    text: 'text-neon-green',
+    arrow: 'border-neon-green/30',
+  },
+  cyan: {
+    border: 'border-cyan-500/30 bg-[#0a0a0a]/95 text-cyan-400',
+    text: 'text-cyan-400',
+    arrow: 'border-cyan-500/30',
+  },
+  red: {
+    border: 'border-rose-500/30 bg-[#0a0a0a]/95 text-rose-500',
+    text: 'text-rose-500',
+    arrow: 'border-rose-500/30',
+  },
+  amber: {
+    border: 'border-amber-500/30 bg-[#0a0a0a]/95 text-amber-500',
+    text: 'text-amber-500',
+    arrow: 'border-amber-500/30',
+  },
+};
+
+const POSITION_CLASSES = {
+  top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
+  bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
+  left: 'right-full top-1/2 -translate-y-1/2 mr-2',
+  right: 'left-full top-1/2 -translate-y-1/2 ml-2',
+};
+
+export default function CyberTooltip({
+  content,
+  children,
+  position = 'top',
+  variant = 'green',
+  delay = 200,
+  className = '',
+}: CyberTooltipProps) {
+  const [visible, setVisible] = useState(false);
+  let timeoutId: NodeJS.Timeout;
+
+  const show = () => {
+    timeoutId = setTimeout(() => setVisible(true), delay);
+  };
+
+  const hide = () => {
+    clearTimeout(timeoutId);
+    setVisible(false);
+  };
+
+  const styles = VARIANTS[variant];
+  const positionClass = POSITION_CLASSES[position];
+
+  return (
+    <div
+      className="relative inline-block cursor-help"
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      onFocus={show}
+      onBlur={hide}
+    >
+      {children}
+      {visible && (
+        <div
+          className={\`absolute z-[999] px-3 py-1.5 border rounded font-mono text-[10px] uppercase tracking-wider whitespace-nowrap pointer-events-none shadow-[0_0_15px_rgba(0,0,0,0.8)] backdrop-blur-md transition-opacity duration-200 animate-fadeIn \${styles.border} \${positionClass} \${className}\`}
+        >
+          {/* Neon Corner Brackets */}
+          <div className="absolute top-0.5 left-0.5 w-1 h-1 border-t border-l border-current opacity-60" />
+          <div className="absolute top-0.5 right-0.5 w-1 h-1 border-t border-r border-current opacity-60" />
+          <div className="absolute bottom-0.5 left-0.5 w-1 h-1 border-b border-l border-current opacity-60" />
+          <div className="absolute bottom-0.5 right-0.5 w-1 h-1 border-b border-r border-current opacity-60" />
+
+          {/* Tooltip Content */}
+          <div className="flex items-center gap-1.5 relative z-10">
+            <span className="animate-blink">_</span>
+            <span>{content}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+`,
+  CyberToast: `'use client';
+
+import React, { createContext, useContext, useState, useCallback } from 'react';
+import { X, ShieldAlert, CheckCircle2, AlertTriangle, Info } from 'lucide-react';
+
+export type ToastVariant = 'green' | 'cyan' | 'red' | 'amber';
+
+export interface Toast {
+  id: string;
+  title: string;
+  message?: string;
+  variant?: ToastVariant;
+  duration?: number;
+}
+
+interface CyberToastContextType {
+  toast: (options: Omit<Toast, 'id'>) => void;
+  dismiss: (id: string) => void;
+}
+
+const CyberToastContext = createContext<CyberToastContextType | undefined>(undefined);
+
+export function useCyberToast() {
+  const context = useContext(CyberToastContext);
+  if (!context) {
+    throw new Error('useCyberToast must be used within a CyberToastProvider');
+  }
+  return context;
+}
+
+const VARIANTS = {
+  green: {
+    border: 'border-neon-green/30 bg-[#0a0a0a]/95 text-neon-green',
+    icon: <CheckCircle2 className="w-4 h-4 text-neon-green" />,
+    progress: 'bg-neon-green',
+    title: 'text-white',
+  },
+  cyan: {
+    border: 'border-cyan-500/30 bg-[#0a0a0a]/95 text-cyan-400',
+    icon: <Info className="w-4 h-4 text-cyan-400" />,
+    progress: 'bg-cyan-400',
+    title: 'text-white',
+  },
+  red: {
+    border: 'border-rose-500/30 bg-[#0a0a0a]/95 text-rose-500',
+    icon: <ShieldAlert className="w-4 h-4 text-rose-500 animate-pulse" />,
+    progress: 'bg-rose-500',
+    title: 'text-white',
+  },
+  amber: {
+    border: 'border-amber-500/30 bg-[#0a0a0a]/95 text-amber-500',
+    icon: <AlertTriangle className="w-4 h-4 text-amber-500" />,
+    progress: 'bg-amber-500',
+    title: 'text-white',
+  },
+};
+
+export function CyberToastProvider({ children }: { children: React.ReactNode }) {
+  const [toasts, setToasts] = useState<Toast[]>([]);
+
+  const dismiss = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  const toast = useCallback((options: Omit<Toast, 'id'>) => {
+    const id = Math.random().toString(36).slice(2, 9);
+    const duration = options.duration ?? 4000;
+    
+    setToasts((prev) => [...prev, { id, ...options }]);
+
+    if (duration > 0) {
+      setTimeout(() => dismiss(id), duration);
+    }
+  }, [dismiss]);
+
+  return (
+    <CyberToastContext.Provider value={{ toast, dismiss }}>
+      {children}
+      
+      {/* Toast container */}
+      <div className="fixed bottom-4 right-4 z-[9999] flex flex-col gap-3 w-full max-w-sm pointer-events-none">
+        {toasts.map((t) => {
+          const styles = VARIANTS[t.variant || 'green'];
+          return (
+            <div
+              key={t.id}
+              className={\`pointer-events-auto w-full border rounded p-4 shadow-[0_0_20px_rgba(0,0,0,0.8)] backdrop-blur-md relative overflow-hidden flex gap-3 items-start animate-slideIn font-mono text-xs \${styles.border}\`}
+            >
+              {/* Scanline overlay */}
+              <div className="absolute inset-0 pointer-events-none z-10 scanline-sweep opacity-[0.03]" />
+
+              {/* Progress bar countdown */}
+              {t.duration !== 0 && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/5">
+                  <div
+                    className={\`h-full \${styles.progress} transition-all duration-[4000ms] ease-linear\`}
+                    style={{
+                      animation: \`shrinkWidth \${t.duration || 4000}ms linear forwards\`,
+                    }}
+                  />
+                </div>
+              )}
+
+              {/* Icon */}
+              <div className="shrink-0 mt-0.5">{styles.icon}</div>
+
+              {/* Text info */}
+              <div className="flex-1 flex flex-col gap-1 min-w-0">
+                <div className={\`font-bold uppercase tracking-wider \${styles.title}\`}>
+                  {t.title}
+                </div>
+                {t.message && <p className="text-white/60 text-[10px] break-words">{t.message}</p>}
+              </div>
+
+              {/* Dismiss button */}
+              <button
+                onClick={() => dismiss(t.id)}
+                className="shrink-0 text-white/40 hover:text-white transition-colors cursor-pointer"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          );
+        })}
+      </div>
+
+      <style jsx global>{\`
+        @keyframes shrinkWidth {
+          from { width: 100%; }
+          to { width: 0%; }
+        }
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        .animate-slideIn {
+          animation: slideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      \`}</style>
+    </CyberToastContext.Provider>
+  );
+}
+`,
+  CyberCommandMenu: `'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { Search, Terminal, Settings, ShieldAlert, Cpu, Eye, X } from 'lucide-react';
+
+interface CommandOption {
+  id: string;
+  title: string;
+  subtitle?: string;
+  category: string;
+  icon?: React.ReactNode;
+  action: () => void;
+}
+
+interface CyberCommandMenuProps {
+  options: CommandOption[];
+  triggerKey?: string; // e.g. "k" (combined with metaKey/ctrlKey) or "/"
+  placeholder?: string;
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+}
+
+const VARIANTS = {
+  green: {
+    border: 'border-neon-green/30 bg-[#0a0a0ae6]',
+    text: 'text-neon-green',
+    bgActive: 'bg-neon-green/10',
+    borderActive: 'border-neon-green/50',
+    outline: 'outline-neon-green/40',
+  },
+  cyan: {
+    border: 'border-cyan-500/30 bg-[#0a0a0ae6]',
+    text: 'text-cyan-400',
+    bgActive: 'bg-cyan-500/10',
+    borderActive: 'border-cyan-500/50',
+    outline: 'outline-cyan-500/40',
+  },
+  red: {
+    border: 'border-rose-500/30 bg-[#0a0a0ae6]',
+    text: 'text-rose-500',
+    bgActive: 'bg-rose-500/10',
+    borderActive: 'border-rose-500/50',
+    outline: 'outline-rose-500/40',
+  },
+  amber: {
+    border: 'border-amber-500/30 bg-[#0a0a0ae6]',
+    text: 'text-amber-500',
+    bgActive: 'bg-amber-500/10',
+    borderActive: 'border-amber-500/50',
+    outline: 'outline-amber-500/40',
+  },
+};
+
+export default function CyberCommandMenu({
+  options,
+  triggerKey = 'k',
+  placeholder = 'RUN DIAGNOSTIC COMMAND...',
+  variant = 'green',
+}: CyberCommandMenuProps) {
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  const menuRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const styles = VARIANTS[variant];
+
+  // Hotkey listener
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === triggerKey.toLowerCase()) {
+        e.preventDefault();
+        setOpen((prev) => !prev);
+      } else if (e.key === '/' && document.activeElement !== inputRef.current) {
+        // Only trigger "/" search if not currently focusing an input field
+        const target = e.target as HTMLElement;
+        if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA' && !target.isContentEditable) {
+          e.preventDefault();
+          setOpen(true);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [triggerKey]);
+
+  // Focus input on open
+  useEffect(() => {
+    if (open) {
+      setTimeout(() => inputRef.current?.focus(), 50);
+      setSearch('');
+      setActiveIndex(0);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  // Click outside to close
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [open]);
+
+  // Filter options
+  const filtered = options.filter(
+    (opt) =>
+      opt.title.toLowerCase().includes(search.toLowerCase()) ||
+      opt.category.toLowerCase().includes(search.toLowerCase()) ||
+      (opt.subtitle && opt.subtitle.toLowerCase().includes(search.toLowerCase()))
+  );
+
+  // Navigate options via keyboard
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setOpen(false);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveIndex((prev) => (prev + 1) % filtered.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveIndex((prev) => (prev - 1 + filtered.length) % filtered.length);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (filtered[activeIndex]) {
+        filtered[activeIndex].action();
+        setOpen(false);
+      }
+    }
+  };
+
+  if (!open) return null;
+
+  // Group by category
+  const categories = Array.from(new Set(filtered.map((opt) => opt.category)));
+
+  return (
+    <div className="fixed inset-0 z-[99999] bg-black/80 backdrop-blur-md flex items-start justify-center pt-[15vh] px-4 font-mono text-xs">
+      <div
+        ref={menuRef}
+        onKeyDown={handleKeyDown}
+        className={\`w-full max-w-lg border rounded shadow-[0_0_30px_rgba(0,255,159,0.15)] flex flex-col overflow-hidden relative \${styles.border}\`}
+      >
+        {/* CRT Scanlines Overlay */}
+        <div className="absolute inset-0 pointer-events-none z-20 scanline-sweep opacity-[0.03]" />
+
+        {/* Input Bar */}
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-900 bg-black/60 shrink-0">
+          <Search className={\`w-4 h-4 shrink-0 \${styles.text}\`} />
+          <input
+            ref={inputRef}
+            type="text"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setActiveIndex(0);
+            }}
+            placeholder={placeholder}
+            className="flex-1 bg-transparent text-white placeholder-white/20 outline-none text-xs tracking-wider"
+          />
+          <button
+            onClick={() => setOpen(false)}
+            className="text-white/40 hover:text-white transition-colors cursor-pointer"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Options List */}
+        <div className="flex-1 overflow-y-auto max-h-[300px] p-2 space-y-3 bg-black/40 scrollbar-thin">
+          {filtered.length === 0 ? (
+            <div className="text-center py-8 text-white/30 uppercase tracking-widest">
+              [ NO MATCHING PROTOCOLS FOUND ]
+            </div>
+          ) : (
+            categories.map((cat) => {
+              const catOptions = filtered.filter((opt) => opt.category === cat);
+              return (
+                <div key={cat} className="space-y-1">
+                  <div className="px-3 py-1 text-[9px] font-bold text-white/30 uppercase tracking-widest">
+                    {cat}
+                  </div>
+                  <div className="space-y-0.5">
+                    {catOptions.map((opt) => {
+                      const absoluteIndex = filtered.indexOf(opt);
+                      const isActive = absoluteIndex === activeIndex;
+                      return (
+                        <div
+                          key={opt.id}
+                          onClick={() => {
+                            opt.action();
+                            setOpen(false);
+                          }}
+                          onMouseEnter={() => setActiveIndex(absoluteIndex)}
+                          className={\`flex items-center gap-3 px-3 py-2.5 rounded border transition-all cursor-pointer \${
+                            isActive
+                              ? \`\${styles.bgActive} \${styles.borderActive} text-white\`
+                              : 'border-transparent text-white/60 hover:text-white'
+                          }\`}
+                        >
+                          <div className={\`shrink-0 \${isActive ? styles.text : 'text-white/30'}\`}>
+                            {opt.icon || <Terminal className="w-4 h-4" />}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-bold tracking-wider uppercase">{opt.title}</p>
+                            {opt.subtitle && (
+                              <p className={\`text-[10px] truncate \${isActive ? 'text-white/60' : 'text-white/30'}\`}>
+                                {opt.subtitle}
+                              </p>
+                            )}
+                          </div>
+                          {isActive && (
+                            <span className={\`text-[10px] font-bold animate-pulse \${styles.text}\`}>
+                              [ RUN ]
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+
+        {/* Footer info */}
+        <div className="px-4 py-2 border-t border-neutral-900 bg-black/80 flex items-center justify-between text-[9px] text-white/30 uppercase shrink-0">
+          <div className="flex gap-3">
+            <span>↑↓ Navigate</span>
+            <span>↵ Select</span>
+            <span>ESC Close</span>
+          </div>
+          <div>
+            <span>Trigger: <kbd className="bg-white/5 border border-white/10 px-1 rounded">⌘ {triggerKey.toUpperCase()}</kbd></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+`,
 };

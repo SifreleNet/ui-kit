@@ -26,6 +26,10 @@ const COMPONENTS = [
   { name: 'CyberDialog', path: 'components/cyber-ui/CyberDialog.tsx', deps: ['framer-motion', 'lucide-react'], internalDeps: ['CyberButton'] },
   { name: 'CyberProgress', path: 'components/cyber-ui/CyberProgress.tsx', deps: [], internalDeps: [] },
   { name: 'CyberAlert', path: 'components/cyber-ui/CyberAlert.tsx', deps: ['lucide-react'], internalDeps: ['CyberBadge', 'CyberButton'] },
+  { name: 'CyberTable', path: 'components/cyber-ui/CyberTable.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberTooltip', path: 'components/cyber-ui/CyberTooltip.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberToast', path: 'components/cyber-ui/CyberToast.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'CyberCommandMenu', path: 'components/cyber-ui/CyberCommandMenu.tsx', deps: ['lucide-react'], internalDeps: [] },
   
   // Animations
   { name: 'MatrixRain', path: 'components/MatrixRain.tsx', deps: [], internalDeps: [] },
