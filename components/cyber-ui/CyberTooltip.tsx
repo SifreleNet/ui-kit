@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 interface CyberTooltipProps {
   content: React.ReactNode;
@@ -50,14 +50,14 @@ export default function CyberTooltip({
   className = '',
 }: CyberTooltipProps) {
   const [visible, setVisible] = useState(false);
-  let timeoutId: NodeJS.Timeout;
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const show = () => {
-    timeoutId = setTimeout(() => setVisible(true), delay);
+    timeoutRef.current = setTimeout(() => setVisible(true), delay);
   };
 
   const hide = () => {
-    clearTimeout(timeoutId);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setVisible(false);
   };
 

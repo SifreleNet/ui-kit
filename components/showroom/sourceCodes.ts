@@ -5205,4 +5205,642 @@ export default function CyberCommandMenu({
   );
 }
 `,
+  CyberAccordion: `'use client';
+
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+
+interface AccordionItem {
+  id: string;
+  trigger: string;
+  content: React.ReactNode;
+}
+
+interface CyberAccordionProps {
+  items: AccordionItem[];
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  allowMultiple?: boolean;
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    border: 'border-neon-green/20',
+    borderActive: 'border-neon-green/50',
+    text: 'text-neon-green',
+    bg: 'bg-neon-green/5',
+  },
+  cyan: {
+    border: 'border-cyan-500/20',
+    borderActive: 'border-cyan-500/50',
+    text: 'text-cyan-400',
+    bg: 'bg-cyan-500/5',
+  },
+  red: {
+    border: 'border-rose-500/20',
+    borderActive: 'border-rose-500/50',
+    text: 'text-rose-500',
+    bg: 'bg-rose-500/5',
+  },
+  amber: {
+    border: 'border-amber-500/20',
+    borderActive: 'border-amber-500/50',
+    text: 'text-amber-500',
+    bg: 'bg-amber-500/5',
+  },
+};
+
+export default function CyberAccordion({
+  items,
+  variant = 'green',
+  allowMultiple = false,
+  className = '',
+}: CyberAccordionProps) {
+  const [openIds, setOpenIds] = useState<string[]>([]);
+  const styles = VARIANTS[variant];
+
+  const toggle = (id: string) => {
+    if (allowMultiple) {
+      setOpenIds((prev) =>
+        prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      );
+    } else {
+      setOpenIds((prev) => (prev.includes(id) ? [] : [id]));
+    }
+  };
+
+  return (
+    <div className={\`w-full flex flex-col gap-2 font-mono text-xs \${className}\`}>
+      {items.map((item) => {
+        const isOpen = openIds.includes(item.id);
+        return (
+          <div
+            key={item.id}
+            className={\`border rounded overflow-hidden transition-all duration-300 bg-black/40 backdrop-blur-sm \${
+              isOpen ? styles.borderActive : styles.border
+            }\`}
+          >
+            {/* Header / Trigger */}
+            <button
+              onClick={() => toggle(item.id)}
+              className={\`w-full px-4 py-3 flex items-center justify-between text-left font-bold uppercase tracking-wider transition-colors cursor-pointer select-none \${
+                isOpen ? \`\${styles.bg} \${styles.text}\` : 'text-white/60 hover:text-white hover:bg-white/5'
+              }\`}
+            >
+              <div className="flex items-center gap-2">
+                <span className="opacity-50">{isOpen ? '[-]' : '[+]'}</span>
+                <span>{item.trigger}</span>
+              </div>
+              <ChevronDown
+                className={\`w-4 h-4 transition-transform duration-300 shrink-0 \${
+                  isOpen ? 'transform rotate-180' : ''
+                }\`}
+              />
+            </button>
+
+            {/* Content Panel */}
+            <div
+              className={\`transition-all duration-300 ease-in-out overflow-hidden \${
+                isOpen ? 'max-h-[500px] border-t border-neutral-950' : 'max-h-0'
+              }\`}
+            >
+              <div className="p-4 text-white/70 leading-relaxed text-[11px] whitespace-pre-wrap select-text">
+                {item.content}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+`,
+  CyberSlider: `'use client';
+
+import React from 'react';
+
+interface CyberSliderProps {
+  label?: string;
+  min: number;
+  max: number;
+  step?: number;
+  value: number;
+  onChange: (val: number) => void;
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  showTicks?: boolean;
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    text: 'text-neon-green',
+    accent: 'accent-neon-green',
+    track: 'bg-neon-green/20',
+  },
+  cyan: {
+    text: 'text-cyan-400',
+    accent: 'accent-cyan-400',
+    track: 'bg-cyan-500/20',
+  },
+  red: {
+    text: 'text-rose-500',
+    accent: 'accent-rose-500',
+    track: 'bg-rose-500/20',
+  },
+  amber: {
+    text: 'text-amber-500',
+    accent: 'accent-amber-500',
+    track: 'bg-amber-500/20',
+  },
+};
+
+export default function CyberSlider({
+  label,
+  min,
+  max,
+  step = 1,
+  value,
+  onChange,
+  variant = 'green',
+  showTicks = false,
+  className = '',
+}: CyberSliderProps) {
+  const styles = VARIANTS[variant];
+
+  // Calculate percentage for progress styling if needed
+  const percent = ((value - min) / (max - min)) * 100;
+
+  return (
+    <div className={\`w-full flex flex-col gap-1.5 font-mono text-xs \${className}\`}>
+      {/* Slider Header info */}
+      <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-wider">
+        {label && <span className="text-white/60">{label}</span>}
+        <span className={styles.text}>
+          [ {value} / {max} ]
+        </span>
+      </div>
+
+      {/* Slider Input bar wrapper */}
+      <div className="relative flex items-center h-5">
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(e) => onChange(parseFloat(e.target.value))}
+          className={\`w-full h-1 bg-neutral-900 border border-neutral-800 rounded outline-none cursor-pointer appearance-none \${styles.accent}\`}
+          style={{
+            background: \`linear-gradient(to right, var(--neon-green) 0%, var(--neon-green) \${percent}%, #171717 \${percent}%, #171717 100%)\`.replace(
+              /var\\(--neon-green\\)/g,
+              variant === 'green'
+                ? 'var(--neon-green)'
+                : variant === 'cyan'
+                ? '#22d3ee'
+                : variant === 'red'
+                ? '#f43f5e'
+                : '#f59e0b'
+            ),
+          }}
+        />
+      </div>
+
+      {/* Optional Scale Ticks */}
+      {showTicks && (
+        <div className="flex justify-between px-1 text-[8px] text-white/30 select-none">
+          <span>MIN</span>
+          <span>MID</span>
+          <span>MAX</span>
+        </div>
+      )}
+    </div>
+  );
+}
+`,
+  CyberOtpInput: `'use client';
+
+import React, { useRef, useEffect } from 'react';
+
+interface CyberOtpInputProps {
+  length?: number;
+  value: string;
+  onChange: (val: string) => void;
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  disabled?: boolean;
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    border: 'border-neon-green/20 focus:border-neon-green',
+    text: 'text-neon-green',
+    bg: 'bg-black',
+    glow: 'focus:shadow-[0_0_10px_rgba(0,255,159,0.3)]',
+  },
+  cyan: {
+    border: 'border-cyan-500/20 focus:border-cyan-400',
+    text: 'text-cyan-400',
+    bg: 'bg-black',
+    glow: 'focus:shadow-[0_0_10px_rgba(34,211,238,0.3)]',
+  },
+  red: {
+    border: 'border-rose-500/20 focus:border-rose-500',
+    text: 'text-rose-500',
+    bg: 'bg-black',
+    glow: 'focus:shadow-[0_0_10px_rgba(244,63,94,0.3)]',
+  },
+  amber: {
+    border: 'border-amber-500/20 focus:border-amber-500',
+    text: 'text-amber-500',
+    bg: 'bg-black',
+    glow: 'focus:shadow-[0_0_10px_rgba(245,158,11,0.3)]',
+  },
+};
+
+export default function CyberOtpInput({
+  length = 6,
+  value,
+  onChange,
+  variant = 'green',
+  disabled = false,
+  className = '',
+}: CyberOtpInputProps) {
+  const styles = VARIANTS[variant];
+  const inputsRef = useRef<HTMLInputElement[]>([]);
+
+  // Focus tracking array helper
+  useEffect(() => {
+    inputsRef.current = inputsRef.current.slice(0, length);
+  }, [length]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const val = e.target.value;
+    const currentOtp = value.split('');
+    
+    // Only accept numbers/alphanumeric for cyber codes
+    const sanitized = val.replace(/[^a-zA-Z0-9]/g, '');
+    
+    if (sanitized) {
+      currentOtp[index] = sanitized[sanitized.length - 1];
+      const newOtp = currentOtp.join('');
+      onChange(newOtp);
+
+      // Move focus to next input
+      if (index < length - 1) {
+        inputsRef.current[index + 1]?.focus();
+      }
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === 'Backspace') {
+      const currentOtp = value.split('');
+      if (!currentOtp[index] && index > 0) {
+        // If current value is empty, backspace focuses previous input
+        inputsRef.current[index - 1]?.focus();
+      } else {
+        // Otherwise empty current input
+        currentOtp[index] = '';
+        onChange(currentOtp.join(''));
+      }
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const pastedText = e.clipboardData.getData('text');
+    const sanitized = pastedText.replace(/[^a-zA-Z0-9]/g, '').slice(0, length);
+    
+    if (sanitized) {
+      onChange(sanitized);
+      // Focus on last pasted slot or final slot
+      const focusIndex = Math.min(sanitized.length, length - 1);
+      inputsRef.current[focusIndex]?.focus();
+    }
+  };
+
+  return (
+    <div className={\`flex items-center gap-2 font-mono \${className}\`}>
+      {Array.from({ length }).map((_, index) => (
+        <div key={index} className="relative">
+          {/* Neon Corner Brackets */}
+          <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-white/20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-1 h-1 border-t border-r border-white/20 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-1 h-1 border-b border-l border-white/20 pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-white/20 pointer-events-none" />
+
+          <input
+            ref={(el) => {
+              if (el) inputsRef.current[index] = el;
+            }}
+            type="text"
+            disabled={disabled}
+            maxLength={1}
+            value={value[index] || ''}
+            onChange={(e) => handleChange(e, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            onPaste={handlePaste}
+            className={\`w-10 h-12 text-center text-lg font-bold border rounded outline-none transition-all \${styles.bg} \${styles.border} \${styles.text} \${styles.glow}\`}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+`,
+  CyberSkeleton: `'use client';
+
+import React from 'react';
+
+interface CyberSkeletonProps {
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    bg: 'bg-neon-green/5',
+    line: 'bg-gradient-to-r from-transparent via-neon-green/10 to-transparent',
+    border: 'border-neon-green/10',
+  },
+  cyan: {
+    bg: 'bg-cyan-500/5',
+    line: 'bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent',
+    border: 'border-cyan-500/10',
+  },
+  red: {
+    bg: 'bg-rose-500/5',
+    line: 'bg-gradient-to-r from-transparent via-rose-500/10 to-transparent',
+    border: 'border-rose-500/10',
+  },
+  amber: {
+    bg: 'bg-amber-500/5',
+    line: 'bg-gradient-to-r from-transparent via-amber-500/10 to-transparent',
+    border: 'border-amber-500/10',
+  },
+};
+
+export default function CyberSkeleton({
+  variant = 'green',
+  className = '',
+}: CyberSkeletonProps) {
+  const styles = VARIANTS[variant];
+
+  return (
+    <div
+      className={\`relative overflow-hidden rounded border bg-neutral-950/40 backdrop-blur-sm pointer-events-none \${styles.border} \${styles.bg} \${className}\`}
+    >
+      {/* Animated glowing sweep overlay */}
+      <div
+        className={\`absolute inset-0 -translate-x-full animate-skeletonSweep \${styles.line}\`}
+      />
+
+      {/* Embedded style tag for the custom loop animation if not loaded globally */}
+      <style jsx>{\`
+        @keyframes skeletonSweep {
+          0% {
+            transform: translateX(-100%);
+          }
+          50% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        .animate-skeletonSweep {
+          animation: skeletonSweep 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+      \`}</style>
+    </div>
+  );
+}
+`,
+  CyberBreadcrumb: `'use client';
+
+import React from 'react';
+import { ChevronRight } from 'lucide-react';
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface CyberBreadcrumbProps {
+  items: BreadcrumbItem[];
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    text: 'text-neon-green',
+    textActive: 'text-white/80',
+    separator: 'text-neon-green/30',
+  },
+  cyan: {
+    text: 'text-cyan-400',
+    textActive: 'text-white/80',
+    separator: 'text-cyan-500/30',
+  },
+  red: {
+    text: 'text-rose-500',
+    textActive: 'text-white/80',
+    separator: 'text-rose-500/30',
+  },
+  amber: {
+    text: 'text-amber-500',
+    textActive: 'text-white/80',
+    separator: 'text-amber-500/30',
+  },
+};
+
+export default function CyberBreadcrumb({
+  items,
+  variant = 'green',
+  className = '',
+}: CyberBreadcrumbProps) {
+  const styles = VARIANTS[variant];
+
+  return (
+    <nav
+      aria-label="Breadcrumb"
+      className={\`flex items-center gap-1 font-mono text-[10px] uppercase tracking-wider \${className}\`}
+    >
+      {/* Root prompt symbol */}
+      <span className={\`\${styles.text} font-bold mr-1\`}>~</span>
+
+      {items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        return (
+          <div key={index} className="flex items-center gap-1.5">
+            {index > 0 && (
+              <span className={\`shrink-0 \${styles.separator}\`}>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </span>
+            )}
+            
+            {isLast ? (
+              <span className={\`\${styles.textActive} font-bold\`}>
+                {item.label}
+              </span>
+            ) : item.href ? (
+              <a
+                href={item.href}
+                className={\`\${styles.text} opacity-60 hover:opacity-100 transition-opacity\`}
+              >
+                {item.label}
+              </a>
+            ) : (
+              <span className={\`\${styles.text} opacity-60\`}>
+                {item.label}
+              </span>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+  );
+}
+`,
+  CyberDropdown: `'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface CyberDropdownProps {
+  options: Option[];
+  value: string;
+  onChange: (val: string) => void;
+  placeholder?: string;
+  variant?: 'green' | 'cyan' | 'red' | 'amber';
+  disabled?: boolean;
+  className?: string;
+}
+
+const VARIANTS = {
+  green: {
+    border: 'border-neon-green/20 hover:border-neon-green/40 focus:border-neon-green',
+    text: 'text-neon-green',
+    bgActive: 'bg-neon-green/10',
+    glow: 'shadow-[0_0_15px_rgba(0,255,159,0.03)]',
+  },
+  cyan: {
+    border: 'border-cyan-500/20 hover:border-cyan-500/40 focus:border-cyan-400',
+    text: 'text-cyan-400',
+    bgActive: 'bg-cyan-500/10',
+    glow: 'shadow-[0_0_15px_rgba(34,211,238,0.03)]',
+  },
+  red: {
+    border: 'border-rose-500/20 hover:border-rose-500/40 focus:border-rose-500',
+    text: 'text-rose-500',
+    bgActive: 'bg-rose-500/10',
+    glow: 'shadow-[0_0_15px_rgba(244,63,94,0.03)]',
+  },
+  amber: {
+    border: 'border-amber-500/20 hover:border-amber-500/40 focus:border-amber-500',
+    text: 'text-amber-500',
+    bgActive: 'bg-amber-500/10',
+    glow: 'shadow-[0_0_15px_rgba(245,158,11,0.03)]',
+  },
+};
+
+export default function CyberDropdown({
+  options,
+  value,
+  onChange,
+  placeholder = 'SELECT PARAMETER...',
+  variant = 'green',
+  disabled = false,
+  className = '',
+}: CyberDropdownProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const styles = VARIANTS[variant];
+  const selectedOption = options.find((opt) => opt.value === value);
+
+  // Click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelect = (val: string) => {
+    onChange(val);
+    setIsOpen(false);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className={\`relative font-mono text-xs select-none \${className}\`}
+    >
+      {/* Trigger Button */}
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => setIsOpen((prev) => !prev)}
+        className={\`w-full px-4 py-2.5 border rounded bg-black flex items-center justify-between text-left transition-all relative overflow-hidden cursor-pointer \${
+          disabled ? 'opacity-40 cursor-not-allowed' : \`\${styles.border} \${styles.glow}\`
+        }\`}
+      >
+        <span className={selectedOption ? 'text-white' : 'text-white/30'}>
+          {selectedOption ? selectedOption.label : placeholder}
+        </span>
+        <ChevronDown
+          className={\`w-4 h-4 transition-transform duration-200 text-white/40 \${
+            isOpen ? 'transform rotate-180 text-white' : ''
+          }\`}
+        />
+        {/* Neon Corners */}
+        <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-white/10" />
+        <div className="absolute top-0 right-0 w-1 h-1 border-t border-r border-white/10" />
+        <div className="absolute bottom-0 left-0 w-1 h-1 border-b border-l border-white/10" />
+        <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-white/10" />
+      </button>
+
+      {/* Dropdown Options Box */}
+      {isOpen && (
+        <div
+          className={\`absolute left-0 right-0 mt-1.5 z-50 border rounded bg-black/95 backdrop-blur-md max-h-60 overflow-y-auto shadow-[0_0_20px_rgba(0,0,0,0.8)] border-neutral-900 scrollbar-thin\`}
+        >
+          {/* CRT scanlines */}
+          <div className="absolute inset-0 pointer-events-none z-10 scanline-sweep opacity-[0.02]" />
+
+          <div className="py-1">
+            {options.map((opt) => {
+              const isSelected = opt.value === value;
+              return (
+                <div
+                  key={opt.value}
+                  onClick={() => handleSelect(opt.value)}
+                  className={\`px-4 py-2.5 cursor-pointer transition-colors relative flex items-center justify-between \${
+                    isSelected
+                      ? \`\${styles.bgActive} \${styles.text} font-bold\`
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                  }\`}
+                >
+                  <span>{opt.label}</span>
+                  {isSelected && <span className={styles.text}>[✔]</span>}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+`,
 };

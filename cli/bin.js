@@ -30,6 +30,12 @@ const COMPONENTS = [
   { name: 'CyberTooltip', path: 'components/cyber-ui/CyberTooltip.tsx', deps: [], internalDeps: [] },
   { name: 'CyberToast', path: 'components/cyber-ui/CyberToast.tsx', deps: ['lucide-react'], internalDeps: [] },
   { name: 'CyberCommandMenu', path: 'components/cyber-ui/CyberCommandMenu.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'CyberAccordion', path: 'components/cyber-ui/CyberAccordion.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'CyberSlider', path: 'components/cyber-ui/CyberSlider.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberOtpInput', path: 'components/cyber-ui/CyberOtpInput.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberSkeleton', path: 'components/cyber-ui/CyberSkeleton.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberBreadcrumb', path: 'components/cyber-ui/CyberBreadcrumb.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'CyberDropdown', path: 'components/cyber-ui/CyberDropdown.tsx', deps: ['lucide-react'], internalDeps: [] },
   
   // Animations
   { name: 'MatrixRain', path: 'components/MatrixRain.tsx', deps: [], internalDeps: [] },

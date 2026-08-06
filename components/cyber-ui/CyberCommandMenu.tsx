@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Terminal, Settings, ShieldAlert, Cpu, Eye, X } from 'lucide-react';
+import { Search, Terminal, X } from 'lucide-react';
 
 interface CommandOption {
   id: string;
@@ -70,13 +70,20 @@ export default function CyberCommandMenu({
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === triggerKey.toLowerCase()) {
         e.preventDefault();
-        setOpen((prev) => !prev);
+        setOpen((prev) => {
+          if (!prev) {
+            setSearch('');
+            setActiveIndex(0);
+          }
+          return !prev;
+        });
       } else if (e.key === '/' && document.activeElement !== inputRef.current) {
-        // Only trigger "/" search if not currently focusing an input field
         const target = e.target as HTMLElement;
         if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA' && !target.isContentEditable) {
           e.preventDefault();
           setOpen(true);
+          setSearch('');
+          setActiveIndex(0);
         }
       }
     };
@@ -88,8 +95,6 @@ export default function CyberCommandMenu({
   useEffect(() => {
     if (open) {
       setTimeout(() => inputRef.current?.focus(), 50);
-      setSearch('');
-      setActiveIndex(0);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
