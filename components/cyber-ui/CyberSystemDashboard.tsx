@@ -61,7 +61,7 @@ export default function CyberSystemDashboard({ className = '' }: { className?: s
   return (
     <div
       className={`
-        border border-[#00ff9f11] bg-black/85 rounded-lg p-5 font-mono flex flex-col gap-5 w-full max-w-2xl
+        border border-neon-green/7 bg-black/85 rounded-lg p-5 font-mono flex flex-col gap-5 w-full max-w-2xl
         ${className}
       `}
     >
@@ -79,7 +79,7 @@ export default function CyberSystemDashboard({ className = '' }: { className?: s
             <CyberProgress value={ram} label="SWAP MEMORY USAGE" type="line" variant="cyan" />
             <div className="flex justify-between items-center text-[10px] text-white/50 pt-2 border-t border-neutral-900">
               <span>CORE TEMPERATURE:</span>
-              <span className={temp > 70 ? 'text-[#ff5f57] font-bold' : 'text-[#00ff9f]'}>
+              <span className={temp > 70 ? 'text-[#ff5f57] font-bold' : 'text-neon-green'}>
                 {temp}°C {temp > 70 ? '[CRIT]' : '[NOMINAL]'}
               </span>
             </div>

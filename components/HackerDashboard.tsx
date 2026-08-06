@@ -33,15 +33,15 @@ export function NetworkScanPanel({ interval = 1100 }: { interval?: number }) {
   return (
     <div className="hacker-panel">
       <div className="hacker-panel-bar">
-        <span className="text-[#00ff9f]">⬡</span>
+        <span className="text-neon-green">⬡</span>
         <span>NETWORK SCAN — 192.168.1.0/24</span>
         <div className="flex items-center gap-1 ml-auto">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9f] animate-pulse" />
-          <span className="text-[#00ff9f66]">LIVE</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
+          <span className="text-neon-green/40">LIVE</span>
         </div>
       </div>
       <div className="flex-1 overflow-hidden p-3 space-y-1">
-        <div className="grid grid-cols-4 text-[10px] text-[#00ff9f44] mb-2 px-1">
+        <div className="grid grid-cols-4 text-[10px] text-neon-green/27 mb-2 px-1">
           <span>HOST</span>
           <span>PORTS</span>
           <span>OS</span>
@@ -50,15 +50,15 @@ export function NetworkScanPanel({ interval = 1100 }: { interval?: number }) {
         {visible.map((h) => (
           <div
             key={h.ip}
-            className="grid grid-cols-4 text-[11px] font-mono px-1 py-0.5 hover:bg-[#00ff9f08] rounded"
+            className="grid grid-cols-4 text-[11px] font-mono px-1 py-0.5 hover:bg-neon-green/3 rounded"
           >
-            <span className="text-[#00ff9f]">{h.ip}</span>
-            <span className="text-[#00ff9faa]">{h.ports}</span>
-            <span className="text-[#00ff9f77]">{h.os}</span>
+            <span className="text-neon-green">{h.ip}</span>
+            <span className="text-neon-green/67">{h.ports}</span>
+            <span className="text-neon-green/47">{h.os}</span>
             <span className="text-[#28c840]">{h.status}</span>
           </div>
         ))}
-        <div className="text-[11px] text-[#00ff9f55] px-1 flex items-center gap-1">
+        <div className="text-[11px] text-neon-green/33 px-1 flex items-center gap-1">
           <span className="animate-blink">█</span>
           <span>scanning...</span>
         </div>
@@ -109,7 +109,7 @@ export function LiveLogPanel({ interval = 1400 }: { interval?: number }) {
       ? 'text-[#ff5f57]'
       : t === 'WARN'
         ? 'text-[#febc2e]'
-        : 'text-[#00ff9f88]';
+        : 'text-neon-green/53';
 
   return (
     <div className="hacker-panel">
@@ -123,14 +123,14 @@ export function LiveLogPanel({ interval = 1400 }: { interval?: number }) {
       <div className="flex-1 overflow-hidden p-3 space-y-1 font-mono text-[11px]">
         {visibleLog.map((e, i) => (
           <div key={i} className="flex items-start gap-2">
-            <span className="text-[#00ff9f33] shrink-0">{e.time}</span>
+            <span className="text-neon-green/20 shrink-0">{e.time}</span>
             <span className={`shrink-0 w-8 ${typeColor(e.type)}`}>
               {e.type}
             </span>
-            <span className="text-[#00ff9fbb]">{e.msg}</span>
+            <span className="text-neon-green/73">{e.msg}</span>
           </div>
         ))}
-        <div className="flex items-center gap-1 text-[#00ff9f44]">
+        <div className="flex items-center gap-1 text-neon-green/27">
           <span className="animate-blink">█</span>
         </div>
       </div>
@@ -183,32 +183,32 @@ export function BruteForcePanel({ interval = 600 }: { interval?: number }) {
         <span>BRUTEFORCE — SSH:22</span>
       </div>
       <div className="flex-1 overflow-hidden p-3 space-y-3 font-mono text-[11px]">
-        <div className="flex justify-between text-[#00ff9f88]">
+        <div className="flex justify-between text-neon-green/53">
           <span>
-            target: <span className="text-[#00ff9f]">192.168.1.105</span>
+            target: <span className="text-neon-green">192.168.1.105</span>
           </span>
           <span>
             mode: <span className="text-[#febc2e]">dictionary</span>
           </span>
         </div>
-        <div className="flex justify-between text-[#00ff9f55]">
+        <div className="flex justify-between text-neon-green/33">
           <span>
-            trying: <span className="text-[#00ff9faa]">{attempt}</span>
+            trying: <span className="text-neon-green/67">{attempt}</span>
           </span>
         </div>
         <div>
-          <div className="flex justify-between text-[10px] text-[#00ff9f55] mb-1">
+          <div className="flex justify-between text-[10px] text-neon-green/33 mb-1">
             <span>progress</span>
             <span>{progress}%</span>
           </div>
           <div className="h-1.5 rounded bg-[#0d1a0d] overflow-hidden">
             <div
-              className="h-full rounded bg-[#00ff9f] transition-all duration-500 shadow-[0_0_8px_#00ff9f]"
+              className="h-full rounded bg-neon-green transition-all duration-500 shadow-[0_0_8px_var(--neon-green)]"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
-        <div className="flex justify-between text-[10px] text-[#00ff9f33]">
+        <div className="flex justify-between text-[10px] text-neon-green/20">
           <span>
             {Math.floor((progress / 100) * 10000).toLocaleString('en-US')} /
             10,000 attempts
@@ -254,7 +254,7 @@ export function HexDumpPanel({ interval = 700 }: { interval?: number }) {
   return (
     <div className="hacker-panel">
       <div className="hacker-panel-bar">
-        <span className="text-[#00ff9f]">⬡</span>
+        <span className="text-neon-green">⬡</span>
         <span>MEMORY DUMP — PID 1337</span>
       </div>
       <div className="flex-1 overflow-hidden p-3 font-mono text-[10px] space-y-0.5">
@@ -263,11 +263,11 @@ export function HexDumpPanel({ interval = 700 }: { interval?: number }) {
             key={offset + i}
             className={`px-1 py-0.5 rounded transition-colors duration-300 ${
               i === highlight
-                ? 'bg-[#00ff9f15] text-[#00ff9f]'
-                : 'text-[#00ff9f55]'
+                ? 'bg-neon-green/8 text-neon-green'
+                : 'text-neon-green/33'
             }`}
           >
-            <span className="text-[#00ff9f33] mr-2">
+            <span className="text-neon-green/20 mr-2">
               {((offset + i) * 16).toString(16).padStart(8, '0')}:
             </span>
             {row}

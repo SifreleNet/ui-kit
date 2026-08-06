@@ -88,7 +88,7 @@ export const categoryLabels: Record<Project['category'], string> = {
 };
 
 export const statusColors: Record<Project['status'], string> = {
-  active: 'text-[#00ff9f] border-[#00ff9f44]',
-  completed: 'text-[#00ff9faa] border-[#00ff9f22]',
+  active: 'text-neon-green border-neon-green/27',
+  completed: 'text-neon-green/67 border-neon-green/13',
   wip: 'text-[#febc2e] border-[#febc2e44]',
 };

@@ -107,7 +107,7 @@ export default function InteractiveConsole({ className = '' }: { className?: str
 
   const getLineColor = (type: ConsoleLine['type']) => {
     switch (type) {
-      case 'cmd': return 'text-[#00ff9f]';
+      case 'cmd': return 'text-neon-green';
       case 'err': return 'text-[#ff5f57]';
       case 'ok': return 'text-[#28c840]';
       case 'info': return 'text-[#febc2e]';
@@ -118,17 +118,17 @@ export default function InteractiveConsole({ className = '' }: { className?: str
   return (
     <div
       className={`
-        border border-[#00ff9f22] bg-[#050505ee] shadow-[0_0_30px_rgba(0,255,159,0.05)]
+        border border-neon-green/13 bg-[#050505ee] shadow-[0_0_30px_rgba(0,255,159,0.05)]
         rounded-lg overflow-hidden flex flex-col font-mono h-96 w-full max-w-lg
         ${className}
       `}
     >
       {/* Title Bar */}
-      <div className="flex items-center gap-1.5 px-4 py-2 bg-neutral-900 border-b border-[#00ff9f11] shrink-0">
+      <div className="flex items-center gap-1.5 px-4 py-2 bg-neutral-900 border-b border-neon-green/7 shrink-0">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        <span className="flex-1 text-center text-[10px] text-[#00ff9f44]">
+        <span className="flex-1 text-center text-[10px] text-neon-green/27">
           kali_bash — interactive_console
         </span>
       </div>
@@ -147,7 +147,7 @@ export default function InteractiveConsole({ className = '' }: { className?: str
       </div>
 
       {/* Input Form */}
-      <form onSubmit={handleCommand} className="border-t border-[#00ff9f11] p-2 bg-black shrink-0">
+      <form onSubmit={handleCommand} className="border-t border-neon-green/7 p-2 bg-black shrink-0">
         <CyberInput
           variant="green"
           prompt="root@kali:~#"

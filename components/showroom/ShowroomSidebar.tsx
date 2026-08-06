@@ -40,7 +40,7 @@ interface ShowroomSidebarProps {
 
 export default function ShowroomSidebar({ activeTab, setActiveTab }: ShowroomSidebarProps) {
   return (
-    <aside className="w-full md:w-64 border-r border-[#00ff9f11] bg-[#090909]/90 overflow-y-auto p-4 flex flex-col gap-6 shrink-0 select-none">
+    <aside className="w-full md:w-64 border-r border-neon-green/7 bg-[#090909]/90 overflow-y-auto p-4 flex flex-col gap-6 shrink-0 select-none">
       <div>
         <div className="text-[10px] text-white/30 uppercase tracking-widest mb-2 font-bold px-2">
           00 // GETTING STARTED
@@ -49,8 +49,8 @@ export default function ShowroomSidebar({ activeTab, setActiveTab }: ShowroomSid
           onClick={() => setActiveTab('installation')}
           className={`w-full text-left text-xs font-mono px-3 py-2 rounded border transition-all ${
             activeTab === 'installation'
-              ? 'bg-[#00ff9f0d] text-[#00ff9f] border-[#00ff9f33]'
-              : 'text-[#00ff9f66] border-transparent hover:text-[#00ff9f] hover:bg-white/5'
+              ? 'bg-neon-green/5 text-neon-green border-neon-green/20'
+              : 'text-neon-green/40 border-transparent hover:text-neon-green hover:bg-white/5'
           }`}
         >
           ⚡ system_installation
@@ -68,8 +68,8 @@ export default function ShowroomSidebar({ activeTab, setActiveTab }: ShowroomSid
                 onClick={() => setActiveTab(name as TabType)}
                 className={`w-full text-left text-xs font-mono px-3 py-2 rounded border transition-all ${
                   activeTab === name
-                    ? 'bg-[#00ff9f0d] text-[#00ff9f] border-[#00ff9f33]'
-                    : 'text-[#00ff9f66] border-transparent hover:text-[#00ff9f] hover:bg-white/5'
+                    ? 'bg-neon-green/5 text-neon-green border-neon-green/20'
+                    : 'text-neon-green/40 border-transparent hover:text-neon-green hover:bg-white/5'
                 }`}
               >
                 ⬡ {name}
@@ -105,8 +105,8 @@ export default function ShowroomSidebar({ activeTab, setActiveTab }: ShowroomSid
                 onClick={() => setActiveTab(name as TabType)}
                 className={`w-full text-left text-xs font-mono px-3 py-2 rounded border transition-all ${
                   activeTab === name
-                    ? 'bg-[#00ff9f0d] text-[#00ff9f] border-[#00ff9f33]'
-                    : 'text-[#00ff9f66] border-transparent hover:text-[#00ff9f] hover:bg-white/5'
+                    ? 'bg-neon-green/5 text-neon-green border-neon-green/20'
+                    : 'text-neon-green/40 border-transparent hover:text-neon-green hover:bg-white/5'
                 }`}
               >
                 ⚡ {name}
@@ -138,8 +138,8 @@ export default function ShowroomSidebar({ activeTab, setActiveTab }: ShowroomSid
                 onClick={() => setActiveTab(name as TabType)}
                 className={`w-full text-left text-xs font-mono px-3 py-2 rounded border transition-all ${
                   activeTab === name
-                    ? 'bg-[#00ff9f0d] text-[#00ff9f] border-[#00ff9f33]'
-                    : 'text-[#00ff9f66] border-transparent hover:text-[#00ff9f] hover:bg-white/5'
+                    ? 'bg-neon-green/5 text-neon-green border-neon-green/20'
+                    : 'text-neon-green/40 border-transparent hover:text-neon-green hover:bg-white/5'
                 }`}
               >
                 ⚙ {name}

@@ -13,9 +13,9 @@ interface CyberSwitchProps {
 
 const COLOR_MAP = {
   green: {
-    trackActive: 'bg-[#00ff9f33] border-[#00ff9f]',
-    thumbActive: 'bg-[#00ff9f] shadow-[0_0_8px_#00ff9f]',
-    text: 'text-[#00ff9f]',
+    trackActive: 'bg-neon-green/20 border-neon-green',
+    thumbActive: 'bg-neon-green shadow-[0_0_8px_var(--neon-green)]',
+    text: 'text-neon-green',
     trackInactive: 'bg-black border-[#1a2e1a]',
     thumbInactive: 'bg-[#1a2e1a]',
   },

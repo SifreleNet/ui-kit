@@ -15,8 +15,8 @@ interface ProjectCardProps {
 }
 
 const defaultStatusColors: Record<string, string> = {
-  active: 'text-[#00ff9f] border-[#00ff9f44]',
-  completed: 'text-[#00ff9faa] border-[#00ff9f22]',
+  active: 'text-neon-green border-neon-green/27',
+  completed: 'text-neon-green/67 border-neon-green/13',
   wip: 'text-[#febc2e] border-[#febc2e44]',
 };
 
@@ -46,7 +46,7 @@ export default function ProjectCard({
   const statusColorClass = 
     defaultStatusColors[pStatus.toLowerCase()] || 
     (project?.status && statusColors[project.status]) || 
-    'text-[#00ff9f] border-[#00ff9f44]';
+    'text-neon-green border-neon-green/27';
 
   return (
     <article
@@ -57,14 +57,14 @@ export default function ProjectCard({
       <div className="flex items-start justify-between gap-2">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[#00ff9f55] text-xs">
+            <span className="text-neon-green/33 text-xs">
               [{pId.toString().padStart(2, '0')}]
             </span>
             <span className="text-xs border border-current rounded px-2 py-0.5 font-mono opacity-70">
               {pCategory}
             </span>
           </div>
-          <h3 className="text-[#00ff9f] font-bold text-base group-hover:text-shadow-glow transition-all duration-300 font-mono">
+          <h3 className="text-neon-green font-bold text-base group-hover:text-shadow-glow transition-all duration-300 font-mono">
             {pTitle}
           </h3>
         </div>
@@ -78,7 +78,7 @@ export default function ProjectCard({
       </div>
 
       {/* Description */}
-      <p className="text-[#00ff9f88] text-sm leading-relaxed flex-1">
+      <p className="text-neon-green/53 text-sm leading-relaxed flex-1">
         {pDesc}
       </p>
 
@@ -87,7 +87,7 @@ export default function ProjectCard({
         {pTags.map((tag) => (
           <span
             key={tag}
-            className="text-[10px] font-mono bg-[#00ff9f0d] border border-[#00ff9f22] text-[#00ff9f77] rounded px-2 py-0.5 hover:text-[#00ff9f] hover:border-[#00ff9f44] transition-all duration-200"
+            className="text-[10px] font-mono bg-neon-green/5 border border-neon-green/13 text-neon-green/47 rounded px-2 py-0.5 hover:text-neon-green hover:border-neon-green/27 transition-all duration-200"
           >
             #{tag}
           </span>
@@ -96,7 +96,7 @@ export default function ProjectCard({
 
       {/* Footer - year + links */}
       <div className="flex items-center justify-between pt-2 border-t border-[#1a2e1a]">
-        <span className="text-[#00ff9f33] text-xs font-mono">
+        <span className="text-neon-green/20 text-xs font-mono">
           {pYear}
         </span>
         <div className="flex items-center gap-3">
@@ -105,7 +105,7 @@ export default function ProjectCard({
               href={pGithub}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-[#00ff9f55] hover:text-[#00ff9f] font-mono transition-all duration-200 hover:underline"
+              className="text-xs text-neon-green/33 hover:text-neon-green font-mono transition-all duration-200 hover:underline"
             >
               [github]
             </a>
@@ -115,7 +115,7 @@ export default function ProjectCard({
               href={pDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-[#00ff9f55] hover:text-[#00ff9f] font-mono transition-all duration-200 hover:underline"
+              className="text-xs text-neon-green/33 hover:text-neon-green font-mono transition-all duration-200 hover:underline"
             >
               [demo]
             </a>

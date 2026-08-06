@@ -23,19 +23,19 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 border-b bg-[#0a0a0a]/90 backdrop-blur-sm transition-all duration-300 ${
         scrolled
-          ? 'border-[#00ff9f22] shadow-[0_0_24px_#00ff9f12]'
+          ? 'border-neon-green/13 shadow-[0_0_24px_color-mix(in srgb, var(--neon-green) 7%, transparent)]'
           : 'border-[#1a2e1a]'
       }`}
     >
       <nav className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-[#00ff9f] text-lg font-bold tracking-tight group-hover:text-shadow-glow transition-all duration-300">
-            <span className="text-[#00ff9f66]">[</span>
-            sifrele<span className="text-[#00ff9f]">Net</span>
-            <span className="text-[#00ff9f66]">]</span>
+          <span className="text-neon-green text-lg font-bold tracking-tight group-hover:text-shadow-glow transition-all duration-300">
+            <span className="text-neon-green/40">[</span>
+            sifrele<span className="text-neon-green">Net</span>
+            <span className="text-neon-green/40">]</span>
           </span>
-          <span className="animate-blink text-[#00ff9f] text-lg">_</span>
+          <span className="animate-blink text-neon-green text-lg">_</span>
         </Link>
 
         {/* Desktop nav */}
@@ -48,8 +48,8 @@ export default function Navbar() {
                   href={href}
                   className={`text-sm transition-all duration-200 glow-hover px-3 py-1.5 rounded border ${
                     isActive
-                      ? 'text-[#00ff9f] border-[#00ff9f44] bg-[#00ff9f0d]'
-                      : 'text-[#00ff9f88] border-transparent hover:text-[#00ff9f] hover:border-[#00ff9f22]'
+                      ? 'text-neon-green border-neon-green/27 bg-neon-green/5'
+                      : 'text-neon-green/53 border-transparent hover:text-neon-green hover:border-neon-green/13'
                   }`}
                 >
                   {label}
@@ -60,15 +60,15 @@ export default function Navbar() {
         </ul>
 
         {/* Status indicator */}
-        <div className="hidden md:flex items-center gap-2 text-xs text-[#00ff9f55]">
-          <span className="w-2 h-2 rounded-full bg-[#00ff9f] animate-pulse" />
+        <div className="hidden md:flex items-center gap-2 text-xs text-neon-green/33">
+          <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
           <span>online</span>
         </div>
 
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-[#00ff9f] p-2 border border-[#1a2e1a] rounded hover:border-[#00ff9f44] transition-all"
+          className="md:hidden text-neon-green p-2 border border-[#1a2e1a] rounded hover:border-neon-green/27 transition-all"
           aria-label="Toggle menu"
         >
           <span className="block w-5 h-px bg-current mb-1" />
@@ -90,8 +90,8 @@ export default function Navbar() {
                     onClick={() => setMenuOpen(false)}
                     className={`text-sm block py-2 border-b border-[#1a2e1a] transition-all duration-200 ${
                       isActive
-                        ? 'text-[#00ff9f]'
-                        : 'text-[#00ff9f66] hover:text-[#00ff9f]'
+                        ? 'text-neon-green'
+                        : 'text-neon-green/40 hover:text-neon-green'
                     }`}
                   >
                     {label}

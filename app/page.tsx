@@ -83,7 +83,7 @@ export default function UIKitShowroom() {
   const [glitchTrigger, setGlitchTrigger] = useState<'hover' | 'always'>('hover');
   const [glitchGlow, setGlitchGlow] = useState(true);
 
-  const [rainColor, setRainColor] = useState('#00ff9f');
+  const [rainColor, setRainColor] = useState('var(--neon-green)');
   const [rainSpeed, setRainSpeed] = useState(0.5);
   const [rainSize, setRainSize] = useState(13);
   const [rainOpacity, setRainOpacity] = useState(0.4);
@@ -335,7 +335,7 @@ export default function UIKitShowroom() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#00ff9f] font-mono flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-neon-green font-mono flex flex-col relative overflow-hidden">
       {/* Scanline element */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
         <div className="scanline-sweep" />
@@ -362,11 +362,11 @@ export default function UIKitShowroom() {
                 <div className="flex items-center justify-between">
                   <h3 className="text-sm font-bold text-white flex items-center gap-2">
                     <span>⚡ PLAYGROUND //</span>
-                    <span className="text-[#00ff9f] font-mono">{activeTab}</span>
+                    <span className="text-neon-green font-mono">{activeTab}</span>
                   </h3>
                 </div>
 
-                <div className="flex-1 min-h-[350px] max-h-[600px] overflow-y-auto border border-[#00ff9f22] bg-[#080808]/90 rounded-lg p-6 flex items-center justify-center relative scrollbar-thin">
+                <div className="flex-1 min-h-[350px] max-h-[600px] overflow-y-auto border border-neon-green/13 bg-[#080808]/90 rounded-lg p-6 flex items-center justify-center relative scrollbar-thin">
                   {/* Active Preview Rendering */}
                   {activeTab === 'MatrixRain' && (
                     <div className="absolute inset-0 bg-[#0a0a0a]">
@@ -453,7 +453,7 @@ export default function UIKitShowroom() {
                         showControls={panelControls}
                         glow={panelGlow}
                       >
-                        <div className="text-[#00ff9f99]">$ netstat -antp</div>
+                        <div className="text-neon-green/60">$ netstat -antp</div>
                         <div className="text-white/70">tcp 0 0 192.168.1.42:22 192.168.1.105:49811 ESTABLISHED</div>
                       </CyberPanel>
                     </div>
@@ -468,7 +468,7 @@ export default function UIKitShowroom() {
                   )}
 
                   {activeTab === 'GlitchText' && (
-                    <h2 className="text-2xl font-bold font-mono text-[#00ff9f]">
+                    <h2 className="text-2xl font-bold font-mono text-neon-green">
                       <GlitchText
                         text={glitchValue}
                         trigger={glitchTrigger}
@@ -661,7 +661,7 @@ export default function UIKitShowroom() {
                         className="text-lg font-bold"
                       />
                       {decryptTrigger !== 'mount' && (
-                        <p className="text-[9px] text-[#00ff9f55] mt-4 uppercase tracking-wider">
+                        <p className="text-[9px] text-neon-green/33 mt-4 uppercase tracking-wider">
                           ({decryptTrigger === 'click' ? 'Click text to decrypt' : 'Hover over text to decrypt'})
                         </p>
                       )}
@@ -709,7 +709,7 @@ export default function UIKitShowroom() {
                         <select
                           value={radarVariant}
                           onChange={(e) => setRadarVariant(e.target.value as any)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Green (Standard Sonar)</option>
                           <option value="cyan">Cyan (Tech HUD)</option>
@@ -726,7 +726,7 @@ export default function UIKitShowroom() {
                           step="0.5"
                           value={radarSpeed}
                           onChange={(e) => setRadarSpeed(parseFloat(e.target.value))}
-                          className="w-full accent-[#00ff9f]"
+                          className="w-full accent-neon-green"
                         />
                       </div>
                       <div className="flex items-center gap-2 pt-1">
@@ -735,7 +735,7 @@ export default function UIKitShowroom() {
                           id="radar-show-grid"
                           checked={radarShowGrid}
                           onChange={(e) => setRadarShowGrid(e.target.checked)}
-                          className="accent-[#00ff9f]"
+                          className="accent-neon-green"
                         />
                         <label htmlFor="radar-show-grid" className="text-white/70 cursor-pointer">
                           Render Radar Grid Rings
@@ -753,7 +753,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={decryptText}
                           onChange={(e) => setDecryptText(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -761,7 +761,7 @@ export default function UIKitShowroom() {
                         <select
                           value={decryptVariant}
                           onChange={(e) => setDecryptVariant(e.target.value as any)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Green (Binary Link)</option>
                           <option value="cyan">Cyan (Data Feed)</option>
@@ -775,7 +775,7 @@ export default function UIKitShowroom() {
                         <select
                           value={decryptTrigger}
                           onChange={(e) => setDecryptTrigger(e.target.value as any)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="mount">Initial Mount (Auto-play)</option>
                           <option value="hover">On Hover</option>
@@ -791,7 +791,7 @@ export default function UIKitShowroom() {
                           step="5"
                           value={decryptSpeed}
                           onChange={(e) => setDecryptSpeed(parseInt(e.target.value))}
-                          className="w-full accent-[#00ff9f]"
+                          className="w-full accent-neon-green"
                         />
                       </div>
                       <div className="flex items-center gap-2 pt-1">
@@ -800,7 +800,7 @@ export default function UIKitShowroom() {
                           id="decrypt-glow"
                           checked={decryptGlow}
                           onChange={(e) => setDecryptGlow(e.target.checked)}
-                          className="accent-[#00ff9f]"
+                          className="accent-neon-green"
                         />
                         <label htmlFor="decrypt-glow" className="text-white/70 cursor-pointer">
                           Neon Glow Filter
@@ -817,7 +817,7 @@ export default function UIKitShowroom() {
                         <select
                           value={holoVariant}
                           onChange={(e) => setHoloVariant(e.target.value as any)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Green (Legacy CRT)</option>
                           <option value="cyan">Cyan (Holo Projector)</option>
@@ -832,7 +832,7 @@ export default function UIKitShowroom() {
                             id="holo-flicker"
                             checked={holoFlicker}
                             onChange={(e) => setHoloFlicker(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           <label htmlFor="holo-flicker" className="text-white/70 cursor-pointer">
                             Holo Screen Flicker
@@ -844,7 +844,7 @@ export default function UIKitShowroom() {
                             id="holo-scanlines"
                             checked={holoScanlines}
                             onChange={(e) => setHoloScanlines(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           <label htmlFor="holo-scanlines" className="text-white/70 cursor-pointer">
                             Floating CRT Scanlines
@@ -856,7 +856,7 @@ export default function UIKitShowroom() {
                             id="holo-noise"
                             checked={holoNoise}
                             onChange={(e) => setHoloNoise(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           <label htmlFor="holo-noise" className="text-white/70 cursor-pointer">
                             Holographic Noise Texture
@@ -875,7 +875,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={rainColor}
                           onChange={(e) => setRainColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -887,7 +887,7 @@ export default function UIKitShowroom() {
                           step="0.1"
                           value={rainSpeed}
                           onChange={(e) => setRainSpeed(parseFloat(e.target.value))}
-                          className="w-full accent-[#00ff9f]"
+                          className="w-full accent-neon-green"
                         />
                       </div>
                       <div>
@@ -898,7 +898,7 @@ export default function UIKitShowroom() {
                           max="24"
                           value={rainSize}
                           onChange={(e) => setRainSize(parseInt(e.target.value))}
-                          className="w-full accent-[#00ff9f]"
+                          className="w-full accent-neon-green"
                         />
                       </div>
                       <div>
@@ -910,7 +910,7 @@ export default function UIKitShowroom() {
                           step="0.05"
                           value={rainOpacity}
                           onChange={(e) => setRainOpacity(parseFloat(e.target.value))}
-                          className="w-full accent-[#00ff9f]"
+                          className="w-full accent-neon-green"
                         />
                       </div>
                       <div>
@@ -918,7 +918,7 @@ export default function UIKitShowroom() {
                         <select
                           value={rainChars}
                           onChange={(e: any) => setRainChars(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="all">All Combined</option>
                           <option value="katakana">Japanese Katakana</option>
@@ -937,7 +937,7 @@ export default function UIKitShowroom() {
                         <select
                           value={btnVariant}
                           onChange={(e: any) => setBtnVariant(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -950,7 +950,7 @@ export default function UIKitShowroom() {
                         <select
                           value={btnSize}
                           onChange={(e: any) => setBtnSize(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="sm">Small</option>
                           <option value="md">Medium</option>
@@ -963,7 +963,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={btnCut}
                             onChange={(e) => setBtnCut(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Cut Corner
                         </label>
@@ -972,7 +972,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={btnGlitch}
                             onChange={(e) => setBtnGlitch(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Glitch Hover
                         </label>
@@ -981,7 +981,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={btnGlow}
                             onChange={(e) => setBtnGlow(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Glow Shadow
                         </label>
@@ -997,7 +997,7 @@ export default function UIKitShowroom() {
                         <select
                           value={inputVariant}
                           onChange={(e: any) => setInputVariant(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1011,7 +1011,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={inputPrompt}
                           onChange={(e) => setInputPrompt(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1020,7 +1020,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={inputGlow}
                             onChange={(e) => setInputGlow(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Glow Focus
                         </label>
@@ -1036,7 +1036,7 @@ export default function UIKitShowroom() {
                         <select
                           value={panelVariant}
                           onChange={(e: any) => setPanelVariant(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1050,7 +1050,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={panelTitle}
                           onChange={(e) => setPanelTitle(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1059,7 +1059,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={panelStatus}
                           onChange={(e) => setPanelStatus(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div className="flex gap-4 mt-1">
@@ -1068,7 +1068,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={panelControls}
                             onChange={(e) => setPanelControls(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Show Dots
                         </label>
@@ -1077,7 +1077,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={panelGlow}
                             onChange={(e) => setPanelGlow(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Glow Hover
                         </label>
@@ -1093,7 +1093,7 @@ export default function UIKitShowroom() {
                         <select
                           value={badgeVariant}
                           onChange={(e: any) => setBadgeVariant(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1107,7 +1107,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={badgeText}
                           onChange={(e) => setBadgeText(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1116,7 +1116,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={badgeBrackets}
                             onChange={(e) => setBadgeBrackets(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Render brackets `[ ]`
                         </label>
@@ -1133,7 +1133,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={glitchValue}
                           onChange={(e) => setGlitchValue(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1141,7 +1141,7 @@ export default function UIKitShowroom() {
                         <select
                           value={glitchTrigger}
                           onChange={(e: any) => setGlitchTrigger(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="hover">Hover</option>
                           <option value="always">Always Loop</option>
@@ -1153,7 +1153,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={glitchGlow}
                             onChange={(e) => setGlitchGlow(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Text Glow
                         </label>
@@ -1170,7 +1170,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={statusText}
                           onChange={(e) => setStatusText(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1179,7 +1179,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={statusDetail}
                           onChange={(e) => setStatusDetail(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1188,7 +1188,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={statusCount}
                           onChange={(e) => setStatusCount(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1197,7 +1197,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={statusAddress}
                           onChange={(e) => setStatusAddress(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1205,7 +1205,7 @@ export default function UIKitShowroom() {
                         <select
                           value={statusColor}
                           onChange={(e: any) => setStatusColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Green (OK)</option>
                           <option value="cyan">Cyan (SYS)</option>
@@ -1225,7 +1225,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={actionLabel}
                           onChange={(e) => setActionLabel(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1234,7 +1234,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={actionValue}
                           onChange={(e) => setActionValue(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1243,7 +1243,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={actionCommand}
                           onChange={(e) => setActionCommand(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1252,7 +1252,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={actionDesc}
                           onChange={(e) => setActionDesc(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1261,7 +1261,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={actionIcon}
                           onChange={(e) => setActionIcon(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1269,7 +1269,7 @@ export default function UIKitShowroom() {
                         <select
                           value={actionColor}
                           onChange={(e: any) => setActionColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1289,7 +1289,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={consoleCommand}
                           onChange={(e) => setConsoleCommand(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1298,7 +1298,7 @@ export default function UIKitShowroom() {
                           rows={3}
                           value={consoleContent}
                           onChange={(e) => setConsoleContent(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded font-mono"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded font-mono"
                         />
                       </div>
                       <div>
@@ -1306,7 +1306,7 @@ export default function UIKitShowroom() {
                         <select
                           value={consoleColor}
                           onChange={(e: any) => setConsoleColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1320,7 +1320,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={consoleGlow}
                             onChange={(e) => setConsoleGlow(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Glow Shadow
                         </label>
@@ -1336,7 +1336,7 @@ export default function UIKitShowroom() {
                         <select
                           value={tabsActiveId}
                           onChange={(e) => setTabsActiveId(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="tab1">ALL_HOSTS (Tab 1)</option>
                           <option value="tab2">ACTIVE_EXPLOITS (Tab 2)</option>
@@ -1348,7 +1348,7 @@ export default function UIKitShowroom() {
                         <select
                           value={tabsColor}
                           onChange={(e: any) => setTabsColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1367,7 +1367,7 @@ export default function UIKitShowroom() {
                         <select
                           value={switchColor}
                           onChange={(e: any) => setSwitchColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1381,7 +1381,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={switchChecked}
                             onChange={(e) => setSwitchChecked(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Checked Status
                         </label>
@@ -1397,7 +1397,7 @@ export default function UIKitShowroom() {
                         <select
                           value={checkboxColor}
                           onChange={(e: any) => setCheckboxColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1411,7 +1411,7 @@ export default function UIKitShowroom() {
                             type="checkbox"
                             checked={checkboxChecked}
                             onChange={(e) => setCheckboxChecked(e.target.checked)}
-                            className="accent-[#00ff9f]"
+                            className="accent-neon-green"
                           />
                           Checked Status
                         </label>
@@ -1428,7 +1428,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={dialogTitle}
                           onChange={(e) => setDialogTitle(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1436,7 +1436,7 @@ export default function UIKitShowroom() {
                         <select
                           value={dialogColor}
                           onChange={(e: any) => setDialogColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1458,7 +1458,7 @@ export default function UIKitShowroom() {
                           max="100"
                           value={progressVal}
                           onChange={(e) => setProgressVal(parseInt(e.target.value))}
-                          className="w-full accent-[#00ff9f]"
+                          className="w-full accent-neon-green"
                         />
                       </div>
                       <div>
@@ -1466,7 +1466,7 @@ export default function UIKitShowroom() {
                         <select
                           value={progressType}
                           onChange={(e: any) => setProgressType(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="block">Retro Monospace Blocks [■■■□□]</option>
                           <option value="line">Modern Neon Glow Line</option>
@@ -1478,7 +1478,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={progressLabel}
                           onChange={(e) => setProgressLabel(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1486,7 +1486,7 @@ export default function UIKitShowroom() {
                         <select
                           value={progressColor}
                           onChange={(e: any) => setProgressColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="green">Neon Green</option>
                           <option value="cyan">Cyber Cyan</option>
@@ -1506,7 +1506,7 @@ export default function UIKitShowroom() {
                           type="text"
                           value={alertTitle}
                           onChange={(e) => setAlertTitle(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1515,7 +1515,7 @@ export default function UIKitShowroom() {
                           rows={2}
                           value={alertText}
                           onChange={(e) => setAlertText(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         />
                       </div>
                       <div>
@@ -1523,7 +1523,7 @@ export default function UIKitShowroom() {
                         <select
                           value={alertColor}
                           onChange={(e: any) => setAlertColor(e.target.value)}
-                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-[#00ff9f] outline-none rounded"
+                          className="w-full bg-black border border-[#1a2e1a] px-2 py-1 text-neon-green outline-none rounded"
                         >
                           <option value="red">Warning Red (CRIT)</option>
                           <option value="amber">Alert Amber (WARN)</option>
@@ -1549,7 +1549,7 @@ export default function UIKitShowroom() {
                     <button
                       onClick={() => setCodeTab('jsx')}
                       className={`px-4 py-2 border-r border-[#1a2e1a] uppercase font-mono ${
-                        codeTab === 'jsx' ? 'bg-[#0d0d0d] text-[#00ff9f] font-bold' : 'text-white/50 hover:text-white'
+                        codeTab === 'jsx' ? 'bg-[#0d0d0d] text-neon-green font-bold' : 'text-white/50 hover:text-white'
                       }`}
                     >
                       Copy Component JSX
@@ -1558,7 +1558,7 @@ export default function UIKitShowroom() {
                       <button
                         onClick={() => setCodeTab('raw')}
                         className={`px-4 py-2 border-r border-[#1a2e1a] uppercase font-mono ${
-                          codeTab === 'raw' ? 'bg-[#0d0d0d] text-[#00ff9f] font-bold' : 'text-white/50 hover:text-white'
+                          codeTab === 'raw' ? 'bg-[#0d0d0d] text-neon-green font-bold' : 'text-white/50 hover:text-white'
                         }`}
                       >
                         Raw Source Code (File content)
@@ -1566,7 +1566,7 @@ export default function UIKitShowroom() {
                     )}
                     <button
                       onClick={() => triggerCopy(codeTab === 'jsx' ? getDynamicJSX() : getSourceCode())}
-                      className="ml-auto px-4 py-2 text-white/60 hover:text-[#00ff9f] hover:bg-[#00ff9f0d] flex items-center gap-1 select-none cursor-pointer"
+                      className="ml-auto px-4 py-2 text-white/60 hover:text-neon-green hover:bg-neon-green/5 flex items-center gap-1 select-none cursor-pointer"
                     >
                       {copied ? '✔ COPIED' : '⧉ COPY_CODE'}
                     </button>
@@ -1574,7 +1574,7 @@ export default function UIKitShowroom() {
 
                   {/* Pre/Code */}
                   <div className="flex-1 p-4 overflow-auto max-h-[300px] bg-black/60 relative">
-                    <pre className="text-xs text-[#00ff9fcc] font-mono leading-5 whitespace-pre">
+                    <pre className="text-xs text-neon-green/80 font-mono leading-5 whitespace-pre">
                       {codeTab === 'jsx' ? getDynamicJSX() : getSourceCode()}
                     </pre>
                   </div>

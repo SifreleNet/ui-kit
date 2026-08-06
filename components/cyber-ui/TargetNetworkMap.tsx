@@ -44,13 +44,13 @@ export default function TargetNetworkMap({ className = '' }: { className?: strin
   return (
     <div
       className={`
-        border border-[#00ff9f11] bg-black/60 rounded-lg p-5 font-mono flex flex-col md:flex-row gap-5 w-full max-w-2xl backdrop-blur-sm
+        border border-neon-green/7 bg-black/60 rounded-lg p-5 font-mono flex flex-col md:flex-row gap-5 w-full max-w-2xl backdrop-blur-sm
         ${className}
       `}
     >
       {/* Visual Network Map */}
       <div className="flex-1 flex flex-col gap-3">
-        <div className="flex justify-between items-center border-b border-[#00ff9f11] pb-2 text-[10px] text-white/50">
+        <div className="flex justify-between items-center border-b border-neon-green/7 pb-2 text-[10px] text-white/50">
           <span>⬡ LOCAL SUBNET TOPOLOGY</span>
           <span className="text-[#28c840] animate-pulse">● MAP_LIVE</span>
         </div>
@@ -63,7 +63,7 @@ export default function TargetNetworkMap({ className = '' }: { className?: strin
               const fromNode = NODES.find((n) => n.id === conn.from)!;
               const toNode = NODES.find((n) => n.id === conn.to)!;
               const isCompromised = fromNode.status === 'compromised' || toNode.status === 'compromised';
-              const lineColor = isCompromised ? '#ff5f57' : '#00ff9f';
+              const lineColor = isCompromised ? '#ff5f57' : 'var(--neon-green)';
               return (
                 <g key={idx}>
                   {/* Background pipe line */}
@@ -165,7 +165,7 @@ export default function TargetNetworkMap({ className = '' }: { className?: strin
           <div className="space-y-3 text-[10px] leading-relaxed">
             <div>
               <span className="text-white/40 block">TARGET HOSTNAME:</span>
-              <span className="text-[#00ff9f] font-bold uppercase">{selectedNode.name}</span>
+              <span className="text-neon-green font-bold uppercase">{selectedNode.name}</span>
             </div>
             <div>
               <span className="text-white/40 block">IP_ADDRESS:</span>

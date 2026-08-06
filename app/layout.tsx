@@ -87,10 +87,10 @@ export default function RootLayout({
       className={`${geistMono.variable} h-full`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-[#00ff9f] font-mono antialiased">
+      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-neon-green font-mono antialiased">
         <Navbar />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-[#1a2e1a] py-4 px-6 text-center text-[#00ff9f44] text-xs">
+        <footer className="border-t border-[#1a2e1a] py-4 px-6 text-center text-neon-green/27 text-xs">
           <span> sifrelenet ~ 2026 — stay curious, stay secure</span>
         </footer>
       </body>

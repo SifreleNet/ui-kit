@@ -12,12 +12,12 @@ interface CyberPanelProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f1a] hover:border-[#00ff9f4d]',
-    barBorder: 'border-b-[#00ff9f0d]',
-    title: 'text-[#00ff9f99]',
-    bullet: 'bg-[#00ff9f]',
+    border: 'border-neon-green/10 hover:border-neon-green/30',
+    barBorder: 'border-b-neon-green/5',
+    title: 'text-neon-green/60',
+    bullet: 'bg-neon-green',
     shadow: 'hover:shadow-[0_0_20px_rgba(0,255,159,0.08)]',
-    dotColor: '#00ff9f',
+    dotColor: 'var(--neon-green)',
   },
   cyan: {
     border: 'border-[#00f0ff1a] hover:border-[#00f0ff4d]',
@@ -104,7 +104,7 @@ export default function CyberPanel({
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 p-4 font-mono text-xs overflow-y-auto leading-relaxed text-[#00ff9fcc]">
+      <div className="flex-1 p-4 font-mono text-xs overflow-y-auto leading-relaxed text-neon-green/80">
         {children}
       </div>
     </div>

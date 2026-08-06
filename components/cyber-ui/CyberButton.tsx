@@ -12,11 +12,11 @@ interface CyberButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f33] hover:border-[#00ff9f]',
-    text: 'text-[#00ff9f]',
-    bg: 'hover:bg-[#00ff9f0d]',
+    border: 'border-neon-green/20 hover:border-neon-green',
+    text: 'text-neon-green',
+    bg: 'hover:bg-neon-green/5',
     shadow: 'hover:shadow-[0_0_15px_rgba(0,255,159,0.35)]',
-    accent: 'bg-[#00ff9f]',
+    accent: 'bg-neon-green',
   },
   cyan: {
     border: 'border-[#00f0ff33] hover:border-[#00f0ff]',

@@ -2,9 +2,9 @@
 
 :root {
   --background: #0a0a0a;
-  --foreground: #00ff9f;
-  --neon-green: #00ff9f;
-  --neon-dim: #00cc7a;
+  --foreground: #0abc13;
+  --neon-green: #0abc13;
+  --neon-dim: #0abc13;
   --surface: #0f0f0f;
   --border: #1a2e1a;
 }
@@ -12,6 +12,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-neon-green: var(--neon-green);
+  --color-neon-dim: var(--neon-dim);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -49,11 +51,11 @@ body {
   background: #0a0a0a;
 }
 ::-webkit-scrollbar-thumb {
-  background: #00ff9f22;
+  background: color-mix(in srgb, var(--neon-green) 13%, transparent);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ff9f55;
+  background: color-mix(in srgb, var(--neon-green) 33%, transparent);
 }
 
 /* Ocultar scrollbar pero mantener scroll */
@@ -67,7 +69,7 @@ body {
 
 /* Selección de texto */
 ::selection {
-  background: #00ff9f33;
+  background: color-mix(in srgb, var(--neon-green) 20%, transparent);
   color: #00ff9f;
 }
 
@@ -88,13 +90,13 @@ body {
   100% {
     text-shadow:
       0 0 10px #00ff9f,
-      0 0 20px #00ff9f40;
+      0 0 20px color-mix(in srgb, var(--neon-green) 25%, transparent);
   }
   50% {
     text-shadow:
       0 0 20px #00ff9f,
-      0 0 40px #00ff9f60,
-      0 0 60px #00ff9f20;
+      0 0 40px color-mix(in srgb, var(--neon-green) 38%, transparent),
+      0 0 60px color-mix(in srgb, var(--neon-green) 13%, transparent);
   }
 }
 
@@ -212,22 +214,22 @@ body {
 .glow-hover:hover {
   text-shadow:
     0 0 15px #00ff9f,
-    0 0 30px #00ff9f40;
+    0 0 30px color-mix(in srgb, var(--neon-green) 25%, transparent);
   transition: text-shadow 0.3s ease;
 }
 
 /* Border glow */
 .border-glow {
-  border-color: #00ff9f33;
+  border-color: color-mix(in srgb, var(--neon-green) 20%, transparent);
   box-shadow:
-    0 0 15px #00ff9f15,
-    inset 0 0 15px #00ff9f05;
+    0 0 15px color-mix(in srgb, var(--neon-green) 8%, transparent),
+    inset 0 0 15px color-mix(in srgb, var(--neon-green) 2%, transparent);
 }
 .border-glow:hover {
-  border-color: #00ff9f66;
+  border-color: color-mix(in srgb, var(--neon-green) 40%, transparent);
   box-shadow:
-    0 0 25px #00ff9f25,
-    inset 0 0 25px #00ff9f10;
+    0 0 25px color-mix(in srgb, var(--neon-green) 15%, transparent),
+    inset 0 0 25px color-mix(in srgb, var(--neon-green) 6%, transparent);
   transition: all 0.3s ease;
 }
 

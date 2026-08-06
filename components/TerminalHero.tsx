@@ -35,23 +35,23 @@ function PromptSpan({ prompt }: { prompt: string }) {
   return (
     <span className="select-none">
       <span className="text-[#ff5f57]">{user}</span>
-      <span className="text-[#00ff9f44]">@</span>
+      <span className="text-neon-green/27">@</span>
       <span style={{ color: host === 'kali' ? '#febc2e' : '#ff5f57' }}>
         {host}
       </span>
-      <span className="text-[#00ff9f55]">{path}</span>
-      <span className="text-[#00ff9f44]"># </span>
+      <span className="text-neon-green/33">{path}</span>
+      <span className="text-neon-green/27"># </span>
     </span>
   );
 }
 
 const KIND_COLOR: Record<LineKind, string> = {
-  cmd: 'text-[#00ff9f]',
-  out: 'text-[#00ff9fcc]',
+  cmd: 'text-neon-green',
+  out: 'text-neon-green/80',
   ok: 'text-[#28c840]',
   warn: 'text-[#febc2e]',
   err: 'text-[#ff5f57]',
-  dim: 'text-[#00ff9f44]',
+  dim: 'text-neon-green/27',
   blank: 'text-transparent',
 };
 
@@ -85,13 +85,13 @@ function CounterStat({
   return (
     <div>
       <div
-        className="text-xl font-bold text-[#00ff9f] font-mono tabular-nums"
-        style={{ textShadow: '0 0 15px #00ff9f' }}
+        className="text-xl font-bold text-neon-green font-mono tabular-nums"
+        style={{ textShadow: '0 0 15px var(--neon-green)' }}
       >
         {val}
         {suffix}
       </div>
-      <div className="text-[10px] text-[#00ff9f55] font-mono mt-0.5">
+      <div className="text-[10px] text-neon-green/33 font-mono mt-0.5">
         {label}
       </div>
     </div>
@@ -897,21 +897,21 @@ export default function TerminalHero({
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-14">
         {/* Header central */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono text-[#00ff9f55] border border-[#1a2e1a] bg-[#0a0a0acc] px-4 py-1.5 rounded mb-5">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono text-neon-green/33 border border-[#1a2e1a] bg-[#0a0a0acc] px-4 py-1.5 rounded mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f57] animate-pulse" />
             <span>{badgeText}</span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#28c840] animate-pulse" />
           </div>
           <h1
             className="text-4xl md:text-5xl font-bold font-mono mb-3"
-            style={{ textShadow: '0 0 30px #00ff9f, 0 0 60px #00ff9f40' }}
+            style={{ textShadow: '0 0 30px var(--neon-green), 0 0 60px color-mix(in srgb, var(--neon-green) 25%, transparent)' }}
           >
-            <span className="text-[#00ff9f44]">[</span>
-            <span className="text-[#00ff9f]">{title}</span>
-            <span className="text-[#00ff9f44]">]</span>
-            <span className="animate-blink text-[#00ff9f] ml-1">_</span>
+            <span className="text-neon-green/27">[</span>
+            <span className="text-neon-green">{title}</span>
+            <span className="text-neon-green/27">]</span>
+            <span className="animate-blink text-neon-green ml-1">_</span>
           </h1>
-          <p className="text-[#00ff9faa] font-mono text-sm tracking-widest">
+          <p className="text-neon-green/67 font-mono text-sm tracking-widest">
             {subtitle}
           </p>
         </div>
@@ -919,12 +919,12 @@ export default function TerminalHero({
         {/* Terminal + Dashboard */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8 lg:h-130">
           {/* Terminal principal */}
-          <div className="rounded-lg border border-[#00ff9f22] bg-[#0a0a0aee] shadow-[0_0_40px_#00ff9f15] overflow-hidden flex flex-col h-105 lg:h-full">
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-[#0d0d0ddd] border-b border-[#00ff9f11] shrink-0">
+          <div className="rounded-lg border border-neon-green/13 bg-[#0a0a0aee] shadow-[0_0_40px_color-mix(in srgb, var(--neon-green) 8%, transparent)] overflow-hidden flex flex-col h-105 lg:h-full">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-[#0d0d0ddd] border-b border-neon-green/7 shrink-0">
               <span className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_#ff5f57]" />
               <span className="w-3 h-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_#febc2e]" />
               <span className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_#28c840]" />
-              <span className="flex-1 text-center text-[11px] text-[#00ff9f33] font-mono">
+              <span className="flex-1 text-center text-[11px] text-neon-green/20 font-mono">
                 {terminalTitle}
               </span>
             </div>
@@ -945,7 +945,7 @@ export default function TerminalHero({
                     )}
                     <span>{line.text}</span>
                     {!line.done && (
-                      <span className="animate-blink ml-0.5 text-[#00ff9f]">
+                      <span className="animate-blink ml-0.5 text-neon-green">
                         ▊
                       </span>
                     )}
@@ -953,7 +953,7 @@ export default function TerminalHero({
                 );
               })}
               {lines.length > 0 && lines[lines.length - 1].done && (
-                <div className="flex items-baseline text-[#00ff9f]">
+                <div className="flex items-baseline text-neon-green">
                   <PromptSpan prompt={lastPrompt} />
                   <span className="animate-blink">▊</span>
                 </div>
@@ -964,7 +964,7 @@ export default function TerminalHero({
                 <span className="w-1.5 h-1.5 rounded-full bg-[#28c840] animate-pulse" />
                 {terminalStatus}
               </span>
-              <span className="text-[#00ff9f33]">{terminalFooterRight}</span>
+              <span className="text-neon-green/20">{terminalFooterRight}</span>
             </div>
           </div>
 
@@ -977,14 +977,14 @@ export default function TerminalHero({
           <div className="flex gap-3">
             <a
               href="/projects"
-              className="group px-5 py-2.5 border border-[#00ff9f] text-[#00ff9f] text-sm font-mono rounded relative overflow-hidden hover:shadow-[0_0_30px_#00ff9f44] transition-all duration-300"
+              className="group px-5 py-2.5 border border-neon-green text-neon-green text-sm font-mono rounded relative overflow-hidden hover:shadow-[0_0_30px_color-mix(in srgb, var(--neon-green) 27%, transparent)] transition-all duration-300"
             >
               <span className="relative z-10">./view_projects.sh</span>
-              <span className="absolute inset-0 bg-[#00ff9f] translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-10" />
+              <span className="absolute inset-0 bg-neon-green translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-10" />
             </a>
             <a
               href="/contact"
-              className="px-5 py-2.5 border border-[#00ff9f33] text-[#00ff9f77] text-sm font-mono rounded hover:border-[#00ff9f] hover:text-[#00ff9f] hover:shadow-[0_0_20px_#00ff9f22] transition-all duration-300"
+              className="px-5 py-2.5 border border-neon-green/20 text-neon-green/47 text-sm font-mono rounded hover:border-neon-green hover:text-neon-green hover:shadow-[0_0_20px_color-mix(in srgb, var(--neon-green) 13%, transparent)] transition-all duration-300"
             >
               ./contact_me.sh
             </a>

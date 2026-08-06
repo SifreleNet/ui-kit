@@ -18,7 +18,7 @@ interface MatrixRainProps {
 }
 
 export default function MatrixRain({
-  color = '#00ff9f',
+  color = 'var(--neon-green)',
   speed = 0.5,
   fontSize = 13,
   opacity = 0.4,

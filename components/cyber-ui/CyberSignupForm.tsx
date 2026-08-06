@@ -63,7 +63,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
   return (
     <div
       className={`
-        border border-[#00ff9f22] bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
+        border border-neon-green/13 bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
         rounded-lg max-w-sm w-full overflow-hidden flex flex-col font-mono relative
         ${className}
       `}
@@ -74,10 +74,10 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
       </div>
 
       {/* Title Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-[#00ff9f11]">
+      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-neon-green/7">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#00ff9f] animate-pulse" />
-          <span className="text-xs text-[#00ff9f88] font-bold tracking-widest uppercase">
+          <span className="w-2.5 h-2.5 rounded-full bg-neon-green animate-pulse" />
+          <span className="text-xs text-neon-green/53 font-bold tracking-widest uppercase">
             REGISTRATION_INTERFACE_v4
           </span>
         </div>
@@ -90,7 +90,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
           <h2 className="text-base font-bold text-white tracking-widest uppercase">
             GENERATE IDENTITY
           </h2>
-          <p className="text-[9px] text-[#00ff9f66] mt-0.5">
+          <p className="text-[9px] text-neon-green/40 mt-0.5">
             Spin up a new zero-knowledge profile on the decentralized node.
           </p>
         </div>
@@ -103,11 +103,11 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
         {success ? (
           <div className="text-center py-6 space-y-4">
-            <div className="text-[#00ff9f] text-3xl animate-bounce">▣</div>
+            <div className="text-neon-green text-3xl animate-bounce">▣</div>
             <div className="text-xs font-bold text-white uppercase tracking-widest">
               IDENTITY GENERATED
             </div>
-            <p className="text-[10px] text-[#00ff9f77]">
+            <p className="text-[10px] text-neon-green/47">
               Node registration complete. Keypairs downloaded securely.
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             {/* Operator Handle */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">Operator Handle</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">Operator Handle</label>
               <CyberInput
                 variant="green"
                 prompt="HANDLE:"
@@ -135,7 +135,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
             {/* Matrix Routing Email */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">Routing Address</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">Routing Address</label>
               <CyberInput
                 variant="green"
                 prompt="ROUTING:"
@@ -149,7 +149,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
             {/* Secret Passphrase */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">Passphrase Hash</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">Passphrase Hash</label>
               <CyberInput
                 variant="green"
                 prompt="PASS_KEY:"
@@ -162,7 +162,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
             {/* Optional PGP Key */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">PGP Public Key (Optional)</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">PGP Public Key (Optional)</label>
               <CyberInput
                 variant="green"
                 prompt="PGP_KEY:"

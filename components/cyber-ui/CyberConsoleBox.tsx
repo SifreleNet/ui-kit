@@ -13,8 +13,8 @@ interface CyberConsoleBoxProps {
 const COLOR_MAP = {
   green: {
     border: 'border-[#1a2e1a]',
-    command: 'text-[#00ff9f55]',
-    text: 'text-[#00ff9f44]',
+    command: 'text-neon-green/33',
+    text: 'text-neon-green/27',
     shadow: 'shadow-[0_0_25px_rgba(0,255,159,0.02)]',
     bg: 'bg-[#0d0d0dcc]',
   },

@@ -9,10 +9,10 @@ interface CyberBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f33]',
-    bg: 'bg-[#00ff9f0a]',
-    text: 'text-[#00ff9f]',
-    brackets: 'text-[#00ff9f55]',
+    border: 'border-neon-green/20',
+    bg: 'bg-neon-green/4',
+    text: 'text-neon-green',
+    brackets: 'text-neon-green/33',
   },
   cyan: {
     border: 'border-[#00f0ff33]',

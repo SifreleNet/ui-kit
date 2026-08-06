@@ -13,11 +13,11 @@ interface CyberCheckboxProps {
 
 const COLOR_MAP = {
   green: {
-    borderActive: 'border-[#00ff9f]',
-    bgActive: 'bg-[#00ff9f1a]',
-    text: 'text-[#00ff9f]',
+    borderActive: 'border-neon-green',
+    bgActive: 'bg-neon-green/10',
+    text: 'text-neon-green',
     glow: 'shadow-[0_0_8px_rgba(0,255,159,0.4)]',
-    borderInactive: 'border-[#1a2e1a] hover:border-[#00ff9f33]',
+    borderInactive: 'border-[#1a2e1a] hover:border-neon-green/20',
   },
   cyan: {
     borderActive: 'border-[#00f0ff]',

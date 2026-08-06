@@ -31,7 +31,7 @@ export default function CyberStatusLine({
   return (
     <div
       className={`
-        flex items-center gap-2 font-mono text-xs text-[#00ff9f44] w-full select-none
+        flex items-center gap-2 font-mono text-xs text-neon-green/27 w-full select-none
         ${className}
       `}
     >
@@ -42,14 +42,14 @@ export default function CyberStatusLine({
       <span>
         {status} &mdash;{' '}
         {count !== undefined && (
-          <span className="text-[#00ff9f66] font-bold mr-1">{count}</span>
+          <span className="text-neon-green/40 font-bold mr-1">{count}</span>
         )}
         <span>{detail}</span>
       </span>
 
       {/* Right Aligned Host Address */}
       {address && (
-        <span className="ml-auto text-[#00ff9f22] font-mono hover:text-[#00ff9f44] transition-colors duration-200">
+        <span className="ml-auto text-neon-green/13 font-mono hover:text-neon-green/27 transition-colors duration-200">
           {address}
         </span>
       )}

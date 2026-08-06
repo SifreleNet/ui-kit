@@ -10,9 +10,9 @@ interface CyberInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElemen
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#1a2e1a] focus-within:border-[#00ff9f]',
-    text: 'text-[#00ff9f]',
-    prompt: 'text-[#00ff9f88]',
+    border: 'border-[#1a2e1a] focus-within:border-neon-green',
+    text: 'text-neon-green',
+    prompt: 'text-neon-green/53',
     shadow: 'focus-within:shadow-[0_0_15px_rgba(0,255,159,0.2)]',
     bg: 'bg-black/40',
   },
@@ -78,7 +78,7 @@ export default function CyberInput({
         }}
         className={`
           flex-1 bg-transparent border-none outline-none font-mono font-bold
-          placeholder-[#00ff9f33]
+          placeholder-neon-green/20
           ${colors.text}
         `}
       />

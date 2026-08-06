@@ -13,7 +13,7 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
     const cssText = `@import 'tailwindcss';
 :root {
   --background: #0a0a0a;
-  --foreground: #00ff9f;
+  --foreground: var(--neon-green);
 }
 @keyframes blink {
   0%, 100% { opacity: 1; }
@@ -31,7 +31,7 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
     <div className="max-w-4xl space-y-6 select-none font-mono">
       <div>
         <h2 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-          <span className="text-[#00ff9f]">00 //</span> SYSTEM INSTALLATION GUIDE
+          <span className="text-neon-green">00 //</span> SYSTEM INSTALLATION GUIDE
         </h2>
         <p className="text-white/60 text-sm leading-relaxed">
           Cyberpunk UI Kit utilizes React components with TailwindCSS v4 classes. Follow the steps below to setup custom styles, fonts, and animation variables.
@@ -39,9 +39,9 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
       </div>
 
       <div className="border border-[#1a2e1a] rounded-lg bg-[#0d0d0d] p-5 space-y-4">
-        <h3 className="text-[#00ff9f] font-bold text-sm">Step 1: CSS Animation & Utility Setup</h3>
+        <h3 className="text-neon-green font-bold text-sm">Step 1: CSS Animation & Utility Setup</h3>
         <p className="text-white/60 text-xs leading-relaxed">
-          Copy the following custom variables and keyframe animations into your <code className="text-[#00ff9f] bg-black/40 px-1 py-0.5 rounded">globals.css</code> file:
+          Copy the following custom variables and keyframe animations into your <code className="text-neon-green bg-black/40 px-1 py-0.5 rounded">globals.css</code> file:
         </p>
         <div className="relative">
           <pre className="bg-black p-4 rounded text-xs text-emerald-400 overflow-x-auto max-h-60 leading-5">
@@ -50,8 +50,8 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
 
 :root {
   --background: #0a0a0a;
-  --foreground: #00ff9f;
-  --neon-green: #00ff9f;
+  --foreground: var(--neon-green);
+  --neon-green: var(--neon-green);
   --neon-dim: #00cc7a;
   --surface: #0f0f0f;
   --border: #1a2e1a;
@@ -62,11 +62,11 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
   width: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #00ff9f22;
+  background: color-mix(in srgb, var(--neon-green) 13%, transparent);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00ff9f55;
+  background: color-mix(in srgb, var(--neon-green) 33%, transparent);
 }
 
 /* Cyber animations */
@@ -106,7 +106,7 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
           </pre>
           <button
             onClick={copyCss}
-            className="absolute right-3 top-3 text-xs bg-[#00ff9f15] hover:bg-[#00ff9f44] border border-[#00ff9f44] text-[#00ff9f] px-2 py-1 rounded select-none cursor-pointer transition-all"
+            className="absolute right-3 top-3 text-xs bg-neon-green/8 hover:bg-neon-green/27 border border-neon-green/27 text-neon-green px-2 py-1 rounded select-none cursor-pointer transition-all"
           >
             {copied ? 'Copied!' : 'Copy CSS Snippet'}
           </button>
@@ -114,20 +114,20 @@ export default function InstallationGuide({ setActiveTab }: InstallationGuidePro
       </div>
 
       <div className="border border-[#1a2e1a] rounded-lg bg-[#0d0d0d] p-5 space-y-3 text-sm">
-        <h3 className="text-[#00ff9f] font-bold">Step 2: Start building</h3>
+        <h3 className="text-neon-green font-bold">Step 2: Start building</h3>
         <p className="text-white/60 text-xs leading-relaxed">
           Navigate through components in the sidebar. Click on any component to view its options, customize props, copy JSX code blocks, or grab full component source files.
         </p>
         <div className="flex gap-4 pt-2">
           <button
             onClick={() => setActiveTab('CyberButton')}
-            className="text-xs bg-[#00ff9f] text-black px-4 py-2 rounded font-bold uppercase hover:shadow-[0_0_15px_rgba(0,255,159,0.4)] cursor-pointer transition-all"
+            className="text-xs bg-neon-green text-black px-4 py-2 rounded font-bold uppercase hover:shadow-[0_0_15px_rgba(0,255,159,0.4)] cursor-pointer transition-all"
           >
             Browse CyberButton
           </button>
           <button
             onClick={() => setActiveTab('MatrixRain')}
-            className="text-xs border border-[#00ff9f33] hover:border-[#00ff9f] text-[#00ff9f] px-4 py-2 rounded font-bold uppercase cursor-pointer transition-all"
+            className="text-xs border border-neon-green/20 hover:border-neon-green text-neon-green px-4 py-2 rounded font-bold uppercase cursor-pointer transition-all"
           >
             Browse MatrixRain
           </button>

@@ -13,10 +13,10 @@ interface HologramContainerProps {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f44]',
+    border: 'border-neon-green/27',
     glow: 'rgba(0, 255, 159, 0.15)',
-    color: '#00ff9f',
-    bg: 'bg-[#00ff9f03]',
+    color: 'var(--neon-green)',
+    bg: 'bg-neon-green/1',
     overlay: 'rgba(0, 255, 159, 0.05)',
   },
   cyan: {

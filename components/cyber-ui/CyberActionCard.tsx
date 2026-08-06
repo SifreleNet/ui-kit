@@ -17,12 +17,12 @@ interface CyberActionCardProps {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#1a2e1a] hover:border-[#00ff9f44] hover:bg-[#00ff9f05]',
-    text: 'text-[#00ff9f]',
-    subText: 'text-[#00ff9f77]',
-    dimText: 'text-[#00ff9f33]',
-    accentText: 'text-[#00ff9f66] group-hover/link:text-[#00ff9f]',
-    commandText: 'text-[#00ff9f55]',
+    border: 'border-[#1a2e1a] hover:border-neon-green/27 hover:bg-neon-green/2',
+    text: 'text-neon-green',
+    subText: 'text-neon-green/47',
+    dimText: 'text-neon-green/20',
+    accentText: 'text-neon-green/40 group-hover/link:text-neon-green',
+    commandText: 'text-neon-green/33',
   },
   cyan: {
     border: 'border-[#0a232e] hover:border-[#00f0ff44] hover:bg-[#00f0ff05]',

@@ -19,10 +19,10 @@ interface CyberTabsProps {
 
 const COLOR_MAP = {
   green: {
-    active: 'border-[#00ff9f] text-[#00ff9f] bg-[#00ff9f11] shadow-[0_0_10px_#00ff9f22]',
-    inactive: 'border-[#1a2e1a] text-[#00ff9f55] hover:border-[#00ff9f44] hover:text-[#00ff9f88]',
-    count: 'text-[#00ff9f55]',
-    prefix: 'text-[#00ff9f44]',
+    active: 'border-neon-green text-neon-green bg-neon-green/7 shadow-[0_0_10px_color-mix(in srgb, var(--neon-green) 13%, transparent)]',
+    inactive: 'border-[#1a2e1a] text-neon-green/33 hover:border-neon-green/27 hover:text-neon-green/53',
+    count: 'text-neon-green/33',
+    prefix: 'text-neon-green/27',
     container: 'border-[#1a2e1a] bg-[#0d0d0dcc]',
   },
   cyan: {

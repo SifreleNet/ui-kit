@@ -20,12 +20,12 @@ interface CyberPulseRadarProps {
 
 const COLOR_MAP = {
   green: {
-    stroke: '#00ff9f',
+    stroke: 'var(--neon-green)',
     fill: 'rgba(0, 255, 159, 0.03)',
     glow: 'rgba(0, 255, 159, 0.4)',
-    text: 'text-[#00ff9f]',
+    text: 'text-neon-green',
     border: 'border-[#1a2e1a]',
-    accentText: 'text-[#00ff9f88]',
+    accentText: 'text-neon-green/53',
     gridStroke: 'rgba(0, 255, 159, 0.08)',
   },
   cyan: {
@@ -242,7 +242,7 @@ export default function CyberPulseRadar({
         <div className="mt-4 pt-4 border-t border-dashed border-white/10 flex items-center justify-between text-[10px] text-white/30 font-mono">
           <span>SWEEP_RATE: {(360 / speed).toFixed(1)}°/s</span>
           <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9f] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
             LIVE
           </span>
         </div>

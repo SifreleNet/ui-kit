@@ -49,7 +49,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
   return (
     <div
       className={`
-        border border-[#00ff9f22] bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
+        border border-neon-green/13 bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
         rounded-lg max-w-sm w-full overflow-hidden flex flex-col font-mono relative
         ${className}
       `}
@@ -60,10 +60,10 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
       </div>
 
       {/* Header Bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-[#00ff9f11]">
+      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-neon-green/7">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] animate-pulse" />
-          <span className="text-xs text-[#00ff9f88] font-bold tracking-widest uppercase">
+          <span className="text-xs text-neon-green/53 font-bold tracking-widest uppercase">
             MAINFRAME_GATEWAY_v2.8
           </span>
         </div>
@@ -76,7 +76,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
           <h2 className="text-lg font-bold text-white tracking-widest uppercase mb-1">
             ACCESS PROTOCOL
           </h2>
-          <p className="text-[10px] text-[#00ff9f66]">
+          <p className="text-[10px] text-neon-green/40">
             Enter terminal keys to authenticate socket connection.
           </p>
         </div>
@@ -89,18 +89,18 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
 
         {success ? (
           <div className="text-center py-6 space-y-4">
-            <div className="text-[#00ff9f] text-3xl animate-bounce">✔</div>
+            <div className="text-neon-green text-3xl animate-bounce">✔</div>
             <div className="text-sm font-bold text-white uppercase tracking-widest">
               ACCESS GRANTED
             </div>
-            <p className="text-[10px] text-[#00ff9f77]">
+            <p className="text-[10px] text-neon-green/47">
               Welcome back, administrator. Redirecting to core mainframe...
             </p>
           </div>
         ) : loading ? (
           <div className="py-8 space-y-4">
             <CyberProgress value={progress} label="DECRYPTING KEYS" variant="green" />
-            <p className="text-[9px] text-center text-[#00ff9f44] animate-pulse">
+            <p className="text-[9px] text-center text-neon-green/27 animate-pulse">
               establishing secure tunnel...
             </p>
           </div>
@@ -108,7 +108,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Username Input */}
             <div className="space-y-1">
-              <label className="block text-[10px] text-[#00ff9f66] uppercase">
+              <label className="block text-[10px] text-neon-green/40 uppercase">
                 Operator Username
               </label>
               <CyberInput
@@ -123,7 +123,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
 
             {/* Password Input */}
             <div className="space-y-1">
-              <label className="block text-[10px] text-[#00ff9f66] uppercase">
+              <label className="block text-[10px] text-neon-green/40 uppercase">
                 Access Passcode
               </label>
               <CyberInput

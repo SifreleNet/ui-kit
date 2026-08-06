@@ -23,9 +23,9 @@ interface ColorScheme {
 
 const COLOR_MAP: Record<'green' | 'cyan' | 'red' | 'amber', ColorScheme> = {
   green: {
-    border: 'border-[#00ff9f] shadow-[0_0_15px_rgba(0,255,159,0.15)]',
-    text: 'text-[#00ff9f]',
-    bg: 'bg-[#00ff9f05]',
+    border: 'border-neon-green shadow-[0_0_15px_rgba(0,255,159,0.15)]',
+    text: 'text-neon-green',
+    bg: 'bg-neon-green/2',
     badge: 'green',
   },
   cyan: {
@@ -85,7 +85,7 @@ export default function CyberAlert({
           </div>
 
           {/* Description */}
-          <div className="text-xs text-[#00ff9fcc] max-w-lg leading-relaxed">
+          <div className="text-xs text-neon-green/80 max-w-lg leading-relaxed">
             {children}
           </div>
         </div>

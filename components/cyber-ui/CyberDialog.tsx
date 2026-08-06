@@ -15,12 +15,12 @@ interface CyberDialogProps {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f33] focus:border-[#00ff9f]',
-    text: 'text-[#00ff9f]',
+    border: 'border-neon-green/20 focus:border-neon-green',
+    text: 'text-neon-green',
     shadow: 'shadow-[0_0_30px_rgba(0,255,159,0.15)]',
-    accentText: 'text-[#00ff9f66]',
-    headerBg: 'bg-[#00ff9f0d]',
-    accentBorder: 'border-[#00ff9f22]',
+    accentText: 'text-neon-green/40',
+    headerBg: 'bg-neon-green/5',
+    accentBorder: 'border-neon-green/13',
   },
   cyan: {
     border: 'border-[#00f0ff33] focus:border-[#00f0ff]',
@@ -122,7 +122,7 @@ export default function CyberDialog({
         </div>
 
         {/* Dialog Content */}
-        <div className="p-6 font-mono text-xs leading-relaxed text-[#00ff9fcc] overflow-y-auto">
+        <div className="p-6 font-mono text-xs leading-relaxed text-neon-green/80 overflow-y-auto">
           {children}
         </div>
 

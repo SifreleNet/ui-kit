@@ -13,7 +13,7 @@ interface TextDecryptorProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const COLOR_MAP = {
-  green: 'text-[#00ff9f]',
+  green: 'text-neon-green',
   cyan: 'text-[#00f0ff]',
   red: 'text-[#ff5f57]',
   amber: 'text-[#febc2e]',

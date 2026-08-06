@@ -21,7 +21,7 @@ interface MatrixRainProps {
 }
 
 export default function MatrixRain({
-  color = '#00ff9f',
+  color = 'var(--neon-green)',
   speed = 0.5,
   fontSize = 13,
   opacity = 0.4,
@@ -160,23 +160,23 @@ function PromptSpan({ prompt }: { prompt: string }) {
   return (
     <span className="select-none">
       <span className="text-[#ff5f57]">{user}</span>
-      <span className="text-[#00ff9f44]">@</span>
+      <span className="text-neon-green/27">@</span>
       <span style={{ color: host === 'kali' ? '#febc2e' : '#ff5f57' }}>
         {host}
       </span>
-      <span className="text-[#00ff9f55]">{path}</span>
-      <span className="text-[#00ff9f44]"># </span>
+      <span className="text-neon-green/33">{path}</span>
+      <span className="text-neon-green/27"># </span>
     </span>
   );
 }
 
 const KIND_COLOR: Record<LineKind, string> = {
-  cmd: 'text-[#00ff9f]',
-  out: 'text-[#00ff9fcc]',
+  cmd: 'text-neon-green',
+  out: 'text-neon-green/80',
   ok: 'text-[#28c840]',
   warn: 'text-[#febc2e]',
   err: 'text-[#ff5f57]',
-  dim: 'text-[#00ff9f44]',
+  dim: 'text-neon-green/27',
   blank: 'text-transparent',
 };
 
@@ -210,13 +210,13 @@ function CounterStat({
   return (
     <div>
       <div
-        className="text-xl font-bold text-[#00ff9f] font-mono tabular-nums"
-        style={{ textShadow: '0 0 15px #00ff9f' }}
+        className="text-xl font-bold text-neon-green font-mono tabular-nums"
+        style={{ textShadow: '0 0 15px var(--neon-green)' }}
       >
         {val}
         {suffix}
       </div>
-      <div className="text-[10px] text-[#00ff9f55] font-mono mt-0.5">
+      <div className="text-[10px] text-neon-green/33 font-mono mt-0.5">
         {label}
       </div>
     </div>
@@ -1022,21 +1022,21 @@ export default function TerminalHero({
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-14">
         {/* Header central */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 text-[11px] font-mono text-[#00ff9f55] border border-[#1a2e1a] bg-[#0a0a0acc] px-4 py-1.5 rounded mb-5">
+          <div className="inline-flex items-center gap-2 text-[11px] font-mono text-neon-green/33 border border-[#1a2e1a] bg-[#0a0a0acc] px-4 py-1.5 rounded mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff5f57] animate-pulse" />
             <span>{badgeText}</span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#28c840] animate-pulse" />
           </div>
           <h1
             className="text-4xl md:text-5xl font-bold font-mono mb-3"
-            style={{ textShadow: '0 0 30px #00ff9f, 0 0 60px #00ff9f40' }}
+            style={{ textShadow: '0 0 30px var(--neon-green), 0 0 60px color-mix(in srgb, var(--neon-green) 25%, transparent)' }}
           >
-            <span className="text-[#00ff9f44]">[</span>
-            <span className="text-[#00ff9f]">{title}</span>
-            <span className="text-[#00ff9f44]">]</span>
-            <span className="animate-blink text-[#00ff9f] ml-1">_</span>
+            <span className="text-neon-green/27">[</span>
+            <span className="text-neon-green">{title}</span>
+            <span className="text-neon-green/27">]</span>
+            <span className="animate-blink text-neon-green ml-1">_</span>
           </h1>
-          <p className="text-[#00ff9faa] font-mono text-sm tracking-widest">
+          <p className="text-neon-green/67 font-mono text-sm tracking-widest">
             {subtitle}
           </p>
         </div>
@@ -1044,12 +1044,12 @@ export default function TerminalHero({
         {/* Terminal + Dashboard */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8 lg:h-130">
           {/* Terminal principal */}
-          <div className="rounded-lg border border-[#00ff9f22] bg-[#0a0a0aee] shadow-[0_0_40px_#00ff9f15] overflow-hidden flex flex-col h-105 lg:h-full">
-            <div className="flex items-center gap-2 px-4 py-2.5 bg-[#0d0d0ddd] border-b border-[#00ff9f11] shrink-0">
+          <div className="rounded-lg border border-neon-green/13 bg-[#0a0a0aee] shadow-[0_0_40px_color-mix(in srgb, var(--neon-green) 8%, transparent)] overflow-hidden flex flex-col h-105 lg:h-full">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-[#0d0d0ddd] border-b border-neon-green/7 shrink-0">
               <span className="w-3 h-3 rounded-full bg-[#ff5f57] shadow-[0_0_6px_#ff5f57]" />
               <span className="w-3 h-3 rounded-full bg-[#febc2e] shadow-[0_0_6px_#febc2e]" />
               <span className="w-3 h-3 rounded-full bg-[#28c840] shadow-[0_0_6px_#28c840]" />
-              <span className="flex-1 text-center text-[11px] text-[#00ff9f33] font-mono">
+              <span className="flex-1 text-center text-[11px] text-neon-green/20 font-mono">
                 {terminalTitle}
               </span>
             </div>
@@ -1070,7 +1070,7 @@ export default function TerminalHero({
                     )}
                     <span>{line.text}</span>
                     {!line.done && (
-                      <span className="animate-blink ml-0.5 text-[#00ff9f]">
+                      <span className="animate-blink ml-0.5 text-neon-green">
                         ▊
                       </span>
                     )}
@@ -1078,7 +1078,7 @@ export default function TerminalHero({
                 );
               })}
               {lines.length > 0 && lines[lines.length - 1].done && (
-                <div className="flex items-baseline text-[#00ff9f]">
+                <div className="flex items-baseline text-neon-green">
                   <PromptSpan prompt={lastPrompt} />
                   <span className="animate-blink">▊</span>
                 </div>
@@ -1089,7 +1089,7 @@ export default function TerminalHero({
                 <span className="w-1.5 h-1.5 rounded-full bg-[#28c840] animate-pulse" />
                 {terminalStatus}
               </span>
-              <span className="text-[#00ff9f33]">{terminalFooterRight}</span>
+              <span className="text-neon-green/20">{terminalFooterRight}</span>
             </div>
           </div>
 
@@ -1102,14 +1102,14 @@ export default function TerminalHero({
           <div className="flex gap-3">
             <a
               href="/projects"
-              className="group px-5 py-2.5 border border-[#00ff9f] text-[#00ff9f] text-sm font-mono rounded relative overflow-hidden hover:shadow-[0_0_30px_#00ff9f44] transition-all duration-300"
+              className="group px-5 py-2.5 border border-neon-green text-neon-green text-sm font-mono rounded relative overflow-hidden hover:shadow-[0_0_30px_color-mix(in srgb, var(--neon-green) 27%, transparent)] transition-all duration-300"
             >
               <span className="relative z-10">./view_projects.sh</span>
-              <span className="absolute inset-0 bg-[#00ff9f] translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-10" />
+              <span className="absolute inset-0 bg-neon-green translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-10" />
             </a>
             <a
               href="/contact"
-              className="px-5 py-2.5 border border-[#00ff9f33] text-[#00ff9f77] text-sm font-mono rounded hover:border-[#00ff9f] hover:text-[#00ff9f] hover:shadow-[0_0_20px_#00ff9f22] transition-all duration-300"
+              className="px-5 py-2.5 border border-neon-green/20 text-neon-green/47 text-sm font-mono rounded hover:border-neon-green hover:text-neon-green hover:shadow-[0_0_20px_color-mix(in srgb, var(--neon-green) 13%, transparent)] transition-all duration-300"
             >
               ./contact_me.sh
             </a>
@@ -1169,15 +1169,15 @@ export function NetworkScanPanel({ interval = 1100 }: { interval?: number }) {
   return (
     <div className="hacker-panel">
       <div className="hacker-panel-bar">
-        <span className="text-[#00ff9f]">⬡</span>
+        <span className="text-neon-green">⬡</span>
         <span>NETWORK SCAN — 192.168.1.0/24</span>
         <div className="flex items-center gap-1 ml-auto">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9f] animate-pulse" />
-          <span className="text-[#00ff9f66]">LIVE</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
+          <span className="text-neon-green/40">LIVE</span>
         </div>
       </div>
       <div className="flex-1 overflow-hidden p-3 space-y-1">
-        <div className="grid grid-cols-4 text-[10px] text-[#00ff9f44] mb-2 px-1">
+        <div className="grid grid-cols-4 text-[10px] text-neon-green/27 mb-2 px-1">
           <span>HOST</span>
           <span>PORTS</span>
           <span>OS</span>
@@ -1186,15 +1186,15 @@ export function NetworkScanPanel({ interval = 1100 }: { interval?: number }) {
         {visible.map((h) => (
           <div
             key={h.ip}
-            className="grid grid-cols-4 text-[11px] font-mono px-1 py-0.5 hover:bg-[#00ff9f08] rounded"
+            className="grid grid-cols-4 text-[11px] font-mono px-1 py-0.5 hover:bg-neon-green/3 rounded"
           >
-            <span className="text-[#00ff9f]">{h.ip}</span>
-            <span className="text-[#00ff9faa]">{h.ports}</span>
-            <span className="text-[#00ff9f77]">{h.os}</span>
+            <span className="text-neon-green">{h.ip}</span>
+            <span className="text-neon-green/67">{h.ports}</span>
+            <span className="text-neon-green/47">{h.os}</span>
             <span className="text-[#28c840]">{h.status}</span>
           </div>
         ))}
-        <div className="text-[11px] text-[#00ff9f55] px-1 flex items-center gap-1">
+        <div className="text-[11px] text-neon-green/33 px-1 flex items-center gap-1">
           <span className="animate-blink">█</span>
           <span>scanning...</span>
         </div>
@@ -1245,7 +1245,7 @@ export function LiveLogPanel({ interval = 1400 }: { interval?: number }) {
       ? 'text-[#ff5f57]'
       : t === 'WARN'
         ? 'text-[#febc2e]'
-        : 'text-[#00ff9f88]';
+        : 'text-neon-green/53';
 
   return (
     <div className="hacker-panel">
@@ -1259,14 +1259,14 @@ export function LiveLogPanel({ interval = 1400 }: { interval?: number }) {
       <div className="flex-1 overflow-hidden p-3 space-y-1 font-mono text-[11px]">
         {visibleLog.map((e, i) => (
           <div key={i} className="flex items-start gap-2">
-            <span className="text-[#00ff9f33] shrink-0">{e.time}</span>
+            <span className="text-neon-green/20 shrink-0">{e.time}</span>
             <span className={\`shrink-0 w-8 \${typeColor(e.type)}\`}>
               {e.type}
             </span>
-            <span className="text-[#00ff9fbb]">{e.msg}</span>
+            <span className="text-neon-green/73">{e.msg}</span>
           </div>
         ))}
-        <div className="flex items-center gap-1 text-[#00ff9f44]">
+        <div className="flex items-center gap-1 text-neon-green/27">
           <span className="animate-blink">█</span>
         </div>
       </div>
@@ -1319,32 +1319,32 @@ export function BruteForcePanel({ interval = 600 }: { interval?: number }) {
         <span>BRUTEFORCE — SSH:22</span>
       </div>
       <div className="flex-1 overflow-hidden p-3 space-y-3 font-mono text-[11px]">
-        <div className="flex justify-between text-[#00ff9f88]">
+        <div className="flex justify-between text-neon-green/53">
           <span>
-            target: <span className="text-[#00ff9f]">192.168.1.105</span>
+            target: <span className="text-neon-green">192.168.1.105</span>
           </span>
           <span>
             mode: <span className="text-[#febc2e]">dictionary</span>
           </span>
         </div>
-        <div className="flex justify-between text-[#00ff9f55]">
+        <div className="flex justify-between text-neon-green/33">
           <span>
-            trying: <span className="text-[#00ff9faa]">{attempt}</span>
+            trying: <span className="text-neon-green/67">{attempt}</span>
           </span>
         </div>
         <div>
-          <div className="flex justify-between text-[10px] text-[#00ff9f55] mb-1">
+          <div className="flex justify-between text-[10px] text-neon-green/33 mb-1">
             <span>progress</span>
             <span>{progress}%</span>
           </div>
           <div className="h-1.5 rounded bg-[#0d1a0d] overflow-hidden">
             <div
-              className="h-full rounded bg-[#00ff9f] transition-all duration-500 shadow-[0_0_8px_#00ff9f]"
+              className="h-full rounded bg-neon-green transition-all duration-500 shadow-[0_0_8px_var(--neon-green)]"
               style={{ width: \`\${progress}%\` }}
             />
           </div>
         </div>
-        <div className="flex justify-between text-[10px] text-[#00ff9f33]">
+        <div className="flex justify-between text-[10px] text-neon-green/20">
           <span>
             {Math.floor((progress / 100) * 10000).toLocaleString('en-US')} /
             10,000 attempts
@@ -1390,7 +1390,7 @@ export function HexDumpPanel({ interval = 700 }: { interval?: number }) {
   return (
     <div className="hacker-panel">
       <div className="hacker-panel-bar">
-        <span className="text-[#00ff9f]">⬡</span>
+        <span className="text-neon-green">⬡</span>
         <span>MEMORY DUMP — PID 1337</span>
       </div>
       <div className="flex-1 overflow-hidden p-3 font-mono text-[10px] space-y-0.5">
@@ -1399,11 +1399,11 @@ export function HexDumpPanel({ interval = 700 }: { interval?: number }) {
             key={offset + i}
             className={\`px-1 py-0.5 rounded transition-colors duration-300 \${
               i === highlight
-                ? 'bg-[#00ff9f15] text-[#00ff9f]'
-                : 'text-[#00ff9f55]'
+                ? 'bg-neon-green/8 text-neon-green'
+                : 'text-neon-green/33'
             }\`}
           >
-            <span className="text-[#00ff9f33] mr-2">
+            <span className="text-neon-green/20 mr-2">
               {((offset + i) * 16).toString(16).padStart(8, '0')}:
             </span>
             {row}
@@ -1454,8 +1454,8 @@ interface ProjectCardProps {
 }
 
 const defaultStatusColors: Record<string, string> = {
-  active: 'text-[#00ff9f] border-[#00ff9f44]',
-  completed: 'text-[#00ff9faa] border-[#00ff9f22]',
+  active: 'text-neon-green border-neon-green/27',
+  completed: 'text-neon-green/67 border-neon-green/13',
   wip: 'text-[#febc2e] border-[#febc2e44]',
 };
 
@@ -1485,7 +1485,7 @@ export default function ProjectCard({
   const statusColorClass = 
     defaultStatusColors[pStatus.toLowerCase()] || 
     (project?.status && statusColors[project.status]) || 
-    'text-[#00ff9f] border-[#00ff9f44]';
+    'text-neon-green border-neon-green/27';
 
   return (
     <article
@@ -1496,14 +1496,14 @@ export default function ProjectCard({
       <div className="flex items-start justify-between gap-2">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[#00ff9f55] text-xs">
+            <span className="text-neon-green/33 text-xs">
               [{pId.toString().padStart(2, '0')}]
             </span>
             <span className="text-xs border border-current rounded px-2 py-0.5 font-mono opacity-70">
               {pCategory}
             </span>
           </div>
-          <h3 className="text-[#00ff9f] font-bold text-base group-hover:text-shadow-glow transition-all duration-300 font-mono">
+          <h3 className="text-neon-green font-bold text-base group-hover:text-shadow-glow transition-all duration-300 font-mono">
             {pTitle}
           </h3>
         </div>
@@ -1517,7 +1517,7 @@ export default function ProjectCard({
       </div>
 
       {/* Description */}
-      <p className="text-[#00ff9f88] text-sm leading-relaxed flex-1">
+      <p className="text-neon-green/53 text-sm leading-relaxed flex-1">
         {pDesc}
       </p>
 
@@ -1526,7 +1526,7 @@ export default function ProjectCard({
         {pTags.map((tag) => (
           <span
             key={tag}
-            className="text-[10px] font-mono bg-[#00ff9f0d] border border-[#00ff9f22] text-[#00ff9f77] rounded px-2 py-0.5 hover:text-[#00ff9f] hover:border-[#00ff9f44] transition-all duration-200"
+            className="text-[10px] font-mono bg-neon-green/5 border border-neon-green/13 text-neon-green/47 rounded px-2 py-0.5 hover:text-neon-green hover:border-neon-green/27 transition-all duration-200"
           >
             #{tag}
           </span>
@@ -1535,7 +1535,7 @@ export default function ProjectCard({
 
       {/* Footer - year + links */}
       <div className="flex items-center justify-between pt-2 border-t border-[#1a2e1a]">
-        <span className="text-[#00ff9f33] text-xs font-mono">
+        <span className="text-neon-green/20 text-xs font-mono">
           {pYear}
         </span>
         <div className="flex items-center gap-3">
@@ -1544,7 +1544,7 @@ export default function ProjectCard({
               href={pGithub}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-[#00ff9f55] hover:text-[#00ff9f] font-mono transition-all duration-200 hover:underline"
+              className="text-xs text-neon-green/33 hover:text-neon-green font-mono transition-all duration-200 hover:underline"
             >
               [github]
             </a>
@@ -1554,7 +1554,7 @@ export default function ProjectCard({
               href={pDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-[#00ff9f55] hover:text-[#00ff9f] font-mono transition-all duration-200 hover:underline"
+              className="text-xs text-neon-green/33 hover:text-neon-green font-mono transition-all duration-200 hover:underline"
             >
               [demo]
             </a>
@@ -1619,10 +1619,10 @@ export default function SkillsSection({
 }: SkillsSectionProps) {
   return (
     <section className="max-w-5xl mx-auto px-6 py-12 border-t border-[#1a2e1a]">
-      <p className="text-[#00ff9f44] text-xs font-mono mb-1">
+      <p className="text-neon-green/27 text-xs font-mono mb-1">
         {commandPrefix}
       </p>
-      <h2 className="text-xl font-bold text-[#00ff9f] font-mono mb-8">
+      <h2 className="text-xl font-bold text-neon-green font-mono mb-8">
         {title}
       </h2>
 
@@ -1630,26 +1630,26 @@ export default function SkillsSection({
         {skills.map(({ title: skillTitle, skills: subSkills, icon }, i) => (
           <div
             key={skillTitle}
-            className="border border-[#1a2e1a] bg-[#0d0d0d] rounded-lg p-5 hover:border-[#00ff9f33] hover:bg-[#0f0f0f] group animate-fade-in-up"
+            className="border border-[#1a2e1a] bg-[#0d0d0d] rounded-lg p-5 hover:border-neon-green/20 hover:bg-[#0f0f0f] group animate-fade-in-up"
             style={{ animationDelay: \`\${i * 80}ms\` }}
           >
             <div className="flex items-center gap-2 mb-4">
               {icon && <span className="text-base">{icon}</span>}
-              <h3 className="text-[#00ff9f] text-sm font-bold font-mono">
+              <h3 className="text-neon-green text-sm font-bold font-mono">
                 {skillTitle}
               </h3>
             </div>
             <ul className="space-y-2">
               {subSkills.map((skill, j) => (
                 <li key={skill} className="flex items-center gap-2 group/skill">
-                  <span className="text-[#00ff9f33] text-xs group-hover:text-[#00ff9f66] transition-colors duration-200">
+                  <span className="text-neon-green/20 text-xs group-hover:text-neon-green/40 transition-colors duration-200">
                     ›
                   </span>
-                  <span className="text-xs text-[#00ff9f66] font-mono group-hover:text-[#00ff9f88] transition-colors duration-200 flex-1">
+                  <span className="text-xs text-neon-green/40 font-mono group-hover:text-neon-green/53 transition-colors duration-200 flex-1">
                     {skill}
                   </span>
                   <span
-                    className="h-px bg-[#00ff9f22] rounded"
+                    className="h-px bg-neon-green/13 rounded"
                     style={{ width: \`\${30 + j * 12}%\` }}
                   />
                 </li>
@@ -1676,11 +1676,11 @@ interface CyberButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f33] hover:border-[#00ff9f]',
-    text: 'text-[#00ff9f]',
-    bg: 'hover:bg-[#00ff9f0d]',
+    border: 'border-neon-green/20 hover:border-neon-green',
+    text: 'text-neon-green',
+    bg: 'hover:bg-neon-green/5',
     shadow: 'hover:shadow-[0_0_15px_rgba(0,255,159,0.35)]',
-    accent: 'bg-[#00ff9f]',
+    accent: 'bg-neon-green',
   },
   cyan: {
     border: 'border-[#00f0ff33] hover:border-[#00f0ff]',
@@ -1798,9 +1798,9 @@ interface CyberInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElemen
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#1a2e1a] focus-within:border-[#00ff9f]',
-    text: 'text-[#00ff9f]',
-    prompt: 'text-[#00ff9f88]',
+    border: 'border-[#1a2e1a] focus-within:border-neon-green',
+    text: 'text-neon-green',
+    prompt: 'text-neon-green/53',
     shadow: 'focus-within:shadow-[0_0_15px_rgba(0,255,159,0.2)]',
     bg: 'bg-black/40',
   },
@@ -1866,7 +1866,7 @@ export default function CyberInput({
         }}
         className={\`
           flex-1 bg-transparent border-none outline-none font-mono font-bold
-          placeholder-[#00ff9f33]
+          placeholder-neon-green/20
           \${colors.text}
         \`}
       />
@@ -1895,12 +1895,12 @@ interface CyberPanelProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f1a] hover:border-[#00ff9f4d]',
-    barBorder: 'border-b-[#00ff9f0d]',
-    title: 'text-[#00ff9f99]',
-    bullet: 'bg-[#00ff9f]',
+    border: 'border-neon-green/10 hover:border-neon-green/30',
+    barBorder: 'border-b-neon-green/5',
+    title: 'text-neon-green/60',
+    bullet: 'bg-neon-green',
     shadow: 'hover:shadow-[0_0_20px_rgba(0,255,159,0.08)]',
-    dotColor: '#00ff9f',
+    dotColor: 'var(--neon-green)',
   },
   cyan: {
     border: 'border-[#00f0ff1a] hover:border-[#00f0ff4d]',
@@ -1987,7 +1987,7 @@ export default function CyberPanel({
       </div>
 
       {/* Content Area */}
-      <div className="flex-1 p-4 font-mono text-xs overflow-y-auto leading-relaxed text-[#00ff9fcc]">
+      <div className="flex-1 p-4 font-mono text-xs overflow-y-auto leading-relaxed text-neon-green/80">
         {children}
       </div>
     </div>
@@ -2005,10 +2005,10 @@ interface CyberBadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f33]',
-    bg: 'bg-[#00ff9f0a]',
-    text: 'text-[#00ff9f]',
-    brackets: 'text-[#00ff9f55]',
+    border: 'border-neon-green/20',
+    bg: 'bg-neon-green/4',
+    text: 'text-neon-green',
+    brackets: 'text-neon-green/33',
   },
   cyan: {
     border: 'border-[#00f0ff33]',
@@ -2195,7 +2195,7 @@ export default function CyberStatusLine({
   return (
     <div
       className={\`
-        flex items-center gap-2 font-mono text-xs text-[#00ff9f44] w-full select-none
+        flex items-center gap-2 font-mono text-xs text-neon-green/27 w-full select-none
         \${className}
       \`}
     >
@@ -2206,14 +2206,14 @@ export default function CyberStatusLine({
       <span>
         {status} &mdash;{' '}
         {count !== undefined && (
-          <span className="text-[#00ff9f66] font-bold mr-1">{count}</span>
+          <span className="text-neon-green/40 font-bold mr-1">{count}</span>
         )}
         <span>{detail}</span>
       </span>
 
       {/* Right Aligned Host Address */}
       {address && (
-        <span className="ml-auto text-[#00ff9f22] font-mono hover:text-[#00ff9f44] transition-colors duration-200">
+        <span className="ml-auto text-neon-green/13 font-mono hover:text-neon-green/27 transition-colors duration-200">
           {address}
         </span>
       )}
@@ -2240,12 +2240,12 @@ interface CyberActionCardProps {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#1a2e1a] hover:border-[#00ff9f44] hover:bg-[#00ff9f05]',
-    text: 'text-[#00ff9f]',
-    subText: 'text-[#00ff9f77]',
-    dimText: 'text-[#00ff9f33]',
-    accentText: 'text-[#00ff9f66] group-hover/link:text-[#00ff9f]',
-    commandText: 'text-[#00ff9f55]',
+    border: 'border-[#1a2e1a] hover:border-neon-green/27 hover:bg-neon-green/2',
+    text: 'text-neon-green',
+    subText: 'text-neon-green/47',
+    dimText: 'text-neon-green/20',
+    accentText: 'text-neon-green/40 group-hover/link:text-neon-green',
+    commandText: 'text-neon-green/33',
   },
   cyan: {
     border: 'border-[#0a232e] hover:border-[#00f0ff44] hover:bg-[#00f0ff05]',
@@ -2363,8 +2363,8 @@ interface CyberConsoleBoxProps {
 const COLOR_MAP = {
   green: {
     border: 'border-[#1a2e1a]',
-    command: 'text-[#00ff9f55]',
-    text: 'text-[#00ff9f44]',
+    command: 'text-neon-green/33',
+    text: 'text-neon-green/27',
     shadow: 'shadow-[0_0_25px_rgba(0,255,159,0.02)]',
     bg: 'bg-[#0d0d0dcc]',
   },
@@ -2448,10 +2448,10 @@ interface CyberTabsProps {
 
 const COLOR_MAP = {
   green: {
-    active: 'border-[#00ff9f] text-[#00ff9f] bg-[#00ff9f11] shadow-[0_0_10px_#00ff9f22]',
-    inactive: 'border-[#1a2e1a] text-[#00ff9f55] hover:border-[#00ff9f44] hover:text-[#00ff9f88]',
-    count: 'text-[#00ff9f55]',
-    prefix: 'text-[#00ff9f44]',
+    active: 'border-neon-green text-neon-green bg-neon-green/7 shadow-[0_0_10px_color-mix(in srgb, var(--neon-green) 13%, transparent)]',
+    inactive: 'border-[#1a2e1a] text-neon-green/33 hover:border-neon-green/27 hover:text-neon-green/53',
+    count: 'text-neon-green/33',
+    prefix: 'text-neon-green/27',
     container: 'border-[#1a2e1a] bg-[#0d0d0dcc]',
   },
   cyan: {
@@ -2541,9 +2541,9 @@ interface CyberSwitchProps {
 
 const COLOR_MAP = {
   green: {
-    trackActive: 'bg-[#00ff9f33] border-[#00ff9f]',
-    thumbActive: 'bg-[#00ff9f] shadow-[0_0_8px_#00ff9f]',
-    text: 'text-[#00ff9f]',
+    trackActive: 'bg-neon-green/20 border-neon-green',
+    thumbActive: 'bg-neon-green shadow-[0_0_8px_var(--neon-green)]',
+    text: 'text-neon-green',
     trackInactive: 'bg-black border-[#1a2e1a]',
     thumbInactive: 'bg-[#1a2e1a]',
   },
@@ -2637,11 +2637,11 @@ interface CyberCheckboxProps {
 
 const COLOR_MAP = {
   green: {
-    borderActive: 'border-[#00ff9f]',
-    bgActive: 'bg-[#00ff9f1a]',
-    text: 'text-[#00ff9f]',
+    borderActive: 'border-neon-green',
+    bgActive: 'bg-neon-green/10',
+    text: 'text-neon-green',
     glow: 'shadow-[0_0_8px_rgba(0,255,159,0.4)]',
-    borderInactive: 'border-[#1a2e1a] hover:border-[#00ff9f33]',
+    borderInactive: 'border-[#1a2e1a] hover:border-neon-green/20',
   },
   cyan: {
     borderActive: 'border-[#00f0ff]',
@@ -2732,12 +2732,12 @@ interface CyberDialogProps {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f33] focus:border-[#00ff9f]',
-    text: 'text-[#00ff9f]',
+    border: 'border-neon-green/20 focus:border-neon-green',
+    text: 'text-neon-green',
     shadow: 'shadow-[0_0_30px_rgba(0,255,159,0.15)]',
-    accentText: 'text-[#00ff9f66]',
-    headerBg: 'bg-[#00ff9f0d]',
-    accentBorder: 'border-[#00ff9f22]',
+    accentText: 'text-neon-green/40',
+    headerBg: 'bg-neon-green/5',
+    accentBorder: 'border-neon-green/13',
   },
   cyan: {
     border: 'border-[#00f0ff33] focus:border-[#00f0ff]',
@@ -2839,7 +2839,7 @@ export default function CyberDialog({
         </div>
 
         {/* Dialog Content */}
-        <div className="p-6 font-mono text-xs leading-relaxed text-[#00ff9fcc] overflow-y-auto">
+        <div className="p-6 font-mono text-xs leading-relaxed text-neon-green/80 overflow-y-auto">
           {children}
         </div>
 
@@ -2876,9 +2876,9 @@ interface CyberProgressProps {
 
 const COLOR_MAP = {
   green: {
-    bar: 'bg-[#00ff9f]',
-    glow: 'shadow-[0_0_8px_#00ff9f]',
-    text: 'text-[#00ff9f]',
+    bar: 'bg-neon-green',
+    glow: 'shadow-[0_0_8px_var(--neon-green)]',
+    text: 'text-neon-green',
     blockChar: '■',
     emptyChar: '□',
   },
@@ -2987,9 +2987,9 @@ interface ColorScheme {
 
 const COLOR_MAP: Record<'green' | 'cyan' | 'red' | 'amber', ColorScheme> = {
   green: {
-    border: 'border-[#00ff9f] shadow-[0_0_15px_rgba(0,255,159,0.15)]',
-    text: 'text-[#00ff9f]',
-    bg: 'bg-[#00ff9f05]',
+    border: 'border-neon-green shadow-[0_0_15px_rgba(0,255,159,0.15)]',
+    text: 'text-neon-green',
+    bg: 'bg-neon-green/2',
     badge: 'green',
   },
   cyan: {
@@ -3049,7 +3049,7 @@ export default function CyberAlert({
           </div>
 
           {/* Description */}
-          <div className="text-xs text-[#00ff9fcc] max-w-lg leading-relaxed">
+          <div className="text-xs text-neon-green/80 max-w-lg leading-relaxed">
             {children}
           </div>
         </div>
@@ -3118,7 +3118,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
   return (
     <div
       className={\`
-        border border-[#00ff9f22] bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
+        border border-neon-green/13 bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
         rounded-lg max-w-sm w-full overflow-hidden flex flex-col font-mono relative
         \${className}
       \`}
@@ -3129,10 +3129,10 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
       </div>
 
       {/* Header Bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-[#00ff9f11]">
+      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-neon-green/7">
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] animate-pulse" />
-          <span className="text-xs text-[#00ff9f88] font-bold tracking-widest uppercase">
+          <span className="text-xs text-neon-green/53 font-bold tracking-widest uppercase">
             MAINFRAME_GATEWAY_v2.8
           </span>
         </div>
@@ -3145,7 +3145,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
           <h2 className="text-lg font-bold text-white tracking-widest uppercase mb-1">
             ACCESS PROTOCOL
           </h2>
-          <p className="text-[10px] text-[#00ff9f66]">
+          <p className="text-[10px] text-neon-green/40">
             Enter terminal keys to authenticate socket connection.
           </p>
         </div>
@@ -3158,18 +3158,18 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
 
         {success ? (
           <div className="text-center py-6 space-y-4">
-            <div className="text-[#00ff9f] text-3xl animate-bounce">✔</div>
+            <div className="text-neon-green text-3xl animate-bounce">✔</div>
             <div className="text-sm font-bold text-white uppercase tracking-widest">
               ACCESS GRANTED
             </div>
-            <p className="text-[10px] text-[#00ff9f77]">
+            <p className="text-[10px] text-neon-green/47">
               Welcome back, administrator. Redirecting to core mainframe...
             </p>
           </div>
         ) : loading ? (
           <div className="py-8 space-y-4">
             <CyberProgress value={progress} label="DECRYPTING KEYS" variant="green" />
-            <p className="text-[9px] text-center text-[#00ff9f44] animate-pulse">
+            <p className="text-[9px] text-center text-neon-green/27 animate-pulse">
               establishing secure tunnel...
             </p>
           </div>
@@ -3177,7 +3177,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Username Input */}
             <div className="space-y-1">
-              <label className="block text-[10px] text-[#00ff9f66] uppercase">
+              <label className="block text-[10px] text-neon-green/40 uppercase">
                 Operator Username
               </label>
               <CyberInput
@@ -3192,7 +3192,7 @@ export default function CyberLoginForm({ onSuccess, className = '' }: CyberLogin
 
             {/* Password Input */}
             <div className="space-y-1">
-              <label className="block text-[10px] text-[#00ff9f66] uppercase">
+              <label className="block text-[10px] text-neon-green/40 uppercase">
                 Access Passcode
               </label>
               <CyberInput
@@ -3293,7 +3293,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
   return (
     <div
       className={\`
-        border border-[#00ff9f22] bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
+        border border-neon-green/13 bg-[#0a0a0aee] shadow-[0_0_40px_rgba(0,255,159,0.1)]
         rounded-lg max-w-sm w-full overflow-hidden flex flex-col font-mono relative
         \${className}
       \`}
@@ -3304,10 +3304,10 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
       </div>
 
       {/* Title Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-[#00ff9f11]">
+      <div className="flex items-center justify-between px-4 py-3 bg-neutral-900/60 border-b border-neon-green/7">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#00ff9f] animate-pulse" />
-          <span className="text-xs text-[#00ff9f88] font-bold tracking-widest uppercase">
+          <span className="w-2.5 h-2.5 rounded-full bg-neon-green animate-pulse" />
+          <span className="text-xs text-neon-green/53 font-bold tracking-widest uppercase">
             REGISTRATION_INTERFACE_v4
           </span>
         </div>
@@ -3320,7 +3320,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
           <h2 className="text-base font-bold text-white tracking-widest uppercase">
             GENERATE IDENTITY
           </h2>
-          <p className="text-[9px] text-[#00ff9f66] mt-0.5">
+          <p className="text-[9px] text-neon-green/40 mt-0.5">
             Spin up a new zero-knowledge profile on the decentralized node.
           </p>
         </div>
@@ -3333,11 +3333,11 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
         {success ? (
           <div className="text-center py-6 space-y-4">
-            <div className="text-[#00ff9f] text-3xl animate-bounce">▣</div>
+            <div className="text-neon-green text-3xl animate-bounce">▣</div>
             <div className="text-xs font-bold text-white uppercase tracking-widest">
               IDENTITY GENERATED
             </div>
-            <p className="text-[10px] text-[#00ff9f77]">
+            <p className="text-[10px] text-neon-green/47">
               Node registration complete. Keypairs downloaded securely.
             </p>
           </div>
@@ -3352,7 +3352,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             {/* Operator Handle */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">Operator Handle</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">Operator Handle</label>
               <CyberInput
                 variant="green"
                 prompt="HANDLE:"
@@ -3365,7 +3365,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
             {/* Matrix Routing Email */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">Routing Address</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">Routing Address</label>
               <CyberInput
                 variant="green"
                 prompt="ROUTING:"
@@ -3379,7 +3379,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
             {/* Secret Passphrase */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">Passphrase Hash</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">Passphrase Hash</label>
               <CyberInput
                 variant="green"
                 prompt="PASS_KEY:"
@@ -3392,7 +3392,7 @@ export default function CyberSignupForm({ onSuccess, className = '' }: CyberSign
 
             {/* Optional PGP Key */}
             <div className="space-y-1">
-              <label className="block text-[9px] text-[#00ff9f66] uppercase">PGP Public Key (Optional)</label>
+              <label className="block text-[9px] text-neon-green/40 uppercase">PGP Public Key (Optional)</label>
               <CyberInput
                 variant="green"
                 prompt="PGP_KEY:"
@@ -3493,7 +3493,7 @@ export default function CyberSystemDashboard({ className = '' }: { className?: s
   return (
     <div
       className={\`
-        border border-[#00ff9f11] bg-black/85 rounded-lg p-5 font-mono flex flex-col gap-5 w-full max-w-2xl
+        border border-neon-green/7 bg-black/85 rounded-lg p-5 font-mono flex flex-col gap-5 w-full max-w-2xl
         \${className}
       \`}
     >
@@ -3511,7 +3511,7 @@ export default function CyberSystemDashboard({ className = '' }: { className?: s
             <CyberProgress value={ram} label="SWAP MEMORY USAGE" type="line" variant="cyan" />
             <div className="flex justify-between items-center text-[10px] text-white/50 pt-2 border-t border-neutral-900">
               <span>CORE TEMPERATURE:</span>
-              <span className={temp > 70 ? 'text-[#ff5f57] font-bold' : 'text-[#00ff9f]'}>
+              <span className={temp > 70 ? 'text-[#ff5f57] font-bold' : 'text-neon-green'}>
                 {temp}°C {temp > 70 ? '[CRIT]' : '[NOMINAL]'}
               </span>
             </div>
@@ -3779,7 +3779,7 @@ export default function InteractiveConsole({ className = '' }: { className?: str
 
   const getLineColor = (type: ConsoleLine['type']) => {
     switch (type) {
-      case 'cmd': return 'text-[#00ff9f]';
+      case 'cmd': return 'text-neon-green';
       case 'err': return 'text-[#ff5f57]';
       case 'ok': return 'text-[#28c840]';
       case 'info': return 'text-[#febc2e]';
@@ -3790,17 +3790,17 @@ export default function InteractiveConsole({ className = '' }: { className?: str
   return (
     <div
       className={\`
-        border border-[#00ff9f22] bg-[#050505ee] shadow-[0_0_30px_rgba(0,255,159,0.05)]
+        border border-neon-green/13 bg-[#050505ee] shadow-[0_0_30px_rgba(0,255,159,0.05)]
         rounded-lg overflow-hidden flex flex-col font-mono h-96 w-full max-w-lg
         \${className}
       \`}
     >
       {/* Title Bar */}
-      <div className="flex items-center gap-1.5 px-4 py-2 bg-neutral-900 border-b border-[#00ff9f11] shrink-0">
+      <div className="flex items-center gap-1.5 px-4 py-2 bg-neutral-900 border-b border-neon-green/7 shrink-0">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        <span className="flex-1 text-center text-[10px] text-[#00ff9f44]">
+        <span className="flex-1 text-center text-[10px] text-neon-green/27">
           kali_bash — interactive_console
         </span>
       </div>
@@ -3819,7 +3819,7 @@ export default function InteractiveConsole({ className = '' }: { className?: str
       </div>
 
       {/* Input Form */}
-      <form onSubmit={handleCommand} className="border-t border-[#00ff9f11] p-2 bg-black shrink-0">
+      <form onSubmit={handleCommand} className="border-t border-neon-green/7 p-2 bg-black shrink-0">
         <CyberInput
           variant="green"
           prompt="root@kali:~#"
@@ -3881,13 +3881,13 @@ export default function TargetNetworkMap({ className = '' }: { className?: strin
   return (
     <div
       className={\`
-        border border-[#00ff9f11] bg-black/60 rounded-lg p-5 font-mono flex flex-col md:flex-row gap-5 w-full max-w-2xl backdrop-blur-sm
+        border border-neon-green/7 bg-black/60 rounded-lg p-5 font-mono flex flex-col md:flex-row gap-5 w-full max-w-2xl backdrop-blur-sm
         \${className}
       \`}
     >
       {/* Visual Network Map */}
       <div className="flex-1 flex flex-col gap-3">
-        <div className="flex justify-between items-center border-b border-[#00ff9f11] pb-2 text-[10px] text-white/50">
+        <div className="flex justify-between items-center border-b border-neon-green/7 pb-2 text-[10px] text-white/50">
           <span>⬡ LOCAL SUBNET TOPOLOGY</span>
           <span className="text-[#28c840] animate-pulse">● MAP_LIVE</span>
         </div>
@@ -3900,7 +3900,7 @@ export default function TargetNetworkMap({ className = '' }: { className?: strin
               const fromNode = NODES.find((n) => n.id === conn.from)!;
               const toNode = NODES.find((n) => n.id === conn.to)!;
               const isCompromised = fromNode.status === 'compromised' || toNode.status === 'compromised';
-              const lineColor = isCompromised ? '#ff5f57' : '#00ff9f';
+              const lineColor = isCompromised ? '#ff5f57' : 'var(--neon-green)';
               return (
                 <g key={idx}>
                   {/* Background pipe line */}
@@ -4002,7 +4002,7 @@ export default function TargetNetworkMap({ className = '' }: { className?: strin
           <div className="space-y-3 text-[10px] leading-relaxed">
             <div>
               <span className="text-white/40 block">TARGET HOSTNAME:</span>
-              <span className="text-[#00ff9f] font-bold uppercase">{selectedNode.name}</span>
+              <span className="text-neon-green font-bold uppercase">{selectedNode.name}</span>
             </div>
             <div>
               <span className="text-white/40 block">IP_ADDRESS:</span>
@@ -4055,12 +4055,12 @@ interface CyberPulseRadarProps {
 
 const COLOR_MAP = {
   green: {
-    stroke: '#00ff9f',
+    stroke: 'var(--neon-green)',
     fill: 'rgba(0, 255, 159, 0.03)',
     glow: 'rgba(0, 255, 159, 0.4)',
-    text: 'text-[#00ff9f]',
+    text: 'text-neon-green',
     border: 'border-[#1a2e1a]',
-    accentText: 'text-[#00ff9f88]',
+    accentText: 'text-neon-green/53',
     gridStroke: 'rgba(0, 255, 159, 0.08)',
   },
   cyan: {
@@ -4277,7 +4277,7 @@ export default function CyberPulseRadar({
         <div className="mt-4 pt-4 border-t border-dashed border-white/10 flex items-center justify-between text-[10px] text-white/30 font-mono">
           <span>SWEEP_RATE: {(360 / speed).toFixed(1)}°/s</span>
           <span className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00ff9f] animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-neon-green animate-pulse" />
             LIVE
           </span>
         </div>
@@ -4301,7 +4301,7 @@ interface TextDecryptorProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const COLOR_MAP = {
-  green: 'text-[#00ff9f]',
+  green: 'text-neon-green',
   cyan: 'text-[#00f0ff]',
   red: 'text-[#ff5f57]',
   amber: 'text-[#febc2e]',
@@ -4428,10 +4428,10 @@ interface HologramContainerProps {
 
 const COLOR_MAP = {
   green: {
-    border: 'border-[#00ff9f44]',
+    border: 'border-neon-green/27',
     glow: 'rgba(0, 255, 159, 0.15)',
-    color: '#00ff9f',
-    bg: 'bg-[#00ff9f03]',
+    color: 'var(--neon-green)',
+    bg: 'bg-neon-green/1',
     overlay: 'rgba(0, 255, 159, 0.05)',
   },
   cyan: {

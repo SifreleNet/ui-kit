@@ -13,9 +13,9 @@ interface CyberProgressProps {
 
 const COLOR_MAP = {
   green: {
-    bar: 'bg-[#00ff9f]',
-    glow: 'shadow-[0_0_8px_#00ff9f]',
-    text: 'text-[#00ff9f]',
+    bar: 'bg-neon-green',
+    glow: 'shadow-[0_0_8px_var(--neon-green)]',
+    text: 'text-neon-green',
     blockChar: '■',
     emptyChar: '□',
   },
