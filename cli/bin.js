@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import pc from 'picocolors';
 import prompts from 'prompts';
+import { execSync } from 'child_process';
 
 const GITHUB_REPO = 'SifreleNet/ui-kit';
 const CONFIG_FILE_NAME = '.sifrelenetrc';
@@ -215,20 +216,46 @@ const resolveAllComponents = (names) => {
 };
 
 const installComponents = async (targets, token) => {
-  if (targets === 'all') {
-    console.log(pc.yellow(`\n⬡ Installing all 28 components...`));
-    for (const comp of COMPONENTS) {
-      await downloadAndSave(comp, token);
+  const items = Array.isArray(targets) ? targets : [targets];
+  const resolved = targets === 'all' ? COMPONENTS : resolveAllComponents(items);
+  console.log(pc.yellow(`\n⬡ Installing ${resolved.length} component(s) (including internal dependencies)...`));
+
+  const allNpmDeps = new Set();
+
+  for (const comp of resolved) {
+    const deps = await downloadAndSave(comp, token);
+    for (const dep of deps) {
+      allNpmDeps.add(dep);
     }
-    console.log(pc.green(`\n✔ All components installed successfully!`));
-    return;
   }
 
-  const items = Array.isArray(targets) ? targets : [targets];
-  const resolved = resolveAllComponents(items);
-  console.log(pc.yellow(`\n⬡ Installing ${resolved.length} component(s) (including internal dependencies)...`));
-  for (const comp of resolved) {
-    await downloadAndSave(comp, token);
+  // Install NPM dependencies if any
+  if (allNpmDeps.size > 0) {
+    const depsArray = Array.from(allNpmDeps);
+    console.log(pc.cyan(`\n⬡ Installing required npm dependencies: ${depsArray.join(', ')}...`));
+    
+    // Detect package manager
+    let installCmd = 'npm install';
+    if (fs.existsSync(path.join(process.cwd(), 'pnpm-lock.yaml'))) {
+      installCmd = 'pnpm add';
+    } else if (fs.existsSync(path.join(process.cwd(), 'yarn.lock'))) {
+      installCmd = 'yarn add';
+    } else if (fs.existsSync(path.join(process.cwd(), 'bun.lockb')) || fs.existsSync(path.join(process.cwd(), 'bun.lock'))) {
+      installCmd = 'bun add';
+    }
+
+    const command = `${installCmd} ${depsArray.join(' ')}`;
+    console.log(pc.gray(`  Running: ${command}`));
+    
+    try {
+      execSync(command, { stdio: 'inherit', cwd: process.cwd() });
+      console.log(pc.green(`✔ Dependencies installed successfully!`));
+    } catch (err) {
+      console.log(pc.red(`✖ Failed to install dependencies automatically: ${err.message}`));
+      console.log(pc.yellow(`⚠ Please install them manually: ${command}`));
+    }
+  } else {
+    console.log(pc.green(`\n✔ All components installed successfully!`));
   }
 };
 
@@ -247,13 +274,10 @@ const downloadAndSave = async (comp, token) => {
 
     fs.writeFileSync(destPath, fileContent, 'utf8');
     console.log(pc.green(`✔ Saved to ${comp.path}`));
-
-    if (comp.deps.length > 0) {
-      console.log(pc.yellow(`⚠ Requires dependencies: ${comp.deps.join(', ')}`));
-      console.log(pc.gray(`  Run: npm install ${comp.deps.join(' ')}`));
-    }
+    return comp.deps || [];
   } catch (error) {
     console.log(pc.red(`✖ Failed to install ${comp.name}: ${error.message}`));
+    return [];
   }
 };
 
