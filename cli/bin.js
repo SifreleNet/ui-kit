@@ -63,14 +63,31 @@ const storeToken = (token) => {
   fs.writeFileSync(configPath, JSON.stringify({ token }, null, 2), 'utf8');
 };
 
+const checkRepoAccess = async (token) => {
+  const url = `https://api.github.com/repos/${GITHUB_REPO}`;
+  const headers = {
+    Accept: 'application/vnd.github.v3+json',
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  try {
+    const res = await fetch(url, { headers });
+    return res.ok;
+  } catch {
+    return false;
+  }
+};
+
 const fetchRawFile = async (githubPath, token) => {
   const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${githubPath}`;
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github.v3.raw',
-    },
-  });
+  const headers = {
+    Accept: 'application/vnd.github.v3.raw',
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  const response = await fetch(url, { headers });
 
   if (!response.ok) {
     if (response.status === 404) {
@@ -89,13 +106,23 @@ const main = async () => {
   console.log(pc.cyan(`\n⬡ SifreleNet UI-Kit Installer CLI ⬡`));
   console.log(pc.gray(`------------------------------------`));
 
-  // Get token
+  // Get token (either from env or config file)
   let token = process.env.GITHUB_PAT || getStoredToken();
-  if (!token) {
+  
+  // Test if we can access the repo
+  let hasAccess = await checkRepoAccess(token);
+  
+  if (!hasAccess) {
+    if (token) {
+      console.log(pc.yellow(`⚠ Stored GitHub token is invalid or does not have access to ${GITHUB_REPO}.`));
+    } else {
+      console.log(pc.yellow(`⚠ Repository ${GITHUB_REPO} is private or requires authentication.`));
+    }
+    
     const response = await prompts({
       type: 'text',
       name: 'token',
-      message: 'Enter your GitHub Personal Access Token (PAT) to access SifreleNet repo:',
+      message: 'Enter your GitHub Personal Access Token (PAT):',
       validate: (val) => (val ? true : 'Token is required'),
     });
 
@@ -104,6 +131,13 @@ const main = async () => {
       process.exit(1);
     }
     token = response.token;
+    
+    // Verify the new token
+    const isTokenValid = await checkRepoAccess(token);
+    if (!isTokenValid) {
+      console.log(pc.red('\n✖ Provided GitHub token is invalid or cannot access the repository.'));
+      process.exit(1);
+    }
     
     const saveResponse = await prompts({
       type: 'confirm',
@@ -116,6 +150,12 @@ const main = async () => {
       storeToken(token);
       console.log(pc.green(`✔ Token saved to ${CONFIG_FILE_NAME}`));
     }
+  } else {
+    if (token) {
+      console.log(pc.green(`✔ Authenticated using GitHub token.`));
+    } else {
+      console.log(pc.green(`✔ Connected to repository.`));
+    }
   }
 
   const args = process.argv.slice(2);
@@ -123,10 +163,10 @@ const main = async () => {
   const targetComponent = args[1];
 
   if (command !== 'add') {
-    console.log(`\nUsage: npx @sifrelenet/ui-kit add <component-name>`);
+    console.log(`\nUsage: npx sifrelenet-ui-kit add <component-name>`);
     console.log(`\nExamples:`);
-    console.log(`  npx @sifrelenet/ui-kit add CyberButton`);
-    console.log(`  npx @sifrelenet/ui-kit add all`);
+    console.log(`  npx sifrelenet-ui-kit add CyberButton`);
+    console.log(`  npx sifrelenet-ui-kit add all`);
     process.exit(0);
   }
 
