@@ -1,6 +1,6 @@
 {
   "name": "sifrelenet-ui-kit",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "CLI to install siber/cyber components from SifreleNet private repository",
   "main": "bin.js",
   "type": "module",
