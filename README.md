@@ -1,108 +1,131 @@
 ```
- ██████╗██████╗ ██╗   ██╗██████╗ ████████╗ ██████╗ ██╗  ██╗██████╗ ███████╗██╗   ██╗
-██╔════╝██╔══██╗╚██╗ ██╔╝██╔══██╗╚══██╔══╝██╔═████╗╚██╗██╔╝██╔══██╗██╔════╝██║   ██║
-██║     ██████╔╝ ╚████╔╝ ██████╔╝   ██║   ██║██╔██║ ╚███╔╝ ██║  ██║█████╗  ██║   ██║
-██║     ██╔══██╗  ╚██╔╝  ██╔═══╝    ██║   ████╔╝██║ ██╔██╗ ██║  ██║██╔══╝  ╚██╗ ██╔╝
-╚██████╗██║  ██║   ██║   ██║        ██║   ╚██████╔╝██╔╝ ██╗██████╔╝███████╗ ╚████╔╝
- ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝        ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝  ╚═══╝
+ ██████╗██╗███████╗██████╗ ███████╗██╗     ███████╗███╗   ██╗███████╗████████╗
+██╔════╝██║██╔════╝██╔══██╗██╔════╝██║     ██╔════╝████╗  ██║██╔════╝╚══██╔══╝
+███████╗██║█████╗  ██████╔╝█████╗  ██║     █████╗  ██╔██╗ ██║█████╗     ██║   
+╚════██║██║██╔══╝  ██╔══██╗██╔══╝  ██║     ██╔══╝  ██║╚██╗██║██╔══╝     ██║   
+███████║██║██║     ██║  ██║███████╗███████╗███████╗██║ ╚████║███████╗    ██║   
+╚══════╝╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝╚══════╝    ╚═╝   
 ```
 
 <div align="center">
 
-**`[ Security Researcher · Full-Stack Dev · CTF Player ]`**
+**`[ The Cyberpunk & Hacker UI Kit for React + TailwindCSS v4 ]`**
 
-![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=00ff9f)
-![TypeScript](https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00ff9f)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_v4-000000?style=for-the-badge&logo=tailwindcss&logoColor=00ff9f)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=00ff9f)
+[![License](https://img.shields.io/github/license/SifreleNet/ui-kit?style=for-the-badge&logoColor=00ff9f)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=00ff9f)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=00ff9f)](https://typescriptlang.org)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_v4-000000?style=for-the-badge&logo=tailwindcss&logoColor=00ff9f)](https://tailwindcss.com)
 
 </div>
 
 ---
 
-```bash
-$ whoami
-> Security researcher building things that break & fix systems.
-> Open to collaborations, bug bounties & consulting.
+## ⬡ Overview
 
-$ uptime
-> 3+ years in the field — still hacking, still shipping.
-```
+**SifreleNet UI-Kit** is a professional, highly premium cyberpunk and security-themed UI component library for React and TailwindCSS v4. It features a curated, dynamic design system tied directly to CSS custom properties. 
+
+Easily build hacking terminals, security dashboards, diagnostic hubs, or futuristic sci-fi layouts with customizable animations (CRT noise, scanline sweeps, glowing text effects, matrix simulations).
 
 ---
 
-## `~/stack`
+## ⬡ Quick Start / CLI Installation
 
-| Layer     | Tech                    |
-| --------- | ----------------------- |
-| Framework | Next.js 15 — App Router |
-| Language  | TypeScript (strict)     |
-| Styles    | Tailwind CSS v4         |
-| Font      | Geist Mono              |
-| Deploy    | Vercel                  |
-
----
-
-## `~/structure`
-
-```
-Crypt0xDev-Hacker-Portfolio/
-├── app/
-│   ├── page.tsx               ← Home: terminal animation + skills
-│   ├── projects/page.tsx      ← Filterable project grid + MatrixRain
-│   ├── contact/page.tsx       ← Terminal-style links + PGP block
-│   └── globals.css            ← Theme: #0a0a0a · #00ff9f · keyframes
-│
-├── components/
-│   ├── Navbar.tsx             ← Sticky nav, active route, online indicator
-│   ├── TerminalHero.tsx       ← Animated hacking simulation (nmap/sqlmap/hydra)
-│   ├── MatrixRain.tsx         ← Canvas matrix rain background
-│   ├── HackerDashboard.tsx    ← Live stats dashboard
-│   ├── SkillsSection.tsx      ← Skill cards grid
-│   └── ProjectCard.tsx        ← Card with tags, status badge & links
-│
-└── data/
-    └── projects.ts            ← Typed project entries
-```
-
----
-
-## `~/install`
+You can install any component directly into your project using our interactive CLI installer without cloning the entire repository:
 
 ```bash
-git clone https://github.com/Crypt0xDev/Crypt0xDev-Hacker-Portfolio.git
-cd Crypt0xDev-Hacker-Portfolio
+# Add a specific component (e.g. CyberButton)
+npx git+ssh://git@github.com:SifreleNet/ui-kit.git add CyberButton
+
+# Or open the interactive UI list to select components:
+npx git+ssh://git@github.com:SifreleNet/ui-kit.git add
+```
+
+---
+
+## ⬡ Theme Setup (CSS Tokens)
+
+Add the following variables and keyframes to your global CSS stylesheet (e.g. `globals.css`) to enable the cyberpunk theme:
+
+```css
+@import 'tailwindcss';
+
+:root {
+  --background: #0a0a0a;     /* Deep terminal black */
+  --foreground: #00ff9f;     /* Neon theme color */
+  --neon-green: #00ff9f;     /* Alias for primary green */
+  --neon-dim: #00cc7a;       /* Muted indicator color */
+  --surface: #0f0f0f;        /* Inner panel color */
+  --border: #1a2e1a;         /* Panel borders */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-neon-green: var(--neon-green);
+  --color-neon-dim: var(--neon-dim);
+}
+
+/* Custom Scanline Sweep */
+.scanline-sweep {
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(0, 255, 159, 0.06), transparent);
+  animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+```
+
+---
+
+## ⬡ Available Components (28)
+
+### 01 // Animations
+* **`MatrixRain`** - Classic digital rain overlay.
+* **`CyberPulseRadar`** - Circular HUD scanner sonar with active diagnostic target telemetry.
+* **`TextDecryptor`** - Crypto-style scrambled text resolver animation.
+* **`HologramContainer`** - Floating CRT screen flicker projector wrapper.
+
+### 02 // Cyber Primitives
+* **`CyberButton`** - Neon button with corner cuts and hover glitch shakes.
+* **`CyberInput`** - Interactive terminal shell input with cursor prompts.
+* **`CyberPanel`** - Card layout with system bar options and status indicator.
+* **`CyberBadge`** - Square brackets status flag (`[ CRITICAL ]`).
+* **`GlitchText`** - Hover-triggered typographic glitch distortion.
+* **`CyberStatusLine`** - HUD audit progress detail tracker.
+* **`CyberDialog`** - Grid scanline modal popup panel.
+* **`CyberProgress`** - Monospace block loading meter.
+* **`CyberSwitch` / `CyberCheckbox`** - Futuristic HUD input switches.
+
+### 03 // Core Templates & Complex HUDs
+* **`InteractiveConsole`** - Live interactive mock bash console simulator.
+* **`TargetNetworkMap`** - Vector node topology connection mapping.
+* **`TerminalHero`** - Animated security audit terminal output simulator.
+* **`HackerDashboard`** - Dynamic multi-panel status and server performance visualizer.
+
+---
+
+## ⬡ Local Showroom Deployment
+
+To test components locally and interact with the Playground Showroom:
+
+```bash
+git clone https://github.com/SifreleNet/ui-kit.git
+cd ui-kit
 npm install
 npm run dev
 ```
 
-→ [http://localhost:3000](http://localhost:3000)
+Visit [http://localhost:3000](http://localhost:3000) to view the live dashboard.
 
 ---
-
-## `~/features`
-
-```
-[✓] Terminal hero — full hacking simulation (nmap · sqlmap · hydra)
-[✓] Matrix rain background on all pages
-[✓] Navbar with pulsing "online" indicator and active route highlight
-[✓] Project grid with real-time category filter
-[✓] Contact page — terminal style + PGP fingerprint block
-[✓] Skill Set — 6 categories with animated cards
-[✓] Animations: glow · blink · scanline · fadeInUp
-[✓] Fully responsive — mobile first
-```
-
----
-
-## `~/deploy`
-
-```bash
-npx vercel --prod
-```
 
 <div align="center">
 
-`// stay curious, stay secure`
+`// access_granted. stay secure.`
 
 </div>
