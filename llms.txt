@@ -1,0 +1,272 @@
+# SifreleNet Cyber UI Kit — llms.txt
+
+> A cyberpunk-aesthetic React component library for Next.js projects.
+> All components are copied directly into your project via CLI — no hidden wrappers, full ownership.
+> Showroom & live playground: https://sifrelenet.vercel.app
+
+## Installation (CLI)
+
+```bash
+npx sifrelenet-ui-kit add <ComponentName>
+# or: yarn dlx / pnpm dlx / bunx
+```
+
+The CLI copies the `.tsx` file into `components/cyber-ui/` and installs all dependencies automatically.
+
+## Required CSS Setup
+
+Add to `globals.css`:
+```css
+:root {
+  --neon-green: #00ff9f;
+  --neon-dim: #00cc7a;
+  --surface: #0f0f0f;
+  --border: #1a2e1a;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.animate-blink { animation: blink 1s step-end infinite; }
+```
+
+## Design System
+
+All components share a consistent `variant` prop:
+- `"green"` — Neon green (default, hacker aesthetic)
+- `"cyan"` — Cyber cyan (tech HUD style)
+- `"red"` — Warning red (threat / danger)
+- `"amber"` — Alert amber (warning / stealth)
+
+Import pattern: `import ComponentName from '@/components/cyber-ui/ComponentName';`
+
+---
+
+## Components
+
+### PRIMITIVES
+
+**CyberButton**
+Cyberpunk neon button with cut-corner, glitch hover and glow effects.
+Props: `variant`, `size` (sm|md|lg), `isCutCorner` (bool), `glitchOnHover` (bool), `glow` (bool), `onClick`, `children`
+Install: `npx sifrelenet-ui-kit add CyberButton`
+
+**CyberInput**
+Terminal-styled text input with prompt prefix and neon focus glow.
+Props: `variant`, `prompt` (string, e.g. "root@kali:~#"), `glow` (bool), `placeholder`, `value`, `onChange`
+Install: `npx sifrelenet-ui-kit add CyberInput`
+
+**CyberPanel**
+Frosted-glass terminal panel with title bar, status LED and resize controls.
+Props: `variant`, `title` (string), `status` (string), `showControls` (bool), `glow` (bool), `children`
+Install: `npx sifrelenet-ui-kit add CyberPanel`
+
+**CyberBadge**
+Inline monospace badge with optional bracket styling.
+Props: `variant`, `brackets` (bool), `children`
+Install: `npx sifrelenet-ui-kit add CyberBadge`
+
+**GlitchText**
+Text that glitches with RGB-shift and scanline artifacts.
+Props: `text` (string), `trigger` (hover|always), `glow` (bool), `className`
+Install: `npx sifrelenet-ui-kit add GlitchText`
+
+**CyberStatusLine**
+Terminal status bar line with status text, detail count and address.
+Props: `status`, `detail`, `count`, `address`, `stateColor` (variant)
+Install: `npx sifrelenet-ui-kit add CyberStatusLine`
+
+**CyberActionCard**
+Compact action card with label, value and terminal command preview.
+Props: `label`, `value`, `command`, `description`, `icon`, `variant`
+Install: `npx sifrelenet-ui-kit add CyberActionCard`
+
+**CyberConsoleBox**
+Terminal command + output display box.
+Props: `command` (string), `content` (string), `variant`, `glow` (bool)
+Install: `npx sifrelenet-ui-kit add CyberConsoleBox`
+
+**CyberTabs**
+Scanline-styled tab navigation bar.
+Props: `tabs` ([{id, label, count?}]), `activeTabId` (string), `onChange` (fn), `variant`
+Install: `npx sifrelenet-ui-kit add CyberTabs`
+
+**CyberSwitch**
+Toggle switch with retro LED and scanning line animation.
+Props: `checked` (bool), `onChange` (fn), `label` (string), `variant`
+Install: `npx sifrelenet-ui-kit add CyberSwitch`
+
+**CyberCheckbox**
+Monospace checkbox with bracket styling and glitch check mark.
+Props: `checked` (bool), `onChange` (fn), `label` (string), `variant`
+Install: `npx sifrelenet-ui-kit add CyberCheckbox`
+
+**CyberDialog**
+Modal dialog with framer-motion entrance and neon border. Depends on: CyberButton.
+Props: `isOpen` (bool), `onClose` (fn), `title` (string), `variant`, `actions` (ReactNode), `children`
+Install: `npx sifrelenet-ui-kit add CyberDialog`
+
+**CyberProgress**
+Retro block progress bar or modern neon line progress.
+Props: `value` (0-100), `label` (string), `type` (block|line), `variant`
+Install: `npx sifrelenet-ui-kit add CyberProgress`
+
+**CyberAlert**
+System alert box with icon, action button and child message. Depends on: CyberBadge, CyberButton.
+Props: `title` (string), `variant`, `onAction` (fn), `actionText` (string), `children`
+Install: `npx sifrelenet-ui-kit add CyberAlert`
+
+---
+
+### ADVANCED
+
+**CyberTable**
+Monospace data table with CRT scanline overlay and telemetry title bar.
+Props: `title`, `subtitle`, `variant`, `columns` ([{key, header}]), `data` ([{...}])
+Install: `npx sifrelenet-ui-kit add CyberTable`
+
+**CyberTooltip**
+Neon bracketed tooltip with configurable position.
+Props: `content` (string), `position` (top|bottom|left|right), `variant`, `delay` (ms), `children`
+Install: `npx sifrelenet-ui-kit add CyberTooltip`
+
+**CyberToast**
+Provider + hook-based toast notification system with progress countdown.
+Usage: Wrap app in `<CyberToastProvider>`, then use `const { toast } = useCyberToast()` inside components.
+`toast({ title, message, variant, duration? })`
+Install: `npx sifrelenet-ui-kit add CyberToast`
+
+**CyberCommandMenu**
+Spotlight-style ⌘K command palette overlay with keyboard navigation and search.
+Props: `triggerKey` (string, e.g. "k"), `options` ([{id, category, title, subtitle?, action}])
+Install: `npx sifrelenet-ui-kit add CyberCommandMenu`
+
+**CyberAccordion**
+Collapsible accordion sections with bracket toggle indicators.
+Props: `variant`, `allowMultiple` (bool), `items` ([{id, trigger, content}])
+Install: `npx sifrelenet-ui-kit add CyberAccordion`
+
+**CyberSlider**
+HUD-style range slider with gradient fill and tick labels.
+Props: `label`, `min`, `max`, `step?`, `value`, `onChange`, `variant`, `showTicks` (bool)
+Install: `npx sifrelenet-ui-kit add CyberSlider`
+
+**CyberOtpInput**
+One-time password input boxes with neon bracket corners. Supports paste.
+Props: `length` (number, default 6), `value` (string), `onChange` (fn), `variant`
+Install: `npx sifrelenet-ui-kit add CyberOtpInput`
+
+**CyberSkeleton**
+CRT signal sweep loading placeholder for content loading states.
+Props: `className` (string, e.g. "w-full h-12"), `variant`
+Install: `npx sifrelenet-ui-kit add CyberSkeleton`
+
+**CyberBreadcrumb**
+Terminal path breadcrumb navigator with ~ home prefix.
+Props: `variant`, `items` ([{label, href?}])
+Install: `npx sifrelenet-ui-kit add CyberBreadcrumb`
+
+**CyberDropdown**
+Custom select dropdown with neon corner brackets and option check marks.
+Props: `value` (string), `onChange` (fn), `variant`, `placeholder`, `options` ([{value, label}])
+Install: `npx sifrelenet-ui-kit add CyberDropdown`
+
+---
+
+### ANIMATIONS
+
+**MatrixRain**
+Animated Japanese katakana / binary / hex falling characters canvas.
+Props: `color` (CSS color), `speed` (number), `fontSize` (px), `opacity` (0-1), `charType` (all|katakana|binary|hex)
+Install: `npx sifrelenet-ui-kit add MatrixRain`
+
+**CyberPulseRadar**
+Animated sonar / radar sweep with grid rings and blip targets.
+Props: `variant`, `speed` (seconds per sweep), `showGrid` (bool)
+Install: `npx sifrelenet-ui-kit add CyberPulseRadar`
+
+**TextDecryptor**
+Text scramble animation that reveals the real text character by character.
+Props: `text` (string), `speed` (ms per char), `trigger` (mount|hover|click), `variant`, `glow` (bool), `className`
+Install: `npx sifrelenet-ui-kit add TextDecryptor`
+
+**HologramContainer**
+Glassmorphism hologram wrapper with CRT scanlines, flicker and noise effects.
+Props: `variant`, `flicker` (bool), `scanlines` (bool), `noise` (bool), `className`, `children`
+Install: `npx sifrelenet-ui-kit add HologramContainer`
+
+---
+
+### TEMPLATES (full page sections)
+
+**CyberLoginForm**
+Full authentication form with terminal typing animation, progress bar and error handling.
+Props: `onSuccess` (fn: (username: string) => void)
+Dependencies: CyberButton, CyberInput, CyberAlert, CyberProgress, framer-motion, lucide-react
+Install: `npx sifrelenet-ui-kit add CyberLoginForm`
+
+**CyberSignupForm**
+Registration form with password strength meter and terms checkbox.
+Props: `onSuccess` (fn: (data: {username, email}) => void)
+Dependencies: CyberButton, CyberInput, CyberCheckbox, CyberAlert, CyberProgress
+Install: `npx sifrelenet-ui-kit add CyberSignupForm`
+
+**CyberSystemDashboard**
+Live-animated system metrics dashboard with CPU, RAM, disk and process monitors.
+No required props. Self-contained with animated fake data.
+Install: `npx sifrelenet-ui-kit add CyberSystemDashboard`
+
+**CyberDataForm**
+Multi-tab configuration form with inputs, switches, checkboxes and submit logic.
+No required props.
+Install: `npx sifrelenet-ui-kit add CyberDataForm`
+
+**InteractiveConsole**
+Fully functional terminal emulator with command history and built-in commands (help, ls, whoami, etc.)
+No required props.
+Install: `npx sifrelenet-ui-kit add InteractiveConsole`
+
+**TargetNetworkMap**
+Animated network topology map with node discovery and packet animation.
+No required props.
+Install: `npx sifrelenet-ui-kit add TargetNetworkMap`
+
+**TerminalHero**
+Full-screen hero section with animated terminal typing effect and mission badge.
+Props: `title`, `subtitle`, `badgeText`, `loopAnimation` (bool)
+Install: `npx sifrelenet-ui-kit add TerminalHero`
+
+**HackerDashboard**
+Animated hacker-style dashboard with live scan tickers and Matrix rain background.
+Props: `scanInterval?`, `logInterval?`, `bruteInterval?`, `hexInterval?` (all in ms)
+Install: `npx sifrelenet-ui-kit add HackerDashboard`
+
+**ProjectCard**
+Cyberpunk project showcase card with tags, status badge and year.
+Props: `title`, `description`, `tags` (string[]), `status` (active|beta|archived), `year`
+Install: `npx sifrelenet-ui-kit add ProjectCard`
+
+**SkillsSection**
+Terminal skill list with animated scan progress bars.
+Props: `title`, `commandPrefix`
+Install: `npx sifrelenet-ui-kit add SkillsSection`
+
+---
+
+## MCP Server
+
+For AI agents that support MCP (Model Context Protocol), run the server to enable active component browsing and installation:
+
+```json
+{
+  "mcpServers": {
+    "sifrelenet-ui-kit": {
+      "command": "node",
+      "args": ["node_modules/sifrelenet-ui-kit/cli/mcp-server.js"]
+    }
+  }
+}
+```
+
+Available MCP tools:
+- `list-components` — list all components, optionally filter by category
+- `get-component-info` — get props, deps and usage for a specific component
+- `add-component` — install a component into the current project
+- `get-install-command` — get the install command without running it
