@@ -32,12 +32,11 @@ Easily build hacking terminals, security dashboards, diagnostic hubs, or futuris
 
 You can install any component directly into your project using our interactive CLI installer without cloning the entire repository:
 
-```bash
-# Add a specific component (e.g. CyberButton)
-npx git+ssh://git@github.com:SifreleNet/ui-kit.git add CyberButton
+# Install via NPM registry (Recommended)
+npx sifrelenet-ui-kit add CyberButton
 
-# Or open the interactive UI list to select components:
-npx git+ssh://git@github.com:SifreleNet/ui-kit.git add
+# Or install directly from private/public Git repository:
+npx git+ssh://git@github.com:SifreleNet/ui-kit.git add CyberButton
 ```
 
 ---

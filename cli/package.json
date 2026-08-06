@@ -1,11 +1,11 @@
 {
-  "name": "@sifrelenet/ui-kit",
+  "name": "sifrelenet-ui-kit",
   "version": "0.1.0",
   "description": "CLI to install siber/cyber components from SifreleNet private repository",
   "main": "bin.js",
   "type": "module",
   "bin": {
-    "sifrelenet": "./bin.js"
+    "sifrelenet": "bin.js"
   },
   "dependencies": {
     "picocolors": "^1.0.0",
