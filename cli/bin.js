@@ -173,26 +173,25 @@ const main = async () => {
   if (!targetComponent) {
     // Prompt to select from available list
     const selection = await prompts({
-      type: 'select',
-      name: 'component',
-      message: 'Choose component to install:',
-      choices: [
-        { title: '[ Install All Components ]', value: 'all' },
-        ...COMPONENTS.map((c) => ({ title: `${c.name} (${c.path})`, value: c.name })),
-      ],
+      type: 'multiselect',
+      name: 'components',
+      message: 'Choose components to install:',
+      choices: COMPONENTS.map((c) => ({ title: `${c.name} (${c.path})`, value: c.name })),
+      hint: '- Space to select. Return to submit. a to toggle all.'
     });
 
-    if (!selection.component) {
+    if (!selection.components || selection.components.length === 0) {
+      console.log(pc.yellow('\n⚠ No components selected.'));
       process.exit(0);
     }
-    installComponent(selection.component, token);
+    await installComponents(selection.components, token);
   } else {
-    installComponent(targetComponent, token);
+    await installComponents(targetComponent === 'all' ? 'all' : [targetComponent], token);
   }
 };
 
-const installComponent = async (name, token) => {
-  if (name === 'all') {
+const installComponents = async (targets, token) => {
+  if (targets === 'all') {
     console.log(pc.yellow(`\n⬡ Installing all 28 components...`));
     for (const comp of COMPONENTS) {
       await downloadAndSave(comp, token);
@@ -201,14 +200,18 @@ const installComponent = async (name, token) => {
     return;
   }
 
-  const comp = COMPONENTS.find((c) => c.name.toLowerCase() === name.toLowerCase());
-  if (!comp) {
-    console.log(pc.red(`\n✖ Unknown component: "${name}".`));
-    console.log(`Available components:\n${COMPONENTS.map((c) => c.name).join(', ')}`);
-    process.exit(1);
-  }
+  const items = Array.isArray(targets) ? targets : [targets];
+  console.log(pc.yellow(`\n⬡ Installing ${items.length} component(s)...`));
 
-  await downloadAndSave(comp, token);
+  for (const name of items) {
+    const comp = COMPONENTS.find((c) => c.name.toLowerCase() === name.toLowerCase());
+    if (!comp) {
+      console.log(pc.red(`\n✖ Unknown component: "${name}".`));
+      console.log(`Available components:\n${COMPONENTS.map((c) => c.name).join(', ')}`);
+      continue;
+    }
+    await downloadAndSave(comp, token);
+  }
 };
 
 const downloadAndSave = async (comp, token) => {
