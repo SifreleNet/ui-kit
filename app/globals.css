@@ -2,9 +2,9 @@
 
 :root {
   --background: #0a0a0a;
-  --foreground: #0abc13;
-  --neon-green: #0abc13;
-  --neon-dim: #0abc13;
+  --foreground: #00ff9f;
+  --neon-green: #00ff9f;
+  --neon-dim: #00cc7a;
   --surface: #0f0f0f;
   --border: #1a2e1a;
 }
