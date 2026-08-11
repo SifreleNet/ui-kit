@@ -3,6 +3,7 @@ import path from 'path';
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  turbopack: {},
   allowedDevOrigins: ['192.168.56.1'],
   webpack: (config) => {
     // Force webpack to resolve modules from the project root,
