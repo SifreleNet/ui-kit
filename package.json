@@ -1,7 +1,26 @@
 {
   "name": "sifrelenet-ui-kit",
-  "version": "0.1.7",
-  "private": true,
+  "version": "0.1.10",
+  "description": "Cyberpunk-aesthetic React component library for Next.js",
+  "keywords": [
+    "react",
+    "nextjs",
+    "ui",
+    "cyberpunk",
+    "components",
+    "tailwind"
+  ],
+  "homepage": "https://github.com/SifreleNet/ui-kit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SifreleNet/ui-kit.git"
+  },
+  "license": "MIT",
+  "files": [
+    "cli/",
+    "components/cyber-ui/",
+    "README.md"
+  ],
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 next dev --webpack",
     "build": "next build",
@@ -9,16 +28,18 @@
     "lint": "eslint"
   },
   "bin": {
-    "sifrelenet": "./cli/bin.js"
+    "sifrelenet-ui-kit": "./cli/bin.js"
   },
   "dependencies": {
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.400.0",
     "next": "16.2.3",
     "picocolors": "^1.0.0",
-    "prompts": "^2.4.2",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "prompts": "^2.4.2"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -28,6 +49,8 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

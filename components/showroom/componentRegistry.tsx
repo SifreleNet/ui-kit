@@ -41,6 +41,14 @@ import TerminalHero from '@/components/TerminalHero';
 import HackerDashboard from '@/components/HackerDashboard';
 import ProjectCard from '@/components/ProjectCard';
 import SkillsSection from '@/components/SkillsSection';
+import CyberTextarea from '@/components/cyber-ui/CyberTextarea';
+import CyberPagination from '@/components/cyber-ui/CyberPagination';
+import CyberStat from '@/components/cyber-ui/CyberStat';
+import CyberDivider from '@/components/cyber-ui/CyberDivider';
+import CyberCodeBlock from '@/components/cyber-ui/CyberCodeBlock';
+import CyberTagInput from '@/components/cyber-ui/CyberTagInput';
+import CyberNumberInput from '@/components/cyber-ui/CyberNumberInput';
+import CyberAvatar from '@/components/cyber-ui/CyberAvatar';
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 export type PropControlType =
@@ -741,6 +749,160 @@ export const COMPONENT_REGISTRY: ComponentMeta[] = [
       </div>
     ),
     jsxSnippet: (p) => `<SkillsSection\n  title="${p.title}"\n  commandPrefix="$ cat skills.txt"\n/>`,
+  },
+
+  // ── NEW PRIMITIVES ──────────────────────────────────────────────────────────
+  {
+    name: 'CyberTextarea',
+    category: 'primitives',
+    description: 'Terminal-styled multi-line text area with prompt prefix, resize handle and line counter.',
+    controls: [
+      variantControl(),
+      { type: 'text', name: 'prompt', label: 'Prompt Prefix', defaultValue: '$ nano' },
+      { type: 'boolean', name: 'glow', label: 'Neon Glow', defaultValue: true },
+      { type: 'range', name: 'rows', label: 'Rows', min: 2, max: 10, defaultValue: 4 },
+    ],
+    preview: (p) => (
+      <div className="w-full max-w-md">
+        <CyberTextarea variant={p.variant} prompt={p.prompt} glow={p.glow} rows={p.rows} placeholder="Enter payload data..." />
+      </div>
+    ),
+    jsxSnippet: (p) => `<CyberTextarea\n  variant="${p.variant}"\n  prompt="${p.prompt}"\n  rows={${p.rows}}\n  glow={${p.glow}}\n  placeholder="Enter payload..."\n/>`,
+  },
+
+  {
+    name: 'CyberNumberInput',
+    category: 'primitives',
+    description: 'Number input with cyberpunk ± spin buttons, min/max/step clamping.',
+    controls: [
+      variantControl(),
+      { type: 'boolean', name: 'glow', label: 'Neon Glow', defaultValue: true },
+    ],
+    preview: (p) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [val, setVal] = React.useState(42);
+      return <CyberNumberInput variant={p.variant} value={val} onChange={setVal} min={0} max={100} label="PACKET_SIZE" glow={p.glow} />;
+    },
+    jsxSnippet: (p) => `<CyberNumberInput\n  variant="${p.variant}"\n  value={value}\n  onChange={setValue}\n  min={0}\n  max={100}\n  label="PACKET_SIZE"\n/>`,
+  },
+
+  {
+    name: 'CyberTagInput',
+    category: 'primitives',
+    description: 'Tag/chip input — press Enter or comma to add, Backspace to delete last.',
+    controls: [
+      variantControl(),
+      { type: 'boolean', name: 'glow', label: 'Neon Glow', defaultValue: true },
+    ],
+    preview: (p) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [tags, setTags] = React.useState(['ssh', 'vpn', 'tor']);
+      return (
+        <div className="w-full max-w-md">
+          <CyberTagInput variant={p.variant} tags={tags} onChange={setTags} glow={p.glow} placeholder="Add protocol... (Enter)" />
+        </div>
+      );
+    },
+    jsxSnippet: (p) => `<CyberTagInput\n  variant="${p.variant}"\n  tags={tags}\n  onChange={setTags}\n  placeholder="Add tag..."\n/>`,
+  },
+
+  {
+    name: 'CyberDivider',
+    category: 'primitives',
+    description: 'Neon divider line — horizontal/vertical with optional centered label.',
+    controls: [
+      variantControl(),
+      { type: 'text', name: 'label', label: 'Label (optional)', defaultValue: 'SECTOR_DIVIDE' },
+      { type: 'boolean', name: 'glow', label: 'Glow', defaultValue: false },
+    ],
+    preview: (p) => (
+      <div className="w-full max-w-md flex flex-col gap-6">
+        <CyberDivider variant={p.variant} label={p.label || undefined} glow={p.glow} />
+        <CyberDivider variant={p.variant} />
+      </div>
+    ),
+    jsxSnippet: (p) => `<CyberDivider variant="${p.variant}" label="${p.label}" />`,
+  },
+
+  {
+    name: 'CyberAvatar',
+    category: 'primitives',
+    description: 'User avatar with initials fallback, CRT scanline overlay and online indicator.',
+    controls: [
+      variantControl(),
+      { type: 'select', name: 'size', label: 'Size', defaultValue: 'md', options: [{ value: 'sm', label: 'Small' }, { value: 'md', label: 'Medium' }, { value: 'lg', label: 'Large' }, { value: 'xl', label: 'XL' }] },
+      { type: 'boolean', name: 'online', label: 'Online Indicator', defaultValue: true },
+    ],
+    preview: (p) => (
+      <div className="flex items-center gap-4">
+        <CyberAvatar variant={p.variant} name="Ghost Agent" size={p.size} online={p.online} />
+        <CyberAvatar variant={p.variant} name="Root User" size={p.size} online={false} />
+        <CyberAvatar variant={p.variant} size={p.size} />
+      </div>
+    ),
+    jsxSnippet: (p) => `<CyberAvatar\n  variant="${p.variant}"\n  name="Ghost Agent"\n  size="${p.size}"\n  online={${p.online}}\n/>`,
+  },
+
+  // ── NEW ADVANCED ────────────────────────────────────────────────────────────
+  {
+    name: 'CyberPagination',
+    category: 'advanced',
+    description: 'Terminal-themed pagination with smart page elision and first/last buttons.',
+    controls: [
+      variantControl(),
+      { type: 'range', name: 'totalPages', label: 'Total Pages', min: 2, max: 20, defaultValue: 12 },
+      { type: 'boolean', name: 'showFirstLast', label: 'Show First/Last', defaultValue: true },
+    ],
+    preview: (p) => {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [page, setPage] = React.useState(5);
+      return <CyberPagination variant={p.variant} currentPage={page} totalPages={p.totalPages} onPageChange={setPage} showFirstLast={p.showFirstLast} />;
+    },
+    jsxSnippet: (p) => `<CyberPagination\n  variant="${p.variant}"\n  currentPage={page}\n  totalPages={${p.totalPages}}\n  onPageChange={setPage}\n/>`,
+  },
+
+  {
+    name: 'CyberStat',
+    category: 'advanced',
+    description: 'Single metric stat card with trend indicator and icon slot — perfect for dashboards.',
+    controls: [
+      variantControl(),
+      { type: 'text', name: 'label', label: 'Metric Label', defaultValue: 'ACTIVE_CONNECTIONS' },
+      { type: 'text', name: 'value', label: 'Value', defaultValue: '1,337' },
+      { type: 'text', name: 'unit', label: 'Unit', defaultValue: 'hosts' },
+      { type: 'select', name: 'trend', label: 'Trend', defaultValue: 'up', options: [{ value: 'up', label: '▲ Up' }, { value: 'down', label: '▼ Down' }, { value: 'neutral', label: '● Neutral' }] },
+      { type: 'text', name: 'trendValue', label: 'Trend Value', defaultValue: '+12.4% vs last scan' },
+    ],
+    preview: (p) => (
+      <div className="w-64">
+        <CyberStat variant={p.variant} label={p.label} value={p.value} unit={p.unit} trend={p.trend as any} trendValue={p.trendValue} icon="⚡" />
+      </div>
+    ),
+    jsxSnippet: (p) => `<CyberStat\n  variant="${p.variant}"\n  label="${p.label}"\n  value="${p.value}"\n  unit="${p.unit}"\n  trend="${p.trend}"\n  trendValue="${p.trendValue}"\n/>`,
+  },
+
+  {
+    name: 'CyberCodeBlock',
+    category: 'advanced',
+    description: 'Syntax-styled code block with line numbers, language badge, and one-click copy.',
+    controls: [
+      variantControl(),
+      { type: 'boolean', name: 'showLineNumbers', label: 'Line Numbers', defaultValue: true },
+      { type: 'boolean', name: 'glow', label: 'Neon Glow', defaultValue: true },
+    ],
+    preview: (p) => (
+      <div className="w-full">
+        <CyberCodeBlock
+          variant={p.variant}
+          language="bash"
+          filename="exploit.sh"
+          showLineNumbers={p.showLineNumbers}
+          glow={p.glow}
+          code={`#!/bin/bash\nnmap -sV -O 192.168.1.0/24\nhydra -l root -P /wordlist.txt ssh://target\nmsfconsole -q -x "use exploit/multi/handler"`}
+        />
+      </div>
+    ),
+    jsxSnippet: (p) => `<CyberCodeBlock\n  variant="${p.variant}"\n  language="bash"\n  filename="script.sh"\n  showLineNumbers={${p.showLineNumbers}}\n  code={\`...\`}\n/>`,
   },
 ];
 

@@ -36,6 +36,14 @@ const COMPONENTS = [
   { name: 'CyberSkeleton', path: 'components/cyber-ui/CyberSkeleton.tsx', deps: [], internalDeps: [] },
   { name: 'CyberBreadcrumb', path: 'components/cyber-ui/CyberBreadcrumb.tsx', deps: ['lucide-react'], internalDeps: [] },
   { name: 'CyberDropdown', path: 'components/cyber-ui/CyberDropdown.tsx', deps: ['lucide-react'], internalDeps: [] },
+  { name: 'CyberTextarea', path: 'components/cyber-ui/CyberTextarea.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberNumberInput', path: 'components/cyber-ui/CyberNumberInput.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberTagInput', path: 'components/cyber-ui/CyberTagInput.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberDivider', path: 'components/cyber-ui/CyberDivider.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberAvatar', path: 'components/cyber-ui/CyberAvatar.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberPagination', path: 'components/cyber-ui/CyberPagination.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberStat', path: 'components/cyber-ui/CyberStat.tsx', deps: [], internalDeps: [] },
+  { name: 'CyberCodeBlock', path: 'components/cyber-ui/CyberCodeBlock.tsx', deps: [], internalDeps: [] },
   
   // Animations
   { name: 'MatrixRain', path: 'components/MatrixRain.tsx', deps: [], internalDeps: [] },
